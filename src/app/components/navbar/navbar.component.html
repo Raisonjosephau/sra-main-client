@@ -16,22 +16,23 @@
           <span class="navbar-toggler-bar navbar-kebab"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="collapseExample" [ngbCollapse]="isCollapsed">
-            <form>
+            <form name="form" #f="ngForm">
                 <div class="input-group no-border">
-                    <input type="text" value="" [(ngModel)]="ser" name="ser" class="form-control" placeholder="Search...">
+                    <input type="text" [(ngModel)]="search" #ser="ngModel" required minlength="3" (focus)="hasFoc = true" (blur)="hasFoc = false" name="search" id="search" class="form-control" placeholder="Search...">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <i class="now-ui-icons ui-1_zoom-bold"></i>
                         </div>
                     </div>
                 </div>
-                <div *ngIf="ser" class="search-box">
-                    <div *ngFor="let item of items |search:'id,name':ser">
+                <div *ngIf="ser.valid" class="search-box">
+                    <div *ngFor="let item of items |search:'reg,name':search" class="search-items">
                         <div *ngIf="item === -1">No matches</div>
-                        <div *ngIf="item !== -1">{{ item.name }}</div>
+                        <a href="#" *ngIf="item !== -1">{{ item.name }}
+                            <span class="small"> RegNo : {{item.reg}}, Batch : {{item.id}}</span>
+                        </a>
                     </div>
                 </div>
-
             </form>
             <ul class="navbar-nav">
                 <li class="nav-item">

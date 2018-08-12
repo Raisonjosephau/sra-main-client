@@ -25,6 +25,33 @@
     color: #212121;
     width: inherit;
     min-width: 210px;
+    max-height: 480px;
     box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
-    padding: 5px 5px 10px 10px;
+    padding: 10px 15px 10px 15px;
+    font-weight: 500;
+    overflow: auto;
+}
+
+.search-box::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+.search-box::-webkit-scrollbar {
+    width: 2px;
+    background-color: #fff;
+}
+
+.search-box::-webkit-scrollbar-thumb {
+    background-color: #323232;
+}
+
+.search-box .search-items {
+    margin: 10px 0px 10px 0px;
+}
+
+.search-box .search-items a span {
+    font-size: 10px;
+    color: #515151;
+    font-weight: 500;
+    display: block
 }
