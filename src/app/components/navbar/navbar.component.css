@@ -1,0 +1,30 @@
+.input-group.no-border .form-control,
+.input-group.no-border .input-group-append .input-group-text {
+    color: #212121 !important
+}
+
+.input-group.no-border .form-control::-moz-placeholder {
+    color: #212121
+}
+
+.input-group.no-border .form-control::-ms-input-placeholder {
+    color: #212121
+}
+
+.input-group.no-border .form-control::-webkit-input-placeholder {
+    color: #212121
+}
+
+.search-box {
+    position: absolute;
+    top: 72%;
+    margin-left: 15px;
+    margin-top: 10px;
+    display: block;
+    background: white;
+    color: #212121;
+    width: inherit;
+    min-width: 210px;
+    box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
+    padding: 5px 5px 10px 10px;
+}
