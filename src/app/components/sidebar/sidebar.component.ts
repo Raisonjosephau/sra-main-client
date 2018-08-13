@@ -17,6 +17,7 @@ export const ROUTES: RouteInfo[] = [
 
 export const RESULTROUTES: RouteInfo[] = [
 
+    { path: '/student-result', title: 'Student Result',  icon: 'education_hat', class: '' },
     { path: '/upload-result', title: 'Upload Result',  icon: 'arrows-1_cloud-upload-94', class: '' }
 ]
 @Component({
@@ -53,12 +54,12 @@ export class SidebarComponent implements OnInit {
         }
   }
   checkRouteIsInResult() {
-        const collpase = {'area' : true, 'show': 'show'};
-        const router = this.router
+        const collpase = {'area' : false, 'show': ''};
+        const router = this.router;
         this.resultMenuItems.filter(function(item) {
-            if (item.path !== router.url) {
-                collpase.area = false;
-                collpase.show = '';
+            if (item.path === router.url) {
+                collpase.area = true;
+                collpase.show = 'show';
             }
         })
         this.collapseState = collpase;

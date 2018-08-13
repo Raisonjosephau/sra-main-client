@@ -15,7 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './auth/index';
+import { AuthGuard } from './auth';
 import {ReLoginGaurd } from './auth/auth.rev'
 import {LoginService} from './_services/login.service'
 import {UserService} from './_services/user.service'

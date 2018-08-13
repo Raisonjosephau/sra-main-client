@@ -7,7 +7,8 @@ import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { TableListComponent } from '../../table-list/table-list.component';
 import { TypographyComponent } from '../../typography/typography.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
-import {UploadResultComponent} from '../../result-upload/reulst-upload.component'
+import {UploadResultComponent} from '../../result-upload/result-upload.component'
+import {StudentResultComponent} from '../../student-result/student-result.componet'
 import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
@@ -26,7 +27,8 @@ import { ToastrModule } from 'ngx-toastr';
     TableListComponent,
     TypographyComponent,
     NotificationsComponent,
-    UploadResultComponent
+    UploadResultComponent,
+    StudentResultComponent
 
   ]
 })
