@@ -20,22 +20,90 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
     public isCollapsed = true;
+    hasFoc = false;
 
     items = [
         {
-          id: 1,
-          name: 'First item'
+          'id': 0,
+          'reg': 'SGICS3',
+          'name': 'Sreelaksmi Sudeer'
         },
         {
-          id: 2,
-          name: 'Second item'
+          'id': 1,
+          'reg': 'SGICS27',
+          'name': 'Savid Joe Sunny'
         },
         {
-          id: 3,
-          name: 'Hello'
+          'id': 2,
+          'reg': 'SGICS28',
+          'name': 'Joel Jose Parekattil'
+        },
+        {
+          'id': 3,
+          'reg': 'SGICS13',
+          'name': 'Jimenez Cote'
+        },
+        {
+          'id': 4,
+          'reg': 'SGICS3',
+          'name': 'Gonzales Griffith'
+        },
+        {
+          'id': 5,
+          'reg': 'SGICS31',
+          'name': 'Kirby Woods'
+        },
+        {
+          'id': 6,
+          'reg': 'SGICS2',
+          'name': 'Barry Hinton'
+        },
+        {
+          'id': 7,
+          'reg': 'SGICS31',
+          'name': 'Leila Mcfarland'
+        },
+        {
+          'id': 8,
+          'reg': 'SGICS15',
+          'name': 'Liliana Stein'
+        },
+        {
+          'id': 9,
+          'reg': 'SGICS29',
+          'name': 'Perez Stone'
+        },
+        {
+          'id': 10,
+          'reg': 'SGICS3',
+          'name': 'Marie Noel'
+        },
+        {
+          'id': 11,
+          'reg': 'SGICS21',
+          'name': 'Daniel Sanders'
+        },
+        {
+          'id': 12,
+          'reg': 'SGICS6',
+          'name': 'Booker Roach'
+        },
+        {
+          'id': 13,
+          'reg': 'SGICS18',
+          'name': 'Marietta Sykes'
+        },
+        {
+          'id': 14,
+          'reg': 'SGICS12',
+          'name': 'Gabriela Lindsey'
+        },
+        {
+          'id': 15,
+          'reg': 'SGICS24',
+          'name': 'Lloyd Robinson'
         }
       ];
-
     constructor(location: Location,  private element: ElementRef, private router: Router) {
       this.location = location;
           this.sidebarVisible = false;

@@ -16,22 +16,28 @@
           <span class="navbar-toggler-bar navbar-kebab"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="collapseExample" [ngbCollapse]="isCollapsed">
-            <form>
+            <form name="form" #f="ngForm">
                 <div class="input-group no-border">
-                    <input type="text" value="" [(ngModel)]="ser" name="ser" class="form-control" placeholder="Search...">
+                    <input type="text" [(ngModel)]="search" #ser="ngModel" autocomplete="off" required minlength="3" (focus)="hasFoc = true" name="search" id="search" class="form-control" placeholder="Search...">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <i class="now-ui-icons ui-1_zoom-bold"></i>
+                            <i class="now-ui-icons ui-1_zoom-bold" *ngIf="ser.invalid"></i>
+                            <i class="far fa-times-circle clear" *ngIf="ser.valid" (click)="hasFoc = false; search =''"></i>
                         </div>
                     </div>
                 </div>
-                <div *ngIf="ser" class="search-box">
-                    <div *ngFor="let item of items |search:'id,name':ser">
-                        <div *ngIf="item === -1">No matches</div>
-                        <div *ngIf="item !== -1">{{ item.name }}</div>
+                <div *ngIf="ser.valid && hasFoc" class="search-box">
+                    <div class="search-container">
+                        <div routerLinkActive="active" *ngFor="let item of items |search:'reg,name':search" class="search-items">
+                            <div *ngIf="item === -1">No matches</div>
+                            <div class="search-item">
+                                <a [routerLink]="['/notifications']" [queryParams]="{search: item.id}" *ngIf="item !== -1" (click)="hasFoc = false">{{ item.name }}
+                                 <span class="small"> RegNo : {{item.reg}}, Batch : {{item.id}}</span>
+                            </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </form>
             <ul class="navbar-nav">
                 <li class="nav-item">
