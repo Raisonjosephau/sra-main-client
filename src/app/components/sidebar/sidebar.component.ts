@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 declare interface RouteInfo {
     path: string;
@@ -6,14 +7,18 @@ declare interface RouteInfo {
     icon: string;
     class: string;
 }
+
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'design_app', class: '' },
     { path: '/notifications', title: 'Notifications',  icon: 'ui-1_bell-53', class: '' },
     { path: '/table-list', title: 'Table List',  icon: 'design_bullet-list-67', class: '' },
     { path: '/typography', title: 'Typography',  icon: 'text_caps-small', class: '' },
-    { path: '/upload-result', title: 'Upload Result',  icon: 'arrows-1_cloud-upload-94', class: '' }
 ];
 
+export const RESULTROUTES: RouteInfo[] = [
+
+    { path: '/upload-result', title: 'Upload Result',  icon: 'arrows-1_cloud-upload-94', class: '' }
+]
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -21,11 +26,16 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
   menuItems: any[];
+  resultMenuItems: any[];
+  currentRoute: string;
+  collapseState: any;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
+    this.resultMenuItems = RESULTROUTES.filter(menuItem => menuItem);
+    this.checkRouteIsInResult();
   }
   isMobileMenu() {
       if ( window.innerWidth > 991) {
@@ -41,5 +51,16 @@ export class SidebarComponent implements OnInit {
         } else {
             return 'SRS'
         }
+  }
+  checkRouteIsInResult() {
+        const collpase = {'area' : true, 'show': 'show'};
+        const router = this.router
+        this.resultMenuItems.filter(function(item) {
+            if (item.path !== router.url) {
+                collpase.area = false;
+                collpase.show = '';
+            }
+        })
+        this.collapseState = collpase;
   }
 }

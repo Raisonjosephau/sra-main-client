@@ -18,9 +18,8 @@
 .search-box {
     position: absolute;
     top: 72%;
-    left: 50%;
-    right: 50%;
     margin-top: 10px;
+    margin-left: 15px;
     display: block;
     background: white;
     color: #212121;

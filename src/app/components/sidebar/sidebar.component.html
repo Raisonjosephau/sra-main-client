@@ -16,6 +16,25 @@
                 <p>{{menuItem.title}}</p>
             </a>
         </li>
+        <li>
+            <a data-toggle="collapse" data-parent="#accordion" href="#description" [attr.aria-expanded]="collapseState.area" aria-controls="collapse4">
+                <i class="now-ui-icons sport_trophy"></i>
+                <p>
+                    Results <b class="caret"></b>
+                </p>
+            </a>
+            <div id="description" class="collapse {{collapseState.show}}">
+                <ul class="nav">
+                    <li routerLinkActive="active" *ngFor="let menuItem of resultMenuItems" class="{{menuItem.class}} nav-item">
+                        <a [routerLink]="[menuItem.path]">
+                            <i class="now-ui-icons {{menuItem.icon}}"></i>
+                            <p>{{menuItem.title}}</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </li>
         <li routerLinkActive="active" class="nav-item">
             <a routerLink="/login">
                 <p>Login</p>
