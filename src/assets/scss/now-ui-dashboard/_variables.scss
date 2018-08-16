@@ -196,7 +196,7 @@ $social-google-state-color: darken(#dd4b39, 5%) !default;
 $social-linkedin: #0077B5 !default;
 $social-linkedin-state-color: darken(#0077B5, 5%) !default;
 // Sidebar variables
-$sidebar-width: calc(100% - 260px) !default;
+$sidebar-width: calc(100% - 230px) !default;
 $sidebar-mini-width: calc(100% - 80px) !default;
 // Social icons color
 $social-twitter: #55acee !default;
@@ -223,3 +223,5 @@ $social-tumblr: #35465c !default;
 $social-tumblr-state-color: lighten(#35465c, 6%) !default;
 $social-behance: #1769ff !default;
 $social-behance-state-color: lighten(#1769ff, 6%) !default;
+$black-color-top : #787878;
+$black-color-bottom : #343434;

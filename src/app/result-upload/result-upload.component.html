@@ -12,13 +12,13 @@
                         <div class="col-md-12">
                             <form class="form" (ngSubmit)="upload.form.valid && uploads(span)" #upload="ngForm">
                                 <div class="row">
-                                    <div class="col-md-4 pr-1">
+                                    <div class="col-md-3 pr-1">
                                         <div class="form-group">
                                             <label>Published Date</label>
                                             <input class="form-control datetimepicker" placeholder="06/07/2017" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" autocomplete="off">
                                         </div>
                                     </div>
-                                    <div class="col-md-4 pr-2">
+                                    <div class="col-md-3 pr-2">
                                         <div class="form-group">
                                             <label>Semester</label>
                                             <select class="selectpicker" data-style="form-control" title="Choose Semester" data-size="7" tabindex="-98">
@@ -34,7 +34,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 pr-2">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Batch</label>
                                             <select class="selectpicker" data-style="form-control" title="Choose Batch" data-size="7" tabindex="-98">
@@ -43,6 +43,16 @@
                                                 <option value="2">2016-20</option>
                                                 <option value="3">2017-21</option>
                                                 <option value="4">2018-22</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Scheme</label>
+                                            <select class="selectpicker" data-style="form-control" title="Choose Scheme" data-size="7" tabindex="-98">
+                                                <option disabled=""> Scheme</option>
+                                                <option value="1">Regular</option>
+                                                <option value="2">Supplymentry</option>
                                             </select>
                                         </div>
                                     </div>

@@ -1,0 +1,32 @@
+.footer {
+    min-height: 80px;
+}
+
+.footer .info {
+    text-transform: none;
+    color: #626262;
+}
+
+.footer .small {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.footer .small.text-danger {
+    color: rgb(253, 94, 83) !important;
+}
+
+.stud-info {
+    margin: 15px 20px;
+    font-weight: 500 !important;
+    text-shadow: .8px 1px .8px #eeeeee;
+}
+
+hr {
+    border-color: #2ecc71 !important;
+}
+
+th {
+    font-weight: 500 !important;
+    font-size: 1.1em;
+}

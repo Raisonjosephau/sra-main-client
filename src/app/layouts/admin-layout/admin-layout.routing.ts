@@ -14,5 +14,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'typography',     component: TypographyComponent, canActivate: [AuthGuard] },
     { path: 'notifications',  component: NotificationsComponent, canActivate: [AuthGuard] },
     { path: 'upload-result',     component: UploadResultComponent, canActivate: [AuthGuard] },
-    { path: 'student-result',     component: UploadResultComponent, canActivate: [AuthGuard] },
+    { path: 'student-result',     component: StudentResultComponent, canActivate: [AuthGuard] },
 ];
