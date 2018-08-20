@@ -21,6 +21,12 @@ export const RESULTROUTES: RouteInfo[] = [
     { path: '/student-result', title: 'Student Result',  icon: 'education_hat', class: '' },
     { path: '/upload-result', title: 'Upload Result',  icon: 'arrows-1_cloud-upload-94', class: '' }
 ]
+
+export const ANALYSISROUTES: RouteInfo[] = [
+
+    { path: '/subject-analysis', title: 'Subject Analysis',  icon: 'education_paper', class: '' }
+]
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -29,15 +35,19 @@ export const RESULTROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   menuItems: any[];
   resultMenuItems: any[];
+  analysisMenuItems: any[];
   currentRoute: string;
-  collapseState: any;
+  collapseResultState: any;
+  collapseAnalysisState: any;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
     this.resultMenuItems = RESULTROUTES.filter(menuItem => menuItem);
+    this.analysisMenuItems = ANALYSISROUTES.filter(menuItem => menuItem);
     this.checkRouteIsInResult();
+    this.checkRouteIsInAnalysis();
   }
   isMobileMenu() {
       if ( window.innerWidth > 991) {
@@ -63,6 +73,17 @@ export class SidebarComponent implements OnInit {
                 collpase.show = 'show';
             }
         })
-        this.collapseState = collpase;
+        this.collapseResultState = collpase;
   }
+  checkRouteIsInAnalysis() {
+    const collpase = {'area' : false, 'show': ''};
+    const router = this.router;
+    this.analysisMenuItems.filter(function(item) {
+        if (item.path === router.url) {
+            collpase.area = true;
+            collpase.show = 'show';
+        }
+    })
+    this.collapseAnalysisState = collpase;
+}
 }
