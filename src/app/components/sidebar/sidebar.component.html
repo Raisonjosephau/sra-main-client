@@ -35,10 +35,24 @@
                 </ul>
             </div>
         </li>
-        <li routerLinkActive="active" class="nav-item">
-            <a routerLink="/login">
-                <p>Login</p>
+        <li>
+            <a data-toggle="collapse" data-parent="#accordion" href="#analysis" [attr.aria-expanded]="" aria-controls="collapse4">
+                <i class="now-ui-icons business_chart-bar-32"></i>
+                <p>
+                    Analysis <b class="caret"></b>
+                </p>
             </a>
+            <div id="analysis" class="collapse">
+                <ul class="nav">
+                    <li routerLinkActive="active" *ngFor="let menuItem of resultMenuItems" class="{{menuItem.class}} nav-item">
+                        <a [routerLink]="[menuItem.path]">
+                            <i class="now-ui-icons {{menuItem.icon}}"></i>
+                            <p>{{menuItem.title}}</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
         </li>
     </ul>
 </div>

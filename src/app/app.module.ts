@@ -20,6 +20,7 @@ import {ReLoginGaurd } from './auth/auth.rev'
 import {LoginService} from './_services/login.service'
 import {UserService} from './_services/user.service'
 import {JwtInterceptor} from './_helpers/jwt.interceptor'
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import {JwtInterceptor} from './_helpers/jwt.interceptor'
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    NgxDatatableModule,
     NgbModule.forRoot(),
     ToastrModule.forRoot()
   ],
@@ -36,7 +38,7 @@ import {JwtInterceptor} from './_helpers/jwt.interceptor'
     AppComponent,
     AdminLayoutComponent,
     LoginComponent,
-  ],
+  ], // add!
   providers: [
     AuthGuard,
     ReLoginGaurd,

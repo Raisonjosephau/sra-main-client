@@ -1,2 +1,7 @@
-
-<router-outlet></router-outlet>
+<router-outlet>
+</router-outlet>
+<!-- show something fancy here, here with Angular 2 Material's loading bar or circle -->
+<div class="spinner" *ngIf="loading">
+    <div class="ball"></div>
+    <p>LOADING</p>
+</div>

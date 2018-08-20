@@ -17,6 +17,7 @@ export const ROUTES: RouteInfo[] = [
 
 export const RESULTROUTES: RouteInfo[] = [
 
+    { path: '/results', title: 'Results',  icon: 'education_paper', class: '' },
     { path: '/student-result', title: 'Student Result',  icon: 'education_hat', class: '' },
     { path: '/upload-result', title: 'Upload Result',  icon: 'arrows-1_cloud-upload-94', class: '' }
 ]

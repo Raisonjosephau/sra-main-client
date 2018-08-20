@@ -6,6 +6,7 @@ import { TypographyComponent } from '../../typography/typography.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import {UploadResultComponent} from '../../result-upload/result-upload.component'
 import {StudentResultComponent} from '../../student-result/student-result.componet'
+import {ResultComponent} from '../../results/results.component'
 import { AuthGuard} from '../../auth'
 
 export const AdminLayoutRoutes: Routes = [
@@ -15,4 +16,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'notifications',  component: NotificationsComponent, canActivate: [AuthGuard] },
     { path: 'upload-result',     component: UploadResultComponent, canActivate: [AuthGuard] },
     { path: 'student-result',     component: StudentResultComponent, canActivate: [AuthGuard] },
+    { path: 'results',     component: ResultComponent, canActivate: [AuthGuard] }
 ];

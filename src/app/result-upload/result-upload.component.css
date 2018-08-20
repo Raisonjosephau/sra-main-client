@@ -1,0 +1,62 @@
+.loadr {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -16px 0 0 -16px;
+}
+
+.loadr svg {
+    position: relative;
+    z-index: 10;
+    height: 22px;
+    animation: bounce 1s cubic-bezier(0.51, 0.23, 0.02, 0.96) infinite;
+    fill: #6c6;
+}
+
+.loadr:after {
+    position: absolute;
+    bottom: 1px;
+    left: 4px;
+    display: block;
+    width: 22px;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 100%;
+    animation: shadow 1s infinite;
+    content: '';
+}
+
+@-webkit-keyframes bounce {
+    0% {
+        transform: scale(1, 1);
+    }
+    50% {
+        transform: scale(0.85, 1.1) translateY(-15px);
+    }
+}
+
+@-webkit-keyframes shadow {
+    0% {
+        transform: scale(1, 1);
+    }
+    50% {
+        transform: scale(0.7, 1);
+        background: rgba(0, 0, 0, 0.05);
+    }
+}
+
+.link {
+    position: absolute;
+    padding: 20px 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: #808080;
+    transition: all 0.3s ease;
+}
+
+.link:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: #6c6;
+}

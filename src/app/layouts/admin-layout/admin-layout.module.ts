@@ -9,8 +9,11 @@ import { TypographyComponent } from '../../typography/typography.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import {UploadResultComponent} from '../../result-upload/result-upload.component'
 import {StudentResultComponent} from '../../student-result/student-result.componet'
+import {ResultComponent} from '../../results/results.component'
+
 import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -21,6 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     ChartsModule,
     NgbModule,
+    NgxDatatableModule
   ],
   declarations: [
     DashboardComponent,
@@ -28,7 +32,8 @@ import { ToastrModule } from 'ngx-toastr';
     TypographyComponent,
     NotificationsComponent,
     UploadResultComponent,
-    StudentResultComponent
+    StudentResultComponent,
+    ResultComponent
 
   ]
 })

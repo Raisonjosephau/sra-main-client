@@ -66,6 +66,7 @@ export class StudentResultComponent implements OnInit {
       }
     ]
   }
+
   ngAfterViewInit() {
     jQuery('select').selectpicker();
   }

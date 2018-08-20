@@ -1,0 +1,27 @@
+<div class="panel-header panel-header-sm">
+
+</div>
+<div class="main-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <br>
+                <div class="card-header">
+                    <h4 class="card-title text-shadow-0">Results</h4>
+                </div>
+                <div class="card-body">
+                    <br>
+                    <div class="row col-lg-12 ml-auto mr-auto">
+                        <ngx-datatable class="bootstrap col-lg-12" [rows]="rows" [headerHeight]="50" [columnMode]="'standard'" [scrollbarV]="false" [scrollbarH]="true" [footerHeight]="50" [rowHeight]="48" [limit]="8">
+
+                            <ngx-datatable-column name="index" [width]="80"></ngx-datatable-column>
+                            <ngx-datatable-column name="name" [width]="185"></ngx-datatable-column>
+
+                            <ngx-datatable-column style="text-align: center;" *ngFor="let col of columns" name="{{col.name}}" [width]="80"></ngx-datatable-column>
+                        </ngx-datatable>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
