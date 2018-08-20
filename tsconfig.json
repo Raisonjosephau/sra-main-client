@@ -12,10 +12,10 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    // "lib": [
-    //   "es2016",
-    //   "dom"
-    // ]
+    "lib": [
+      "es2016",
+      "dom"
+    ]
   },
   "indent": [ true, "tabs", 1 ]
 }

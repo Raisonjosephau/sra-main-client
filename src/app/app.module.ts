@@ -37,7 +37,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent,
+    LoginComponent
   ], // add!
   providers: [
     AuthGuard,

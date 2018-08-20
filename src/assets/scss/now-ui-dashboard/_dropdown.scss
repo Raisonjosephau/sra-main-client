@@ -80,6 +80,8 @@
         font-size: 0.9292em;
         padding-top: .6rem;
         padding-bottom: .6rem;
+        font-weight: 500;
+        color: #212121;
         margin-top: 5px;
         @include transition($fast-transition-time, $transition-linear);
         &:hover,
@@ -172,4 +174,62 @@
             display: none;
         }
     }
+}
+
+.search-box {
+    position: absolute;
+    top: 72%;
+    margin-top: 10px;
+    margin-left: 15px;
+    display: block;
+    background: white;
+    color: #212121;
+    width: inherit;
+    min-width: 210px;
+    box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
+    font-weight: 500;
+}
+
+.search-box .search-container {
+    max-height: 480px;
+    padding: 10px 0px 10px 0px;
+    overflow: auto;
+}
+
+.search-box .search-container::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+.search-box .search-container::-webkit-scrollbar {
+    width: 2px;
+    background-color: #fff;
+}
+
+.search-box .search-container::-webkit-scrollbar-thumb {
+    background-color: #888888;
+}
+
+.search-box .search-items {
+    padding: 5px 20px 5px 20px;
+    margin: 5px 0px 5px 0px;
+}
+
+.search-box .search-items .search-item {
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-shadow: .3
+}
+
+.search-box .search-items .search-item:hover {
+    padding-left: 12px;
+    padding-right: 7px;
+    background: rgba(17, 17, 17, 0.05);
+    border-left: 3px solid #111;
+}
+
+.search-box .search-items a span {
+    font-size: 10px;
+    color: #515151;
+    font-weight: 500;
+    display: block
 }

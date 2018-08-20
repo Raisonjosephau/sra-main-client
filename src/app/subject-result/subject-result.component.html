@@ -1,3 +1,146 @@
-<div>
-    hello world!
+<div class="panel-header panel-header-sm">
+
+</div>
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form name="form" #f="ngForm">
+                        <div class="input-group">
+                            <input type="text" [(ngModel)]="search" #ser="ngModel" autocomplete="off" required minlength="3" name="search" id="search" class="form-control" placeholder="Search...">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="card card-user">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4 class="card-title">Machine Learning</h4>
+                            <h6 class="card-subtitle mb-1 text-muted">S7 Elective</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12"><br>
+                            <hr>
+                            <p class="stud-info"> Code: </p>
+
+                            <p class="stud-info"> Credit: </p>
+
+                            <p class="stud-info"> Elective: </p>
+
+                            <p class="stud-info">CGPA: </p>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4 class="card-title">Grade Count</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <canvas style="position: relative; height:46vh;" baseChart id="radarChart" [datasets]="radarChartData" [labels]="radarChartLables" [colors]="radarChartColors" [options]="radarChartOptions" [chartType]="lineBigDashboardChartType" (chartHover)="chartHovered($event)"
+                                (chartClick)="chartClicked($event)"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form name="form" #batchSelect="ngForm">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>Batch</label>
+                                    <select class="selectpicker" data-style="form-control" title="Choose Batch" data-size="7" tabindex="-98">
+                                    <option disabled=""> Batch</option>
+                                    <option value="1">2015-19</option>
+                                    <option value="2">2016-20</option>
+                                    <option value="3">2017-21</option>
+                                    <option value="4">2018-22</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>Scheme</label>
+                                    <select class="selectpicker" data-style="form-control" title="Choose Scheme" data-size="7" tabindex="-98">
+                                    <option disabled=""> Scheme</option>
+                                    <option value="1">Regular</option>
+                                    <option value="2">Supplymentry</option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="card card-user">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4 class="card-title">Showing results of:</h4>
+                            <h6 class="card-subtitle mb-1 text-muted">Batch 2015 - 19</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12"><br>
+                            <hr>
+                            <p class="stud-info"> Code: </p>
+
+                            <p class="stud-info"> Credit: </p>
+
+                            <p class="stud-info"> Elective: </p>
+
+                            <p class="stud-info">CGPA: </p>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4 class="card-title">Grade Count</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <canvas style="position: relative; height:46vh;" baseChart id="rasdarChart" [datasets]="radarChartData" [labels]="radarChartLables" [colors]="radarChartColors" [options]="radarChartOptions" [chartType]="lineBigDashboardChartType" (chartHover)="chartHovered($event)"
+                                (chartClick)="chartClicked($event)"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
