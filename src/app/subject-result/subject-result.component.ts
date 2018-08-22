@@ -171,119 +171,119 @@ export class SubjectResultComponent implements OnInit {
   ];
    subjects = [
     {
-      'name': 'Townsend Logan',
+      'name': 'Machine Learning',
       'id': 'CS000'
     },
     {
-      'name': 'Eleanor Hart',
+      'name': 'Operating System',
       'id': 'CS001'
     },
     {
-      'name': 'Morris Finley',
+      'name': 'Data Structure',
       'id': 'CS002'
     },
     {
-      'name': 'Katy Morse',
+      'name': 'Computer Architecture',
       'id': 'CS003'
     },
     {
-      'name': 'Marva Fox',
+      'name': 'Discrete Computational Structure',
       'id': 'CS004'
     },
     {
-      'name': 'Morin Holloway',
+      'name': 'Java',
       'id': 'CS005'
     },
     {
-      'name': 'Banks Ellis',
+      'name': 'Computer Networks',
       'id': 'CS006'
     },
     {
-      'name': 'Lydia Tillman',
+      'name': 'Graph Theory',
       'id': 'CS007'
     },
     {
-      'name': 'Lauren Bullock',
+      'name': 'DBMS',
       'id': 'CS008'
     },
     {
-      'name': 'Vasquez Sharp',
+      'name': 'Distributed Computing',
       'id': 'CS009'
     },
     {
-      'name': 'Bell Peterson',
+      'name': 'Soft Computing',
       'id': 'CS0010'
     },
     {
-      'name': 'Walsh Weeks',
+      'name': 'Microprocessor',
       'id': 'CS0011'
     },
     {
-      'name': 'Klein Blackwell',
+      'name': 'Computer Grapohics',
       'id': 'CS0012'
     },
     {
-      'name': 'Holland Barron',
+      'name': 'Compiler Design',
       'id': 'CS0013'
     },
     {
-      'name': 'Clay Bray',
+      'name': 'Theory of Computation',
       'id': 'CS0014'
     },
     {
-      'name': 'Elise Spence',
+      'name': 'Design ana Analysis of Algorithms',
       'id': 'CS0015'
     },
     {
-      'name': 'Leblanc Pratt',
+      'name': 'Application Development lab',
       'id': 'CS0016'
     },
     {
-      'name': 'Church Saunders',
+      'name': 'Design Project',
       'id': 'CS0017'
     },
     {
-      'name': 'Marlene Maddox',
+      'name': 'System Software',
       'id': 'CS0018'
     },
     {
-      'name': 'Hickman Bolton',
+      'name': 'Data Communication',
       'id': 'CS0019'
     },
     {
-      'name': 'Britt Salazar',
+      'name': 'Software Engineering and Project Management',
       'id': 'CS0020'
     },
     {
-      'name': 'Ola Osborne',
+      'name': 'Web Technologies',
       'id': 'CS0021'
     },
     {
-      'name': 'Sherry Coffey',
+      'name': 'System Software Lab',
       'id': 'CS0022'
     },
     {
-      'name': 'Lee Nicholson',
+      'name': 'Life Skills',
       'id': 'CS0023'
     },
     {
-      'name': 'Reese Jenkins',
+      'name': 'Computer Sysetm Architecture',
       'id': 'CS0024'
     },
     {
-      'name': 'Barlow Chandler',
+      'name': 'Cryptography and Computer Security',
       'id': 'CS0025'
     },
     {
-      'name': 'Anne Trujillo',
+      'name': 'Switching Theory ana Logical Design',
       'id': 'CS0026'
     },
     {
-      'name': 'Sasha Simon',
+      'name': 'Data Structure Lab',
       'id': 'CS0027'
     },
     {
-      'name': 'Chandra Conway',
+      'name': 'Digital System Lab',
       'id': 'CS0028'
     }
   ];
@@ -517,9 +517,10 @@ export class SubjectResultComponent implements OnInit {
     };
 
     this.lineBigDashboardChartType = 'line';
+  }
 
-
-
+  ngAfterViewInit() {
+    jQuery('select').selectpicker();
   }
 
   // Paginatio
@@ -566,7 +567,7 @@ export class SubjectResultComponent implements OnInit {
   text$.pipe(
     debounceTime(200),
     distinctUntilChanged(),
-    map(term => term.length < 3 ? []
+    map(term => term.length < 2 ? []
       : this.subjects.filter(v => ((v.name.toLowerCase() + ' ' + v.id.toLocaleLowerCase()).indexOf(term.toLowerCase())) > -1).slice(0, 15 ))
   );
 

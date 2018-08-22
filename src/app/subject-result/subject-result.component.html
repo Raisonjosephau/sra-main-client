@@ -108,13 +108,12 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="card card-user">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h4 class="card-title">Showing results of:</h4>
-                            <h6 class="card-subtitle mb-1 text-muted">Batch 2015 - 19</h6>
-                        </div>
-                    </div><br/>
+
+                <div class="card-header">
+                    <h4 class="card-title">Showing results of:</h4>
+                    <h6 class="card-subtitle mb-1 text-muted">Batch 2015 - 19</h6>
+                </div>
+                <div class="card-body"><br/>
                     <div class="row">
                         <div class="col-lg-12">
                             <div *ngIf="studList[0] === -1">
@@ -159,12 +158,10 @@
         <div class="col-lg-4">
             <div class="row">
                 <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Grade Map</h4>
+                    </div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h4 class="card-title">Grade Map</h4>
-                            </div>
-                        </div>
                         <br/><br/>
                         <div class="row">
                             <canvas style="position: relative; height:46vh;" baseChart id="radarChart" [datasets]="radarChartData" [labels]="radarChartLables" [colors]="radarChartColors" [options]="radarChartOptions" [chartType]="radarChartType" (chartClick)="chartClicked($event)"></canvas>
