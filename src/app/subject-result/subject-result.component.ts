@@ -1,154 +1,253 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../_services/user.service'
+import {PaginationService} from '../_services/pagination.service'
+import {Page} from '../_objects/page'
+import {PagedData} from '../_objects/page-data'
+import {Filter} from '.././common-pipe'
 
-import * as Chartist from 'chartist';
+import {Observable} from 'rxjs/Observable';
+import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-student-result',
   templateUrl: './subject-result.component.html',
-  styleUrls: ['./subject-result.component.css']
+  styleUrls: ['./subject-result.component.css'],
+  providers: [ Filter ]
 })
 
 export class SubjectResultComponent implements OnInit {
-  items = [
+
+  data = [
     {
       'id': 0,
-      'reg': 'SGICS3',
-      'name': 'Sreelaksmi Sudeer'
+      'name': 'Little Cleveland',
+      'grade': 'C+'
     },
     {
       'id': 1,
-      'reg': 'SGICS27',
-      'name': 'Savid Joe Sunny'
+      'name': 'Dorsey Dillard',
+      'grade': 'O'
     },
     {
       'id': 2,
-      'reg': 'SGICS28',
-      'name': 'Joel Jose Parekattil'
+      'name': 'Rosario Grant',
+      'grade': 'D+'
     },
     {
       'id': 3,
-      'reg': 'SGICS13',
-      'name': 'Jimenez Cote'
+      'name': 'Boyd Olsen',
+      'grade': 'B+'
     },
     {
       'id': 4,
-      'reg': 'SGICS3',
-      'name': 'Gonzales Griffith'
+      'name': 'Mcdowell Peters',
+      'grade': 'O'
     },
     {
       'id': 5,
-      'reg': 'SGICS31',
-      'name': 'Kirby Woods'
+      'name': 'Madeline Dickson',
+      'grade': 'C'
     },
     {
       'id': 6,
-      'reg': 'SGICS2',
-      'name': 'Barry Hinton'
+      'name': 'Letitia Serrano',
+      'grade': 'A+'
     },
     {
       'id': 7,
-      'reg': 'SGICS31',
-      'name': 'Leila Mcfarland'
+      'name': 'Thelma Forbes',
+      'grade': 'B'
     },
     {
       'id': 8,
-      'reg': 'SGICS15',
-      'name': 'Liliana Stein'
+      'name': 'Randall Leonard',
+      'grade': 'O'
     },
     {
       'id': 9,
-      'reg': 'SGICS29',
-      'name': 'Perez Stone'
+      'name': 'Moreno Melendez',
+      'grade': 'O'
     },
     {
       'id': 10,
-      'reg': 'SGICS3',
-      'name': 'Marie Noel'
+      'name': 'Gabrielle Allen',
+      'grade': 'O'
     },
     {
       'id': 11,
-      'reg': 'SGICS21',
-      'name': 'Daniel Sanders'
+      'name': 'Tia Porter',
+      'grade': 'B+'
     },
     {
       'id': 12,
-      'reg': 'SGICS6',
-      'name': 'Booker Roach'
+      'name': 'Naomi Mcintosh',
+      'grade': 'O'
     },
     {
       'id': 13,
-      'reg': 'SGICS18',
-      'name': 'Marietta Sykes'
+      'name': 'Lela Morrow',
+      'grade': 'B+'
     },
     {
       'id': 14,
-      'reg': 'SGICS12',
-      'name': 'Gabriela Lindsey'
+      'name': 'Gay Harmon',
+      'grade': 'D+'
     },
     {
       'id': 15,
-      'reg': 'SGICS24',
-      'name': 'Lloyd Robinson'
+      'name': 'Snow Harris',
+      'grade': 'B'
+    },
+    {
+      'id': 16,
+      'name': 'Melissa Mosley',
+      'grade': 'A'
+    },
+    {
+      'id': 17,
+      'name': 'Hardy Cochran',
+      'grade': 'O'
+    },
+    {
+      'id': 18,
+      'name': 'Porter Santos',
+      'grade': 'C'
+    },
+    {
+      'id': 19,
+      'name': 'Mills Irwin',
+      'grade': 'A+'
+    },
+    {
+      'id': 20,
+      'name': 'Hancock Boyle',
+      'grade': 'B+'
+    },
+    {
+      'id': 21,
+      'name': 'Rose Mercado',
+      'grade': 'C'
+    },
+    {
+      'id': 22,
+      'name': 'Marcella Lyons',
+      'grade': 'P'
+    },
+    {
+      'id': 23,
+      'name': 'Wynn Pena',
+      'grade': 'O'
+    },
+    {
+      'id': 24,
+      'name': 'Myrna Savage',
+      'grade': 'A+'
+    },
+    {
+      'id': 25,
+      'name': 'Ophelia Wells',
+      'grade': 'C+'
+    },
+    {
+      'id': 26,
+      'name': 'Cherry Tucker',
+      'grade': 'D+'
+    },
+    {
+      'id': 27,
+      'name': 'Tabatha Higgins',
+      'grade': 'A+'
+    },
+    {
+      'id': 26,
+      'name': 'Cherry Tucker',
+      'grade': 'D+'
+    },
+    {
+      'id': 27,
+      'name': 'Tabatha Higgins',
+      'grade': 'A+'
     }
-  ]; public lineBigDashboardChartType;
+  ];
+   cities = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado',
+  'Connecticut', 'Delaware', 'District Of Columbia', 'Federated States Of Micronesia', 'Florida', 'Georgia',
+  'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
+  'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
+  'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+  'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island',
+  'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Islands', 'Virginia',
+  'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+  page = 1;
+  pages = new Page()
+  pageData = new PagedData()
+
+  private studList: Array<any>;
+  private grade = 'All';
   public gradientStroke;
   public chartColor;
   public canvas: any;
   public ctx;
   public gradientFill;
+
+  // Radar Chart varaibles for grade count
+  public radarChartType;
   public radarChartData: Array<any>;
   public radarChartOptions: any;
   public radarChartLables: Array<any>;
   public radarChartColors: Array<any>
 
+  // Past result chart variables
+
+  public lineBigDashboardChartType;
+  public lineBigDashboardChartData: Array<any>;
+  public lineBigDashboardChartOptions: any;
+  public lineBigDashboardChartLabels: Array<any>;
+  public lineBigDashboardChartColors: Array<any>
+
   public gradientChartOptionsConfiguration: any;
   public gradientChartOptionsConfigurationWithNumbersAndGrid: any;
 
-  // events
-  public chartClicked(e: any): void {
-    console.log(e);
-  }
 
-  public chartHovered(e: any): void {
-    console.log(e);
-  }
-  public hexToRGB(hex, alpha) {
-    const r = parseInt(hex.slice(1, 3), 16),
-      g = parseInt(hex.slice(3, 5), 16),
-      b = parseInt(hex.slice(5, 7), 16);
-
-    if (alpha) {
-      return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
-    } else {
-      return 'rgb(' + r + ', ' + g + ', ' + b + ')';
-    }
-  }
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private paginationService: PaginationService, private filter: Filter) { }
 
   ngOnInit() {
+
+    // Pagination
+
+    this.pages.pageNumber = this.page - 1;
+    this.pages.size = 7;
+    this.pages.totalElements = this.data.length;
+    this.pageData.page = this.pages;
+    this.pageData.data = this.data;
+    this.pagination(this.page);
+
+    // Filtering
+
+    //
+
     this.chartColor = '#212121';
     this.canvas = document.getElementById('radarChart');
     this.ctx = this.canvas.getContext('2d');
 
     this.gradientStroke = this.ctx.createLinearGradient(500, 0, 100, 0);
-    this.gradientStroke.addColorStop(0, '#80b6f4');
+    this.gradientStroke.addColorStop(0, '#6c6');
     this.gradientStroke.addColorStop(1, this.chartColor);
 
-    this.gradientFill = this.ctx.createLinearGradient(0, 200, 0, 50);
-    this.gradientFill.addColorStop(0, 'rgba(128, 182, 244, 0)');
-    this.gradientFill.addColorStop(1, 'rgba(255, 255, 255, 0.24)');
-
+    this.gradientFill = this.ctx.createLinearGradient(0, 170, 0, 50);
+    // this.gradientFill.addColorStop(0, 'rgba(128, 182, 244, 0)');
+    this.gradientFill.addColorStop(0, 'rgba(102, 204, 102, .3)');
+    this.gradientFill.addColorStop(1, 'rgba(255, 255, 255, 0.1)');
     this.radarChartData = [
         {
-          label: '2015-19',
+          label: 'Count',
           pointBorderWidth: 1,
-          pointHoverRadius: 7,
+          pointHoverRadius: 8,
           pointHoverBorderWidth: 2,
           pointRadius: 5,
           fill: true,
           borderWidth: 2,
-          data: [2, 3, 5, 6, 7, 2, 3, 4, 1, 5]
+          data: this.calcCount(),
+          pointStyle: 'circle',
         }
 
       ];
@@ -164,12 +263,10 @@ export class SubjectResultComponent implements OnInit {
      ];
     this.radarChartLables = ['O', 'A+', 'A', 'B+', 'B', 'C+', 'C', 'D+', 'P', 'F'];
     this.radarChartOptions = {
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
       legend: {
         display: false
       },
-
-      pointLabelFontSize: '50px',
       spanGaps: false,
       elements: {
           line: {
@@ -208,6 +305,7 @@ export class SubjectResultComponent implements OnInit {
         titleFontFamily: 'Montserrat',
         bodyFontColor: '#212121',
         bodyFontFamily: 'Montserrat',
+        bodyFontSize: 13,
         bodySpacing: 4,
         xPadding: 12,
         mode: 'nearest',
@@ -216,20 +314,147 @@ export class SubjectResultComponent implements OnInit {
       }
     };
 
-    this.lineBigDashboardChartType = 'radar';
+    this.radarChartType = 'radar';
 
 
+    // Line char/ Past Result Chart starts
+    this.lineBigDashboardChartData = [
+      {
+        label: 'Pass',
+        pointBorderWidth: 1,
+        pointHoverRadius: 7,
+        pointHoverBorderWidth: 2,
+        pointRadius: 5,
+        fill: true,
+        borderWidth: 2,
+        data: [69.3, 32.1, 36, 50, 28]
+      }
+    ];
+    this.lineBigDashboardChartColors = [
+     {
+      backgroundColor: this.gradientFill,
+      borderColor: '#6c5',
+      pointBorderColor:  '#6c5',
+      pointBackgroundColor: '#ffffff',
+      pointHoverBackgroundColor: '#ffffff',
+      pointHoverBorderColor: '#6c5',
+    }
+   ];
+    this.lineBigDashboardChartLabels = ['2015-19', '2016-20', '2017-21', '2018-22', '2019-23'];
+    this.lineBigDashboardChartOptions = {
 
-    this.ctx = this.canvas.getContext('2d');
+          layout: {
+              padding: {
+                  left: 20,
+                  right: 20,
+                  top: 0,
+                  bottom: 0
+              }
+          },
+          maintainAspectRatio: false,
+          tooltips: {
+            backgroundColor: '#fff',
+            titleFontColor: '#333',
+            bodyFontColor: '#666',
+            bodySpacing: 4,
+            xPadding: 12,
+            mode: 'nearest',
+            intersect: 0,
+            position: 'nearest'
+          },
+          legend: {
+              position: 'bottom',
+              fillStyle: '#FFF',
+              display: false
+          },
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      fontColor: 'rgba(0,0,0,0.9)',
+                      fontStyle: '500',
+                      fontFamily: 'Montserrat',
+                      beginAtZero: true,
+                      minTicksLimit: 8,
+                      maxTicksLimit: 8,
+                      padding: 10
+                  },
+                  gridLines: {
+                      drawTicks: true,
+                      drawBorder: false,
+                      display: true,
+                      color: 'rgba(0,0,0,0.1)',
+                      zeroLineColor: 'transparent'
+                  }
 
-    this.gradientStroke = this.ctx.createLinearGradient(500, 0, 100, 0);
-    this.gradientStroke.addColorStop(0, '#80b6f4');
-    this.gradientStroke.addColorStop(1, this.chartColor);
+              }],
+              xAxes: [{
+                  gridLines: {
+                      zeroLineColor: 'transparent',
+                      color: 'rgba(0,0,0,0.1)',
 
-    this.gradientFill = this.ctx.createLinearGradient(0, 170, 0, 50);
-    this.gradientFill.addColorStop(0, 'rgba(128, 182, 244, 0)');
-    this.gradientFill.addColorStop(1, 'rgba(249, 99, 59, 0.40)');
+                  },
+                  ticks: {
+                      padding: 10,
+                      beginAtZero: true,
+                      fontStyle: '500',
+                      fontColor: 'rgba(0,0,0,0.9)',
+                      fontFamily: 'Montserrat',
+                  }
+              }]
+          }
+    };
+
+    this.lineBigDashboardChartType = 'line';
+
+
 
   }
 
+  // Paginatio
+  public pagination(e: any): void {
+    this.pages.pageNumber = e - 1;
+    this.studList =  [...this.paginationService.getHeroes(this.pageData).data ];
+  }
+  // events
+  public chartClicked(e: any): void {
+
+    if (e.active.length > 0) {
+      const index = e.active[0]._index;
+      this.grade = this.radarChartLables[index];
+      this.pageData.data = this.filter.transform(this.data, 'grade', this.grade);
+      this.pagination(this.page);
+    }
+  }
+  private showAll() {
+    this.pageData.data = this.data;
+    this.pagination(this.page);
+    this.grade = 'All';
+  }
+  private calcCount() {
+    let O = 0, Ap = 0, A = 0, Bp = 0, B = 0, Cp = 0, C = 0, Dp = 0, P = 0, F = 0;
+    this.data.forEach(function(element) {
+        switch (element.grade) {
+          case 'O': O += 1; break;
+          case 'A+': Ap += 1; break;
+          case 'A': A += 1; break;
+          case 'B+': Bp += 1; break;
+          case 'B': B += 1; break;
+          case 'C+': Cp += 1; break;
+          case 'C': C += 1; break;
+          case 'D+': Dp += 1; break;
+          case 'P': P += 1; break;
+          case 'F': F += 1; break;
+          default:
+            break;
+        }
+    });
+    return [O, Ap, A, Bp, B, Cp, C, Dp, P, F];
+  }
+  search = (text$: Observable<string>) =>
+  text$.pipe(
+    debounceTime(200),
+    distinctUntilChanged(),
+    map(term => term.length < 2 ? []
+      : this.cities.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+  );
 }

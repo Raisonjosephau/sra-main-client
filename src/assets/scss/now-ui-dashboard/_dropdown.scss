@@ -233,3 +233,16 @@
     font-weight: 500;
     display: block
 }
+
+.dropdown-item.active,
+.dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #fff !important;
+}
+
+.dropdown-item:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: $opacity-gray-3 !important;
+}

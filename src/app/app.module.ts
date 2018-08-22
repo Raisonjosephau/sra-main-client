@@ -15,12 +15,15 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
+import {JwtInterceptor} from './_helpers/jwt.interceptor'
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
+// Services and helpers
 import { AuthGuard } from './auth';
 import {ReLoginGaurd } from './auth/auth.rev'
 import {LoginService} from './_services/login.service'
 import {UserService} from './_services/user.service'
-import {JwtInterceptor} from './_helpers/jwt.interceptor'
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import {PaginationService} from './_services/pagination.service'
 
 @NgModule({
   imports: [
@@ -42,8 +45,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
   providers: [
     AuthGuard,
     ReLoginGaurd,
-  LoginService,
-  UserService,
+    PaginationService,
+    LoginService,
+    UserService,
   {
         provide: HTTP_INTERCEPTORS,
         useClass: JwtInterceptor,

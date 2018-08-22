@@ -30,7 +30,6 @@ export class DashboardComponent implements OnInit {
   public chartHovered(e: any): void {
     console.log(e);
   }
-
   public hexToRGB(hex, alpha) {
     const r = parseInt(hex.slice(1, 3), 16),
       g = parseInt(hex.slice(3, 5), 16),
@@ -61,6 +60,7 @@ export class DashboardComponent implements OnInit {
     this.lineBigDashboardChartData = [
         {
           label: 'S3',
+
           pointBorderWidth: 1,
           pointHoverRadius: 7,
           pointHoverBorderWidth: 2,
@@ -68,17 +68,17 @@ export class DashboardComponent implements OnInit {
           fill: true,
           borderWidth: 2,
           data: [29.3, 32.1, 36, 40, 48, 39.5]
-        },
+        }
       ];
       this.lineBigDashboardChartColors = [
        {
-        backgroundColor: this.gradientFill,
-        borderColor: this.chartColor,
-        pointBorderColor: this.chartColor,
-        pointBackgroundColor: '#ffffff',
-        pointHoverBackgroundColor: '#ffffff',
-        pointHoverBorderColor: this.chartColor,
-      }
+         backgroundColor: this.gradientFill,
+         borderColor: this.chartColor,
+         pointBorderColor: this.chartColor,
+         pointBackgroundColor: '#ffffff',
+         pointHoverBackgroundColor: '#ffffff',
+         pointHoverBorderColor: this.chartColor,
+       }
      ];
     this.lineBigDashboardChartLabels = ['S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8'];
     this.lineBigDashboardChartOptions = {
@@ -146,7 +146,7 @@ export class DashboardComponent implements OnInit {
     this.lineBigDashboardChartType = 'line';
 
 
-    this.lineBigDashboardChartOptions = {
+    this.gradientChartOptionsConfiguration = {
       maintainAspectRatio: false,
       legend: {
         display: false
