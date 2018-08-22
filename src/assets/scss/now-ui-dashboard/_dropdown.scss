@@ -238,11 +238,16 @@
 .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #fff !important;
+    background-color: $opacity-gray-3 !important;
 }
 
 .dropdown-item:hover {
     color: #fff;
     text-decoration: none;
     background-color: $opacity-gray-3 !important;
+}
+
+ngb-typeahead-window.dropdown-menu {
+    max-height: 320px;
+    overflow-y: auto;
 }

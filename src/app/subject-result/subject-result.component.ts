@@ -169,14 +169,124 @@ export class SubjectResultComponent implements OnInit {
       'grade': 'A+'
     }
   ];
-   cities = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado',
-  'Connecticut', 'Delaware', 'District Of Columbia', 'Federated States Of Micronesia', 'Florida', 'Georgia',
-  'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
-  'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
-  'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-  'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island',
-  'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Islands', 'Virginia',
-  'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+   subjects = [
+    {
+      'name': 'Townsend Logan',
+      'id': 'CS000'
+    },
+    {
+      'name': 'Eleanor Hart',
+      'id': 'CS001'
+    },
+    {
+      'name': 'Morris Finley',
+      'id': 'CS002'
+    },
+    {
+      'name': 'Katy Morse',
+      'id': 'CS003'
+    },
+    {
+      'name': 'Marva Fox',
+      'id': 'CS004'
+    },
+    {
+      'name': 'Morin Holloway',
+      'id': 'CS005'
+    },
+    {
+      'name': 'Banks Ellis',
+      'id': 'CS006'
+    },
+    {
+      'name': 'Lydia Tillman',
+      'id': 'CS007'
+    },
+    {
+      'name': 'Lauren Bullock',
+      'id': 'CS008'
+    },
+    {
+      'name': 'Vasquez Sharp',
+      'id': 'CS009'
+    },
+    {
+      'name': 'Bell Peterson',
+      'id': 'CS0010'
+    },
+    {
+      'name': 'Walsh Weeks',
+      'id': 'CS0011'
+    },
+    {
+      'name': 'Klein Blackwell',
+      'id': 'CS0012'
+    },
+    {
+      'name': 'Holland Barron',
+      'id': 'CS0013'
+    },
+    {
+      'name': 'Clay Bray',
+      'id': 'CS0014'
+    },
+    {
+      'name': 'Elise Spence',
+      'id': 'CS0015'
+    },
+    {
+      'name': 'Leblanc Pratt',
+      'id': 'CS0016'
+    },
+    {
+      'name': 'Church Saunders',
+      'id': 'CS0017'
+    },
+    {
+      'name': 'Marlene Maddox',
+      'id': 'CS0018'
+    },
+    {
+      'name': 'Hickman Bolton',
+      'id': 'CS0019'
+    },
+    {
+      'name': 'Britt Salazar',
+      'id': 'CS0020'
+    },
+    {
+      'name': 'Ola Osborne',
+      'id': 'CS0021'
+    },
+    {
+      'name': 'Sherry Coffey',
+      'id': 'CS0022'
+    },
+    {
+      'name': 'Lee Nicholson',
+      'id': 'CS0023'
+    },
+    {
+      'name': 'Reese Jenkins',
+      'id': 'CS0024'
+    },
+    {
+      'name': 'Barlow Chandler',
+      'id': 'CS0025'
+    },
+    {
+      'name': 'Anne Trujillo',
+      'id': 'CS0026'
+    },
+    {
+      'name': 'Sasha Simon',
+      'id': 'CS0027'
+    },
+    {
+      'name': 'Chandra Conway',
+      'id': 'CS0028'
+    }
+  ];
   page = 1;
   pages = new Page()
   pageData = new PagedData()
@@ -208,7 +318,9 @@ export class SubjectResultComponent implements OnInit {
   public gradientChartOptionsConfigurationWithNumbersAndGrid: any;
 
 
-  constructor(private userService: UserService, private paginationService: PaginationService, private filter: Filter) { }
+  constructor(private userService: UserService, private paginationService: PaginationService, private filter: Filter) {
+
+   }
 
   ngOnInit() {
 
@@ -454,7 +566,12 @@ export class SubjectResultComponent implements OnInit {
   text$.pipe(
     debounceTime(200),
     distinctUntilChanged(),
-    map(term => term.length < 2 ? []
-      : this.cities.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+    map(term => term.length < 3 ? []
+      : this.subjects.filter(v => ((v.name.toLowerCase() + ' ' + v.id.toLocaleLowerCase()).indexOf(term.toLowerCase())) > -1).slice(0, 15 ))
   );
+
+  formatter = (x: {name: string, id: string}) => x.name + ' : ' + x.id;
+  private selectSearch(e: any): void {
+    console.log(e);
+  }
 }

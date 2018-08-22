@@ -8,13 +8,17 @@
                 <div class="card-body">
                     <form name="form" #f="ngForm">
                         <div class="input-group">
-                            <input type="text" [autocomplete]="on" [ngbTypeahead]="search" [(ngModel)]="hi" #ser="ngModel" autocomplete="off" required minlength="3" name="search" id="search" class="form-control" placeholder="Search...">
+                            <input type="text" [(ngModel)]="s" [ngbTypeahead]="search" [inputFormatter]="formatter" [resultTemplate]="rt" [editable]="false" #ser="ngModel" (selectItem)="selectSearch($event)" autocomplete="off" required minlength="3" name="search" id="search" class="form-control"
+                                placeholder="Search... (Please select from the drop down)">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <i class="fas fa-search"></i>
                                 </div>
                             </div>
                         </div>
+                        <ng-template #rt let-r="result" let-t="term">
+                            <ngb-highlight [result]="r.name + ' : ' + r.id" [term]="t"></ngb-highlight>
+                        </ng-template>
                     </form>
 
                 </div>
