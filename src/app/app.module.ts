@@ -16,7 +16,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
 import {JwtInterceptor} from './_helpers/jwt.interceptor'
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 // Services and helpers
 import { AuthGuard } from './auth';
@@ -33,7 +32,6 @@ import {PaginationService} from './_services/pagination.service'
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
-    NgxDatatableModule,
     NgbModule.forRoot(),
     ToastrModule.forRoot()
   ],

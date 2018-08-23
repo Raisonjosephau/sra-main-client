@@ -7,18 +7,73 @@
             <div class="card">
                 <br>
                 <div class="card-header">
-                    <h4 class="card-title text-shadow-0">Results</h4>
+                    <h4 class="card-title text-shadow-0">Result</h4>
                 </div>
                 <div class="card-body">
                     <br>
                     <div class="row col-lg-12 ml-auto mr-auto">
-                        <ngx-datatable class="bootstrap col-lg-12" [rows]="rows" [headerHeight]="50" [columnMode]="'standard'" [scrollbarV]="false" [scrollbarH]="true" [footerHeight]="50" [rowHeight]="48" [limit]="8">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        id
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th class="">
+                                        CS022
+                                    </th>
+                                    <th class="">
+                                        CS023
+                                    </th>
+                                    <th class="">
+                                        CS024
+                                    </th>
+                                    <th class="">
+                                        CS025
+                                    </th>
+                                    <th class="">
+                                        CS026
+                                    </th>
+                                    <th class="">
+                                        CS027
+                                    </th>
+                                    <th class="">
+                                        CS028
+                                    </th>
 
-                            <ngx-datatable-column name="index" [width]="80"></ngx-datatable-column>
-                            <ngx-datatable-column name="name" [width]="185"></ngx-datatable-column>
+                                    <th class="">
+                                        CS029
+                                    </th>
+                                    <th class="">
+                                        CS030
+                                    </th>
+                                    <!-- <th class="">
+                                        CS031
+                                    </th> -->
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let student of studList">
+                                        <td>{{student.id}}</td>
+                                        <td>
+                                            {{student.name}}
+                                        </td>
+                                        <!-- <td *ng  *ngIf="student.cs022 === 'F'" class="text-danger">
+                                            {{student.cs022}}
+                                        </td> -->
+                                        <td *ngFor="let grade of student.grade" class="{{grade !== 'F' ? '' : 'text-danger'}}">
+                                            {{grade}}
+                                        </td>
 
-                            <ngx-datatable-column style="text-align: center;" *ngFor="let col of columns" name="{{col.name}}" [width]="80"></ngx-datatable-column>
-                        </ngx-datatable>
+                                        <!-- <td class="">
+                                            {{student.cs031}}
+                                        </td> -->
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <ngb-pagination size="lg" [collectionSize]="page.totalElements" [pageSize]="page.size" [(page)]="currentPage" (pageChange)="pagination($event)" aria-label="Default pagination" class="pagination-primary d-flex justify-content-end"></ngb-pagination>
+                        </div>
                     </div>
                 </div>
             </div>
