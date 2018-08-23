@@ -13,11 +13,11 @@ import {PagedData} from '../_objects/page-data'
 export class ResultComponent implements OnInit {
   rows = [
     {
-      "id": "LSGI00",
-      "name": "Francis Vance",
-      "grade": [
-        "A+",
-        "B",
+      'id': 'LSGI00',
+      'name': 'Francis Vance',
+      'grade': [
+        'A+',
+        'B',
         'B',
         'F',
         'A+',
@@ -513,24 +513,34 @@ export class ResultComponent implements OnInit {
   page = new Page()
   pageData = new PagedData()
   studList: Array<any>;
+  failedList: Array<any>;
+  passedList: Array<any>;
 
   constructor(private userService: UserService,  private paginationService: PaginationService) { }
 
 
   ngOnInit() {
     // Pagination
-    this.page.size = 8;
+    this.page.size = 7;
     this.page.totalElements = this.rows.length;
     this.pageData.page = this.page;
     this.pageData.data = this.rows;
     this.pagination(this.currentPage);
 
-    // Filtering
+    // Pass or Fail
+    this.passedList = this.rows.filter(item => !item.grade.includes('F'));
+    this.failedList = this.rows.filter(item => item.grade.includes('F'));
   }
 
    // Paginatio
   public pagination(e: any): void {
     this.page.pageNumber = e - 1;
     this.studList =  [...this.paginationService.getHeroes(this.pageData).data ];
+  }
+
+  private switchToPassOrFailorAll(list: Array<any>) {
+    this.pageData.data = list;
+    this.currentPage = 1
+    this.pagination(this.currentPage);
   }
 }

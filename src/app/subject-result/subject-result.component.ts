@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {UserService} from '../_services/user.service'
 import {PaginationService} from '../_services/pagination.service'
 import {Page} from '../_objects/page'
@@ -15,7 +15,7 @@ import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
   providers: [ Filter ]
 })
 
-export class SubjectResultComponent implements OnInit {
+export class SubjectResultComponent implements OnInit, AfterViewInit {
 
   data = [
     {
