@@ -30,3 +30,7 @@ th {
     font-weight: 500 !important;
     font-size: 1.1em;
 }
+
+h5.small {
+    margin: 0px;
+}

@@ -4,15 +4,15 @@
 }
 
 .input-group.no-border .form-control::-moz-placeholder {
-    color: #212121
+    color: #616161
 }
 
 .input-group.no-border .form-control::-ms-input-placeholder {
-    color: #212121
+    color: #616161
 }
 
 .input-group.no-border .form-control::-webkit-input-placeholder {
-    color: #212121
+    color: #616161
 }
 
 .far.clear {

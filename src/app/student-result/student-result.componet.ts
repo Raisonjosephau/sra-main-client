@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../_services/user.service'
 
+import {Observable} from 'rxjs/Observable';
+import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+
 @Component({
   selector: 'app-student-result',
   templateUrl: './student-result.component.html',
@@ -10,10 +13,94 @@ export class StudentResultComponent implements OnInit {
   cols: any[];
   results: any[];
 
+  students = [
+    {
+      'id': 0,
+      'reg': 'SGICS3',
+      'name': 'Sreelaksmi Sudeer'
+    },
+    {
+      'id': 1,
+      'reg': 'SGICS27',
+      'name': 'Savid Joe Sunny'
+    },
+    {
+      'id': 2,
+      'reg': 'SGICS28',
+      'name': 'Joel Jose Parekattil'
+    },
+    {
+      'id': 3,
+      'reg': 'SGICS13',
+      'name': 'Jimenez Cote'
+    },
+    {
+      'id': 4,
+      'reg': 'SGICS3',
+      'name': 'Gonzales Griffith'
+    },
+    {
+      'id': 5,
+      'reg': 'SGICS31',
+      'name': 'Kirby Woods'
+    },
+    {
+      'id': 6,
+      'reg': 'SGICS2',
+      'name': 'Barry Hinton'
+    },
+    {
+      'id': 7,
+      'reg': 'SGICS31',
+      'name': 'Leila Mcfarland'
+    },
+    {
+      'id': 8,
+      'reg': 'SGICS15',
+      'name': 'Liliana Stein'
+    },
+    {
+      'id': 9,
+      'reg': 'SGICS29',
+      'name': 'Perez Stone'
+    },
+    {
+      'id': 10,
+      'reg': 'SGICS3',
+      'name': 'Marie Noel'
+    },
+    {
+      'id': 11,
+      'reg': 'SGICS21',
+      'name': 'Daniel Sanders'
+    },
+    {
+      'id': 12,
+      'reg': 'SGICS6',
+      'name': 'Booker Roach'
+    },
+    {
+      'id': 13,
+      'reg': 'SGICS18',
+      'name': 'Marietta Sykes'
+    },
+    {
+      'id': 14,
+      'reg': 'SGICS12',
+      'name': 'Gabriela Lindsey'
+    },
+    {
+      'id': 15,
+      'reg': 'SGICS24',
+      'name': 'Lloyd Robinson'
+    }
+  ];
+
   constructor(private userService: UserService) { }
 
 
   ngOnInit() {
+
 
     this.results =  [
       {
@@ -65,6 +152,19 @@ export class StudentResultComponent implements OnInit {
         'grade': 'O'
       }
     ]
+  }
+
+  search = (text$: Observable<string>) =>
+  text$.pipe(
+    debounceTime(200),
+    distinctUntilChanged(),
+    map(term => term.length < 2 ? []
+      : this.students.filter(v => ((v.name.toLowerCase() + ' ' + v.reg.toLowerCase()).indexOf(term.toLowerCase())) > -1).slice(0, 15 ))
+  );
+
+  formatter = (x: {name: string}) => x.name;
+  private selectSearch(e: any): void {
+    console.log(e);
   }
 
   ngAfterViewInit() {

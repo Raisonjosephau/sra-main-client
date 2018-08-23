@@ -251,3 +251,7 @@ ngb-typeahead-window.dropdown-menu {
     max-height: 320px;
     overflow-y: auto;
 }
+
+ngb-typeahead-window.dropdown-menu .dropdown-item {
+    font-size: 15px;
+}

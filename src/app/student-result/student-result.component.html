@@ -6,7 +6,26 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    Please select a student
+                    <form name="form" #f="ngForm">
+                        <div class="input-group">
+                            <input type="text" [(ngModel)]="s" [ngbTypeahead]="search" [inputFormatter]="formatter" [resultTemplate]="rt" [editable]="false" #ser="ngModel" (selectItem)="selectSearch($event)" autocomplete="off" required minlength="3" name="search" id="search" class="form-control"
+                                placeholder="Search... (Please select from the drop down)">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-template #rt let-r="result" let-t="term">
+                            <ngb-highlight [result]="r.name" [term]="t">
+                            </ngb-highlight>
+                            <h5 class="small">
+                                <ngb-highlight [result]="r.reg" [term]="t">
+                                </ngb-highlight>
+                            </h5>
+                        </ng-template>
+                    </form>
+
                 </div>
             </div>
         </div>
