@@ -41,7 +41,7 @@
         border-bottom-width: 1px;
         font-size: 1.45em;
         border: 0;
-        font-weight: 500
+        font-weight: 500 !important
     }
     .radio,
     .checkbox {
@@ -144,6 +144,7 @@
 .table-responsive {
     overflow: hidden;
     padding-bottom: 10px;
+    min-height: 460px;
 }
 
 #tables .table-responsive {
