@@ -698,7 +698,7 @@ export class ResultComponent implements OnInit {
 
   ngOnInit() {
     // Pagination
-    this.page.size = 7;
+    this.page.size = 8;
     this.page.totalElements = this.rows.length;
     this.pageData.page = this.page;
     this.pageData.data = this.rows;

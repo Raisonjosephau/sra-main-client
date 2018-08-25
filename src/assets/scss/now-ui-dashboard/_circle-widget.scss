@@ -6,8 +6,12 @@ $circle-color-red: rgb(253, 94, 83);
 $inset-size: 95px;
 $inset-color: #fbfbfb;
 $transition-length: 5s;
+.circle-outer {
+    min-height: 160px;
+}
+
 .progress-circle {
-    margin: 35px 10px 35px 10px;
+    margin: 15px 10px 35px 10px;
     width: $circle-size;
     height: $circle-size;
     background-color: $circle-background;
@@ -33,7 +37,7 @@ $transition-length: 5s;
         }
     }
     .label {
-        margin: 35px 10px 35px 10px;
+        margin: 15px 10px 35px 10px;
         background: none;
         color: #7f8c8d;
         border-radius: 50%;

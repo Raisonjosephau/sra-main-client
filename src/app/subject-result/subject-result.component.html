@@ -48,6 +48,7 @@
                             <hr>
                         </div>
                     </div>
+                    <br/>
                 </div>
             </div>
         </div>
@@ -76,26 +77,18 @@
                 <div class="card-body">
                     <form name="form" #batchSelect="ngForm">
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-5 pr-2">
                                 <div class="form-group">
-                                    <label>Batch</label>
-                                    <select class="selectpicker" data-style="form-control" title="Choose Batch" data-size="7" tabindex="-98">
-                                    <option disabled=""> Batch</option>
-                                    <option value="1">2015-19</option>
-                                    <option value="2">2016-20</option>
-                                    <option value="3">2017-21</option>
-                                    <option value="4">2018-22</option>
-                                </select>
+                                    <label>Semester</label>
+                                    <angular2-multiselect [ngClass]="{'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" [data]="semList" [(ngModel)]="semester" name="semester" [settings]="semSettings">
+                                    </angular2-multiselect>
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label>Scheme</label>
-                                    <select class="selectpicker" data-style="form-control" title="Choose Scheme" data-size="7" tabindex="-98">
-                                    <option disabled=""> Scheme</option>
-                                    <option value="1">Regular</option>
-                                    <option value="2">Supplymentry</option>
-                                </select>
+                                    <label>Batch</label>
+                                    <angular2-multiselect [ngClass]="{'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" [data]="batchList" [(ngModel)]="batch" name="batch" [settings]="batchSettings">
+                                    </angular2-multiselect>
                                 </div>
                             </div>
                         </div>
@@ -174,11 +167,10 @@
                                 <p class="stud-info"> Failed: <span style="float:right">{{data.length}}</span></p>
 
                                 <p class="stud-info"> Total: <span style="float:right">{{data.length}}</span></p>
-
                                 <hr>
                             </div>
                         </div>
-
+                        <br/>
                         <div class="row">
                             <div style="height: 2px;"></div>
                         </div>

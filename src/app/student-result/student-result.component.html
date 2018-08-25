@@ -7,12 +7,14 @@
             <div class="card">
                 <div class="card-body">
                     <form name="form" #f="ngForm">
-                        <div class="input-group">
-                            <input type="text" [(ngModel)]="s" [ngbTypeahead]="search" [inputFormatter]="formatter" [resultTemplate]="rt" [editable]="false" #ser="ngModel" (selectItem)="selectSearch($event)" autocomplete="off" required minlength="3" name="search" id="search" class="form-control"
-                                placeholder="Search... (Please select from the drop down)">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <i class="fas fa-search"></i>
+                        <div class="form-group" [ngClass]="{'focused':focsr===true}">
+                            <div class="input-group input-group-alternative">
+                                <input type="text" [(ngModel)]="s" [ngbTypeahead]="search" [inputFormatter]="formatter" [resultTemplate]="rt" [editable]="false" #ser="ngModel" (selectItem)="selectSearch($event)" autocomplete="off" required minlength="3" name="search" id="search" class="form-control form-control-alternative"
+                                    (focus)="focsr=true" (blur)="focsr=false" placeholder="Search... (Please select from the drop down)">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-search"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -56,56 +58,54 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-5">
-            <div class="row">
-                <div class="card card-user">
-
-                    <h4 class="card-title"></h4>
-                    <div class="card-body">
-                        <div class="row" style="margin-left:2px;">
-                            <div class="col col-lg-6 pr-lg-6">
-                                <div class="circle" style="min-height: 150px;">
-                                    <div class="progress-circle" data-progress="81">
-                                        <span class="label">26<span class="smaller"></span></span>
-                                        <div class="circle">
-                                            <div class="full progress-circle__slice">
-                                                <div class="progress-circle__fill"></div>
-                                            </div>
-                                            <div class="progress-circle__slice">
-                                                <div class="progress-circle__fill"></div>
-                                                <div class="progress-circle__fill progress-circle__bar "></div>
-                                            </div>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="category-social text-danger text-shadow-0">
+                        <i class="fa fa-fire"></i>
+                    </h5>
+                    <div class="row" style="margin-left:10px;">
+                        <div class="col col-lg-6 pr-lg-6">
+                            <div class="circle-outer">
+                                <div class="progress-circle" data-progress="81">
+                                    <span class="label">26<span class="smaller"></span></span>
+                                    <div class="circle">
+                                        <div class="full progress-circle__slice">
+                                            <div class="progress-circle__fill"></div>
                                         </div>
-                                        <div class="progress-circle__overlay"></div>
-                                        <div class="shadow"></div>
-
-                                        <div class="footer text-center">
-                                            <h6 class="info">Cleared</h6>
-                                            <h6 class="small text-primary">/ 32</h6>
+                                        <div class="progress-circle__slice">
+                                            <div class="progress-circle__fill"></div>
+                                            <div class="progress-circle__fill progress-circle__bar "></div>
                                         </div>
+                                    </div>
+                                    <div class="progress-circle__overlay"></div>
+                                    <div class="shadow"></div>
+
+                                    <div class="footer text-center">
+                                        <h6 class="info">Cleared</h6>
+                                        <h6 class="small text-primary">/ 32</h6>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col col-lg-6 pr-lg-6">
-                                <div class="circle ml-auto mr-auto" style="min-height: 150px;">
-                                    <div class="progress-circle" data-progress="19">
-                                        <span class="label">06<span class="smaller"></span></span>
-                                        <div class="circle">
-                                            <div class="full progress-circle__slice">
-                                                <div class="progress-circle__fill red"></div>
-                                            </div>
-                                            <div class="progress-circle__slice">
-                                                <div class="progress-circle__fill red"></div>
-                                                <div class="progress-circle__fill progress-circle__bar red"></div>
-                                            </div>
+                        </div>
+                        <div class="col col-lg-6 pr-lg-6">
+                            <div class="circle-outer ml-auto mr-auto">
+                                <div class="progress-circle" data-progress="19">
+                                    <span class="label">06<span class="smaller"></span></span>
+                                    <div class="circle">
+                                        <div class="full progress-circle__slice">
+                                            <div class="progress-circle__fill red"></div>
                                         </div>
-                                        <div class="progress-circle__overlay"></div>
-                                        <div class="shadow"></div>
-
-                                        <div class="footer text-center">
-                                            <h6 class="info">Supply</h6>
-                                            <h6 class="small text-secondary text-danger">/ 32</h6>
+                                        <div class="progress-circle__slice">
+                                            <div class="progress-circle__fill red"></div>
+                                            <div class="progress-circle__fill progress-circle__bar red"></div>
                                         </div>
+                                    </div>
+                                    <div class="progress-circle__overlay"></div>
+                                    <div class="shadow"></div>
+                                    <div class="footer text-center">
+                                        <h6 class="info">Supply</h6>
+                                        <h6 class="small text-secondary text-danger">/ 32</h6>
                                     </div>
                                 </div>
                             </div>
@@ -118,11 +118,10 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                <br>
-                <div class="card-header">
-                    <h4 class="card-title">Results</h4>
-                </div>
-                <div class="card-body">
+                <div class="card-body"><br/>
+                    <h5 class="category-social text-uppercase text-shadow-0 font-weight-semibold">
+                        <i class="now-ui-icons media-2_sound-wave"></i> Results
+                    </h5>
                     <div class="row">
                         <div class="col-md-4 offset-4">
                             <div class="form-group">
@@ -201,10 +200,10 @@
         <div class="col-lg-12">
             <div class="card">
                 <br>
-                <div class="card-header">
-                    <h4 class="card-title">Supplies 6</h4>
-                </div>
                 <div class="card-body">
+                    <h5 class="category-social text-uppercase text-shadow-0 font-weight-semibold">
+                        <i class="now-ui-icons ui-2_time-alarm"></i> Supplimentory
+                    </h5>
                     <br>
                     <div class="row col-lg-11 ml-auto mr-auto">
                         <div class="table-responsive" style="overflow:hidden; margin-left:15px;">

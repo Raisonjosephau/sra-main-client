@@ -15,7 +15,7 @@ import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
   providers: [ Filter ]
 })
 
-export class SubjectResultComponent implements OnInit, AfterViewInit {
+export class SubjectResultComponent implements OnInit {
 
   data = [
     {
@@ -287,6 +287,28 @@ export class SubjectResultComponent implements OnInit, AfterViewInit {
       'id': 'CS0028'
     }
   ];
+
+  semList = [
+    {'id': 1, 'name': 'Semester 1'},
+    {'id': 2, 'name': 'Semester 2'},
+    {'id': 3, 'name': 'Semester 3'},
+    {'id': 4, 'name': 'Semester 4'},
+    {'id': 5, 'name': 'Semester 5'},
+    {'id': 6, 'name': 'Semester 6'},
+    {'id': 7, 'name': 'Semester 7'},
+    {'id': 8, 'name': 'Semester 8'}
+  ];
+  batchList = [
+    {'id': 1, 'name': '2015-19'},
+    {'id': 2, 'name': '2016-20'},
+    {'id': 3, 'name': '2017-21'},
+    {'id': 4, 'name': '2018-22'},
+    {'id': 5, 'name': '2019-23'},
+  ];
+
+
+  semSettings = {};
+  batchSettings = {};
   page = 1;
   pages = new Page()
   pageData = new PagedData()
@@ -327,14 +349,27 @@ export class SubjectResultComponent implements OnInit, AfterViewInit {
     // Pagination
 
     this.pages.pageNumber = this.page - 1;
-    this.pages.size = 7;
+    this.pages.size = 8;
     this.pages.totalElements = this.data.length;
     this.pageData.page = this.pages;
     this.pageData.data = this.data;
     this.pagination(this.page);
 
-    // Filtering
-
+    // Selectbox
+    this.semSettings =  {
+      singleSelection: true,
+      text: 'Choose Semester',
+      enableSearchFilter: true,
+      classes: 'input-group-alternative',
+      labelKey: 'name'
+    }
+    this.batchSettings =  {
+      singleSelection: true,
+      text: 'Choose Batch',
+      enableSearchFilter: true,
+      classes: 'input-group-alternative',
+      labelKey: 'name'
+    }
     //
 
     this.chartColor = '#212121';
@@ -519,9 +554,6 @@ export class SubjectResultComponent implements OnInit, AfterViewInit {
     this.lineBigDashboardChartType = 'line';
   }
 
-  ngAfterViewInit() {
-    jQuery('select').selectpicker();
-  }
 
   // Paginatio
   public pagination(e: any): void {

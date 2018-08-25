@@ -342,9 +342,26 @@
     border-color: rgba(50, 151, 211, .25);
 }
 
+.focused .input-group-alternative {
+    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08) !important;
+    color: #212121;
+}
+
 .form-group.form-control-alternative .input-group-prepend .input-group-text,
 .form-group.form-control .input-group-append .input-group-text,
 .input-group.input-group-alternative .input-group-prepend .input-group-text,
 .input-group.input-group-alternative .input-group-append .input-group-text {
     padding: 10px 11px;
+}
+
+.form-control.form-control-alternative {
+    &:focus {
+        border: none;
+        &+.input-group-append .input-group-text,
+        &~.input-group-append .input-group-text,
+        &+.input-group-prepend .input-group-text,
+        .input-group-prepend .input-group-text {
+            border: 0px;
+        }
+    }
 }
