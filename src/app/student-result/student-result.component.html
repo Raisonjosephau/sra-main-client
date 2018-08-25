@@ -36,7 +36,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h4 class="card-title">Raison Joseph</h4>
+                            <h3 class="card-title">Raison Joseph</h3>
                             <h6 class="card-subtitle mb-1 text-muted">S7 CSE</h6>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                     <div class="card-body">
                         <div class="row" style="margin-left:2px;">
                             <div class="col col-lg-6 pr-lg-6">
-                                <div class="circle" style="min-height: 180px;">
+                                <div class="circle" style="min-height: 150px;">
                                     <div class="progress-circle" data-progress="81">
                                         <span class="label">26<span class="smaller"></span></span>
                                         <div class="circle">
@@ -87,7 +87,7 @@
                                 </div>
                             </div>
                             <div class="col col-lg-6 pr-lg-6">
-                                <div class="circle ml-auto mr-auto" style="min-height: 180px;">
+                                <div class="circle ml-auto mr-auto" style="min-height: 150px;">
                                     <div class="progress-circle" data-progress="19">
                                         <span class="label">06<span class="smaller"></span></span>
                                         <div class="circle">
@@ -126,8 +126,9 @@
                     <div class="row">
                         <div class="col-md-4 offset-4">
                             <div class="form-group">
-                                <label>Semester</label>
-                                <select class="selectpicker" data-style="form-control" title="Choose Semester" data-size="7" tabindex="-98">
+                                <angular2-multiselect [ngClass]="{'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" [data]="dropdownList" [(ngModel)]="selectedItems" [settings]="dropdownSettings">
+                                </angular2-multiselect>
+                                <!-- <select class="selectpicker" data-style="form-control" title="Choose Semester" data-size="7" tabindex="-98">
                                     <option disabled=""> Semesters</option>
                                     <option value="1">Semester 1 </option>
                                     <option value="2">Semester 2</option>
@@ -137,7 +138,7 @@
                                     <option value="6">Semester 6</option>
                                     <option value="7">Semester 7 </option>
                                     <option value="8">Semester 8</option>
-                                </select>
+                                </select> -->
                             </div>
                         </div>
                     </div>

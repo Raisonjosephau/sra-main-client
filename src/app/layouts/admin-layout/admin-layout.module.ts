@@ -18,6 +18,7 @@ import {SubjectResultComponent} from '../../subject-result/subject-result.compon
 
 import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 import {Filter} from '../../common-pipe'
 
 
@@ -29,6 +30,7 @@ import {Filter} from '../../common-pipe'
     ReactiveFormsModule,
     ChartsModule,
     NgbModule,
+    AngularMultiSelectModule
   ],
   declarations: [
     DashboardComponent,

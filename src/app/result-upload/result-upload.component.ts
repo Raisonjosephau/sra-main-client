@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {UserService} from '../_services/user.service'
-
 @Component({
   selector: 'app-upload-result',
   templateUrl: './result-upload.component.html',
   styleUrls: ['./result-upload.component.css']
 })
-export class UploadResultComponent implements OnInit {
+export class UploadResultComponent implements OnInit, AfterViewInit {
   file_status: any;
   file: File;
   loading = false;

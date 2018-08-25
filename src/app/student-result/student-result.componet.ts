@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {UserService} from '../_services/user.service'
-
 import {Observable} from 'rxjs/Observable';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 
@@ -9,7 +8,7 @@ import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
   templateUrl: './student-result.component.html',
   styleUrls: ['./student-result.component.css']
 })
-export class StudentResultComponent implements OnInit {
+export class StudentResultComponent implements OnInit, AfterViewInit {
   cols: any[];
   results: any[];
 
@@ -95,13 +94,33 @@ export class StudentResultComponent implements OnInit {
       'name': 'Lloyd Robinson'
     }
   ];
+  dropdownList = [
+    {'id': 1, 'name': 'Semester 1'},
+    {'id': 2, 'name': 'Semester 2'},
+    {'id': 3, 'name': 'Semester 3'},
+    {'id': 4, 'name': 'Semester 4'},
+    {'id': 5, 'name': 'Semester 5'},
+    {'id': 6, 'name': 'Semester 6'},
+    {'id': 7, 'name': 'Semester 7'},
+    {'id': 8, 'name': 'Semester 8'}
+  ];
+
+  dropdownSettings = {};
 
   constructor(private userService: UserService) { }
 
 
   ngOnInit() {
 
-
+    this.dropdownSettings = {
+      singleSelection: true,
+      text: 'Select Semester',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      enableSearchFilter: true,
+      classes: 'input-group-alternative',
+      labelKey: 'name'
+    };
     this.results =  [
       {
         'id': 0,
@@ -168,8 +187,8 @@ export class StudentResultComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    jQuery('select').selectpicker();
   }
+
 
 
 }

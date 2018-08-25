@@ -6,7 +6,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
@@ -23,6 +22,8 @@ import {ReLoginGaurd } from './auth/auth.rev'
 import {LoginService} from './_services/login.service'
 import {UserService} from './_services/user.service'
 import {PaginationService} from './_services/pagination.service'
+
+
 
 @NgModule({
   imports: [

@@ -1,12 +1,14 @@
-.card-stats {
+.card-widget {
     .statistics {
         position: relative;
         text-align: center;
         padding: 2px 0;
         .title {
-            margin-bottom: 0
+            margin-bottom: 0;
+            font-weight: 400;
+            color: #3c3b3d;
         }
-        .stats-title {
+        .widget-title {
             margin-bottom: 5px;
             color: #9a9a9a;
             font-weight: 500
@@ -17,13 +19,13 @@
         vertical-align: top;
         margin: 0 15px
     }
-    .stats-information {
+    .widget-information {
         display: inline-block;
         margin-bottom: 15px;
-        .stats-text {
+        .widget-text {
             font-size: 29px
         }
-        .stats-details {
+        .widget-details {
             display: block;
             color: #888
         }
@@ -40,12 +42,12 @@
     }
 }
 
-.card-stats .statistics.statistics-horizontal,
-.card-stats .statistics.statistics-horizontal .info-title {
+.card-widget .statistics.statistics-horizontal,
+.card-widget .statistics.statistics-horizontal .info-title {
     padding: 0
 }
 
-.card-stats [class*=col-] .statistics:after {
+.card-widget [class*=col-] .statistics:after {
     position: absolute;
     right: 0;
     top: 20px;
@@ -55,7 +57,7 @@
     background: #ddd
 }
 
-.card-stats [class*=col-]:last-child .statistics:after {
+.card-widget [class*=col-]:last-child .statistics:after {
     display: none
 }
 

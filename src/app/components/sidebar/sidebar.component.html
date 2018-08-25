@@ -16,43 +16,21 @@
                 <p>{{menuItem.title}}</p>
             </a>
         </li>
-        <li>
-            <a data-toggle="collapse" data-parent="#accordion" href="#description" [attr.aria-expanded]="collapseResultState.area" aria-controls="collapse4">
-                <i class="now-ui-icons sport_trophy"></i>
-                <p>
-                    Results <b class="caret"></b>
-                </p>
-            </a>
-            <div id="description" class="collapse {{collapseResultState.show}}">
-                <ul class="nav">
-                    <li routerLinkActive="active" *ngFor="let menuItem of resultMenuItems" class="{{menuItem.class}} nav-item">
-                        <a [routerLink]="[menuItem.path]">
-                            <i class="now-ui-icons {{menuItem.icon}}"></i>
-                            <p>{{menuItem.title}}</p>
-                        </a>
-                    </li>
 
-                </ul>
-            </div>
-        </li>
-        <li>
-            <a data-toggle="collapse" data-parent="#accordion" href="#analysis" [attr.aria-expanded]="collapseAnalysisState.area" aria-controls="collapse4">
-                <i class="now-ui-icons business_chart-bar-32"></i>
-                <p>
-                    Analysis <b class="caret"></b>
-                </p>
+        <li routerLinkActive="active" *ngFor="let menuItem of resultMenuItems" class="{{menuItem.class}} nav-item">
+            <a [routerLink]="[menuItem.path]">
+                <i class="now-ui-icons {{menuItem.icon}}"></i>
+                <p>{{menuItem.title}}</p>
             </a>
-            <div id="analysis" class="collapse {{collapseAnalysisState.show}}">
-                <ul class="nav">
-                    <li routerLinkActive="active" *ngFor="let menuItem of analysisMenuItems" class="{{menuItem.class}} nav-item">
-                        <a [routerLink]="[menuItem.path]">
-                            <i class="now-ui-icons {{menuItem.icon}}"></i>
-                            <p>{{menuItem.title}}</p>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
         </li>
+
+
+        <li routerLinkActive="active" *ngFor="let menuItem of analysisMenuItems" class="{{menuItem.class}} nav-item">
+            <a [routerLink]="[menuItem.path]">
+                <i class="now-ui-icons {{menuItem.icon}}"></i>
+                <p>{{menuItem.title}}</p>
+            </a>
+        </li>
+
     </ul>
 </div>

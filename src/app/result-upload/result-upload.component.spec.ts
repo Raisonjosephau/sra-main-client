@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UploadResultComponent } from './result-upload.component';
-
+declare var jquery: any;
+declare var $: any;
 describe('UploadResultComponent', () => {
   let component: UploadResultComponent;
   let fixture: ComponentFixture<UploadResultComponent>;

@@ -70,12 +70,6 @@
     color: #323232;
 }
 
-input.form-control,
-textarea.form-control {
-    font-size: 13px;
-    font-weight: 500;
-}
-
 textarea::-webkit-scrollbar-track {
     background-color: #fff;
 }

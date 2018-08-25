@@ -22,6 +22,7 @@
 @import "now-ui-dashboard/plugins/plugin-animate-bootstrap-notify";
 @import "now-ui-dashboard/plugins/plugin-perfect-scrollbar";
 @import "now-ui-dashboard/plugins/plugin-datepicker";
+@import "now-ui-dashboard/plugins/select-box.scss";
 // Core CSS
 @import "now-ui-dashboard/buttons";
 @import "now-ui-dashboard/inputs";
@@ -52,3 +53,4 @@
 //Widget
 @import "now-ui-dashboard/circle-widget";
 @import "now-ui-dashboard/progress";
+@import "now-ui-dashboard/input-group";
