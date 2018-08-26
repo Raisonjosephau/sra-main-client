@@ -47,26 +47,12 @@
     padding: 0
 }
 
-.card-widget [class*=col-] .statistics:after {
-    position: absolute;
-    right: 0;
-    top: 20px;
-    width: 1px;
-    height: calc(100% - 40px);
-    content: "";
-    background: #ddd
-}
-
-.card-widget [class*=col-]:last-child .statistics:after {
-    display: none
-}
-
 .info-horizontal {
     text-align: left!important
 }
 
 .info .info-title {
-    margin: 15px 0 5px;
+    margin: 0px 0 5px;
     padding: 0 15px;
     color: #2c2c2c;
     font-weight: 700;

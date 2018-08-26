@@ -2,7 +2,6 @@
 .progress-container {
     position: relative;
     font-weight: 500;
-    text-shadow: .5px .5px .5px #aaaaaa;
     &+.progress-container,
     &~.progress-container {
         margin-top: $margin-base-vertical;
@@ -14,7 +13,7 @@
         font-weight: 500;
     }
     .progress {
-        height: 1.8px;
+        height: 2px;
         border-radius: 0;
         box-shadow: none;
         background: $opacity-gray-8;

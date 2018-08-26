@@ -3,7 +3,7 @@
 </div>
 <div class="main-content">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
                     <form name="form" #f="ngForm">
@@ -21,11 +21,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <div class="card card-widget">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-widget">
+                        <div class="card-body">
                             <div class="statistics">
                                 <div class="info">
                                     <h3 class="info-title text-shadow-2">{{rows.length}}</h3>
@@ -33,7 +33,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-widget">
+                        <div class="card-body">
                             <div class="statistics">
                                 <div class="info">
                                     <h3 class="info-title text-shadow-2">{{passedList.length}}</h3>
@@ -41,15 +45,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="statistics">
-                                <div class="info">
-                                    <h3 class="info-title text-shadow-2">{{failedList.length}}</h3>
-                                    <h6 class="widget-title">Failed</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-widget">
+                        <div class="card-body">
                             <div class="statistics">
                                 <div class="info">
                                     <h3 class="info-title text-shadow-2">{{((passedList.length/rows.length)*100).toFixed(2)}} %</h3>
@@ -59,7 +59,18 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-widget">
+                        <div class="card-body">
+                            <div class="statistics">
+                                <div class="info">
+                                    <h3 class="info-title text-primary text-shadow-2">+6 %</h3>
+                                    <h6 class="widget-title">Improvement</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -169,9 +180,9 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-lg-7">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body text-shadow-0">
                     <br>
                     <div class="progress-container">
                         <span class="progress-badge">Operatin System - CS022</span>
@@ -217,11 +228,20 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-lg-5">
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="category-social text-success text-shadow-1">
+                        <i class="now-ui-icons media-2_sound-wave"></i>
+                    </h3>
+                    <h5 class="card-title text-shadow-0 clickable" (click)="switchToPassOrFailorAll(singleSubject)"><span>Single Subject Failures</span><span class="pull-right">{{singleSubject.length}}</span></h5>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-body">
                     <h6 class="category-social text-danger text-shadow-0">
-                        <i class="fa fa-fire"></i> Toppers
+                        <i class="fas fa-crown"></i> &nbsp; Toppers
                     </h6>
                     <br>
                     <ul class="list-group list-group-flush text-shadow-0">
@@ -238,7 +258,6 @@
                             <p class="card-description"><span>LSGICS033</span><span class="pull-right">7.78</span></p>
                         </li>
                     </ul>
-
                 </div>
             </div>
         </div>

@@ -3,3 +3,11 @@
     font-size: 1.01em;
     cursor: pointer;
 }
+
+.category-social {
+    margin: 1px;
+}
+
+.clickable {
+    cursor: pointer !important;
+}

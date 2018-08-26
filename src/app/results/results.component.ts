@@ -692,6 +692,7 @@ export class ResultComponent implements OnInit {
   studList: Array<any>;
   failedList: Array<any>;
   passedList: Array<any>;
+  singleSubject: Array<any>;
 
   constructor(private userService: UserService,  private paginationService: PaginationService) { }
 
@@ -703,10 +704,24 @@ export class ResultComponent implements OnInit {
     this.pageData.page = this.page;
     this.pageData.data = this.rows;
     this.pagination(this.currentPage);
+    let count = 0;
 
-    // Pass or Fail
+    // Pass or Fail/ Single subject failures
     this.passedList = this.rows.filter(item => !item.grade.includes('F'));
     this.failedList = this.rows.filter(item => item.grade.includes('F'));
+    this.singleSubject = this.rows.filter(function(item) {
+      count = 0;
+      item.grade.forEach(function(element) {
+          if (element === 'F') {
+            count += 1;
+          }
+      })
+      return(count === 1 ? true : false)
+
+    });
+    console.log(this.singleSubject)
+
+
   }
 
    // Paginatio

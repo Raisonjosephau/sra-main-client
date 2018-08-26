@@ -58,7 +58,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-lg-5">
             <div class="card">
                 <div class="card-body">
                     <h5 class="category-social text-danger text-shadow-0">
@@ -116,76 +116,79 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body"><br/>
+        <div class="col-lg-7">
+            <div class="card  card-widget">
+                <div class="card-body">
                     <h5 class="category-social text-uppercase text-shadow-0 font-weight-semibold">
                         <i class="now-ui-icons media-2_sound-wave"></i> Results
                     </h5>
+                    <br/>
                     <div class="row">
-                        <div class="col-md-4 offset-4">
+                        <div class="col-lg-11 ml-auto mr-auto">
                             <div class="form-group">
                                 <angular2-multiselect [ngClass]="{'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" [data]="dropdownList" [(ngModel)]="selectedItems" [settings]="dropdownSettings">
                                 </angular2-multiselect>
-                                <!-- <select class="selectpicker" data-style="form-control" title="Choose Semester" data-size="7" tabindex="-98">
-                                    <option disabled=""> Semesters</option>
-                                    <option value="1">Semester 1 </option>
-                                    <option value="2">Semester 2</option>
-                                    <option value="3">Semester 3</option>
-                                    <option value="4">Semester 4</option>
-                                    <option value="5">Semester 5 </option>
-                                    <option value="6">Semester 6</option>
-                                    <option value="7">Semester 7 </option>
-                                    <option value="8">Semester 8</option>
-                                </select> -->
                             </div>
                         </div>
                     </div>
-                    <br>
+                    <br/><br/>
+                    <hr>
                     <div class="row">
-                        <div class="col-lg-4">
-                            <div class="table-responsive" style="overflow:hidden; margin-left:15px;">
-                                <table class="table">
-                                    <thead class="text-primary">
-                                        <th class="">
-                                            Subject
-                                        </th>
-                                        <th class="text-right">
-                                            Grade
-                                        </th>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let result of results">
-                                            <td class="text-left">
-                                                {{result.code}}
-                                            </td>
-
-                                            <td *ngIf="result.grade !== 'F'" class="text-right">
-                                                {{result.grade}}
-                                            </td>
-                                            <td *ngIf="result.grade === 'F'" class="text-right text-danger">
-                                                {{result.grade}}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="col-md-4">
+                            <div class="statistics">
+                                <div class="info">
+                                    <h5 class="info-title font-weight-semibold"> All Cleared in</h5>
+                                    <h6 class="widget-title">Second Attempt </h6>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-7 offset-1">
-
+                        <div class="col-md-4">
+                            <div class="statistics">
+                                <div class="info">
+                                    <h5 class="info-title font-weight-semibold ">Supply</h5>
+                                    <h6 class="widget-title">1</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="statistics">
+                                <div class="info">
+                                    <h5 class="info-title font-weight-semibold">GPA</h5>
+                                    <h6 class="widget-title">8.00</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <br/>
+                    <div class="row">
+                        <div class="col-lg-8 mr-auto ml-auto">
                             <div class="row">
-                                <div class="col-lg-12"><br>
-                                    <hr>
-                                    <p class="stud-info"> All Cleared in : First Attempt / NA / Second Attepmpt - March 2018 </p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="text-primary">
+                                            <th class="">
+                                                Subject
+                                            </th>
+                                            <th class="text-right">
+                                                Grade
+                                            </th>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let result of results">
+                                                <td class="text-left">
+                                                    {{result.code}}
+                                                </td>
 
-                                    <p class="stud-info"> Supply : No / 2 </p>
-
-                                    <p class="stud-info"> Phone: </p>
-
-                                    <p class="stud-info">Address: </p>
-
-                                    <p class="stud-info">GPA: 8.00 / NA</p>
-                                    <hr>
+                                                <td *ngIf="result.grade !== 'F'" class="text-right">
+                                                    {{result.grade}}
+                                                </td>
+                                                <td *ngIf="result.grade === 'F'" class="text-right text-danger">
+                                                    {{result.grade}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -193,20 +196,15 @@
                 </div>
             </div>
         </div>
-
-    </div>
-
-    <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-5">
             <div class="card">
-                <br>
                 <div class="card-body">
                     <h5 class="category-social text-uppercase text-shadow-0 font-weight-semibold">
-                        <i class="now-ui-icons ui-2_time-alarm"></i> Supplimentory
+                        <i class="far fa-sad-tear"></i> Supplimentory
                     </h5>
                     <br>
                     <div class="row col-lg-11 ml-auto mr-auto">
-                        <div class="table-responsive" style="overflow:hidden; margin-left:15px;">
+                        <div class="table-responsive">
                             <table class="table">
                                 <thead class="text-primary">
                                     <th class="th-description">
@@ -215,10 +213,7 @@
                                     <th class="">
                                         Subject
                                     </th>
-                                    <th class="">
-                                        Grade
-                                    </th>
-                                    <th class="">
+                                    <th class="text-right">
                                         Attempt
                                     </th>
                                 </thead>
@@ -226,46 +221,45 @@
                                     <tr>
                                         <td>S1</td>
                                         <td>CS003</td>
-                                        <td>D+</td>
-                                        <td>2</td>
+                                        <td class="text-right">2</td>
                                     </tr>
 
                                     <tr>
                                         <td>S1</td>
                                         <td>CS003</td>
-                                        <td>D+</td>
-                                        <td>2</td>
+
+                                        <td class="text-right">2</td>
                                     </tr>
                                     <tr>
                                         <td>S3</td>
                                         <td>CS003</td>
-                                        <td>D+</td>
-                                        <td>2</td>
+
+                                        <td class="text-right">2</td>
                                     </tr>
                                     <tr>
                                         <td>S3</td>
                                         <td>CS003</td>
-                                        <td>D+</td>
-                                        <td>2</td>
+
+                                        <td class="text-right">2</td>
                                     </tr>
                                     <tr>
                                         <td>S3</td>
                                         <td>CS003</td>
-                                        <td>D+</td>
-                                        <td>2</td>
+
+                                        <td class="text-right">2</td>
                                     </tr>
 
                                     <tr>
                                         <td>S3</td>
                                         <td>CS003</td>
-                                        <td>D+</td>
-                                        <td>2</td>
+
+                                        <td class="text-right">2</td>
                                     </tr>
                                     <tr>
                                         <td>S4</td>
                                         <td>CS003</td>
-                                        <td>D+</td>
-                                        <td>2</td>
+
+                                        <td class="text-right">2</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -275,4 +269,5 @@
             </div>
         </div>
     </div>
+
 </div>
