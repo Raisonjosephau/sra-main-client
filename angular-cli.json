@@ -1,7 +1,7 @@
 {
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "project": {
-        "name": "now-ui-dashboard-angular"
+        "name": "student-result-analysis"
     },
     "apps": [{
         "root": "src",
@@ -20,15 +20,10 @@
         "styles": [
             "../node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
             "../node_modules/ngx-toastr/toastr.css",
-            "./assets/scss/now-ui-dashboard.scss",
-            "./assets/demo/demo.css"
+            "./assets/scss/now-ui-dashboard.scss"
         ],
         "scripts": [
-            "../node_modules/jquery/dist/jquery.min.js",
-            "../node_modules/popper.js/dist/popper.js",
-            "../node_modules/bootstrap/dist/js/bootstrap.js",
-            "../node_modules/chart.js/dist/Chart.min.js",
-            "./assets/js/bootstrap-selectpicker.js"
+            "../node_modules/chart.js/dist/Chart.min.js"
         ],
         "environmentSource": "environments/environment.ts",
         "environments": {

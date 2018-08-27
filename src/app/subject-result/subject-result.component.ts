@@ -3,7 +3,6 @@ import {UserService} from '../_services/user.service'
 import {PaginationService} from '../_services/pagination.service'
 import {Page} from '../_objects/page'
 import {PagedData} from '../_objects/page-data'
-import {Filter} from '.././common-pipe'
 
 import {Observable} from 'rxjs/Observable';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
@@ -11,8 +10,7 @@ import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 @Component({
   selector: 'app-student-result',
   templateUrl: './subject-result.component.html',
-  styleUrls: ['./subject-result.component.css'],
-  providers: [ Filter ]
+  styleUrls: ['./subject-result.component.css']
 })
 
 export class SubjectResultComponent implements OnInit {
@@ -340,7 +338,7 @@ export class SubjectResultComponent implements OnInit {
   public gradientChartOptionsConfigurationWithNumbersAndGrid: any;
 
 
-  constructor(private userService: UserService, private paginationService: PaginationService, private filter: Filter) {
+  constructor(private userService: UserService, private paginationService: PaginationService) {
 
    }
 
@@ -349,7 +347,7 @@ export class SubjectResultComponent implements OnInit {
     // Pagination
 
     this.pages.pageNumber = this.page - 1;
-    this.pages.size = 8;
+    this.pages.size = 7;
     this.pages.totalElements = this.data.length;
     this.pageData.page = this.pages;
     this.pageData.data = this.data;
@@ -566,7 +564,7 @@ export class SubjectResultComponent implements OnInit {
     if (e.active.length > 0) {
       const index = e.active[0]._index;
       this.grade = this.radarChartLables[index];
-      this.pageData.data = this.filter.transform(this.data, 'grade', this.grade);
+      this.pageData.data = this.data.filter(item => item.grade === this.grade);
       this.pagination(this.page);
     }
   }

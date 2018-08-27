@@ -53,19 +53,17 @@
             </div>
         </div>
         <div class="col-lg-7">
-            <div class="row">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h4 class="card-title">Performance of last 5 batches</h4>
-                            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4 class="card-title">Performance of last 5 batches</h4>
                         </div>
-                        <br>
-                        <div class="row">
-                            <canvas style="position: relative; height:29vh;" baseChart id="bigDashboardChart" [datasets]="lineBigDashboardChartData" [labels]="lineBigDashboardChartLabels" [colors]="lineBigDashboardChartColors" [options]="lineBigDashboardChartOptions" [chartType]="lineBigDashboardChartType"
-                                (chartClick)="chartClicked($event)"></canvas>
-                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <canvas style="position: relative; height:29vh;" baseChart id="bigDashboardChart" [datasets]="lineBigDashboardChartData" [labels]="lineBigDashboardChartLabels" [colors]="lineBigDashboardChartColors" [options]="lineBigDashboardChartOptions" [chartType]="lineBigDashboardChartType"
+                            (chartClick)="chartClicked($event)"></canvas>
                     </div>
                 </div>
             </div>
@@ -101,80 +99,71 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="card card-user">
-
                 <div class="card-header">
                     <h4 class="card-title">Showing results of:</h4>
                     <h6 class="card-subtitle mb-1 text-muted">Batch 2015 - 19</h6>
                 </div>
                 <div class="card-body"><br/>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div *ngIf="studList[0] === -1">
-                                <h5 class="text-info">No students found with the grade {{grade}}</h5>
-                            </div>
-                            <div>
-                                <p class="grade-selection" *ngIf="studList[0] !== -1">Students with grade: {{grade}} <span *ngIf="grade !== 'All'" class="clear" (click)="showAll()">show all</span></p>
-                            </div>
-                            <br/>
-                            <div class="table-responsive" style="overflow:hidden;">
-                                <table class="table" *ngIf="studList[0] !== -1">
-                                    <thead class=" text-primary">
-                                        <th>
-                                            id
-                                        </th>
-                                        <th>
-                                            Name
-                                        </th>
-                                        <th class="">
-                                            Grade
-                                        </th>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let student of studList">
-                                            <td>{{student.id}}</td>
-                                            <td>
-                                                {{student.name}}
-                                            </td>
-                                            <td class="">
-                                                {{student.grade}}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <ngb-pagination *ngIf="studList[0] !== -1" size="lg" [collectionSize]="pages.totalElements" [pageSize]="pages.size" [(page)]="page" (pageChange)="pagination($event)" aria-label="Default pagination" class="pagination-primary d-flex justify-content-end"></ngb-pagination>
-                            </div>
-                        </div>
+                    <div *ngIf="studList[0] === -1">
+                        <h5 class="text-info">No students found with the grade {{grade}}</h5>
                     </div>
+                    <div>
+                        <p class="grade-selection" *ngIf="studList[0] !== -1">Students with grade: {{grade}} <span *ngIf="grade !== 'All'" class="clear" (click)="showAll()">show all</span></p>
+                    </div>
+                    <br/>
+                    <div class="table-responsive">
+                        <table class="table" *ngIf="studList[0] !== -1">
+                            <thead class=" text-primary">
+                                <th>
+                                    id
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th class="">
+                                    Grade
+                                </th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let student of studList">
+                                    <td>{{student.id}}</td>
+                                    <td>
+                                        {{student.name}}
+                                    </td>
+                                    <td class="">
+                                        {{student.grade}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <ngb-pagination *ngIf="studList[0] !== -1" size="lg" [collectionSize]="pages.totalElements" [pageSize]="pages.size" [(page)]="page" (pageChange)="pagination($event)" aria-label="Default pagination" class="pagination-primary d-flex justify-content-end"></ngb-pagination>
                 </div>
             </div>
         </div>
         <div class="col-lg-4">
-            <div class="row">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Grade Map</h4>
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Grade Map</h4>
+                </div>
+                <div class="card-body">
+                    <br/>
+                    <div class="row">
+                        <canvas style="position: relative; height:46vh;" baseChart id="radarChart" [datasets]="radarChartData" [labels]="radarChartLables" [colors]="radarChartColors" [options]="radarChartOptions" [chartType]="radarChartType" (chartClick)="chartClicked($event)"></canvas>
                     </div>
-                    <div class="card-body">
-                        <br/><br/>
-                        <div class="row">
-                            <canvas style="position: relative; height:46vh;" baseChart id="radarChart" [datasets]="radarChartData" [labels]="radarChartLables" [colors]="radarChartColors" [options]="radarChartOptions" [chartType]="radarChartType" (chartClick)="chartClicked($event)"></canvas>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12"><br>
-                                <hr>
-                                <p class="stud-info"> Cleared: <span style="float:right">{{data.length}}</span></p>
+                    <div class="row">
+                        <div class="col-lg-12"><br/>
+                            <hr>
+                            <p class="stud-info"> Cleared: <span style="float:right">{{data.length}}</span></p>
 
-                                <p class="stud-info"> Failed: <span style="float:right">{{data.length}}</span></p>
+                            <p class="stud-info"> Failed: <span style="float:right">{{data.length}}</span></p>
 
-                                <p class="stud-info"> Total: <span style="float:right">{{data.length}}</span></p>
-                                <hr>
-                            </div>
-                        </div>
-                        <br/>
-                        <div class="row">
-                            <div style="height: 2px;"></div>
+                            <p class="stud-info"> Total: <span style="float:right">{{data.length}}</span></p>
+                            <hr>
                         </div>
                     </div>
+                    <br/>
+                    <div style="height:10px;"></div>
                 </div>
             </div>
         </div>
