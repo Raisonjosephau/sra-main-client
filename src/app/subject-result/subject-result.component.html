@@ -7,12 +7,14 @@
             <div class="card">
                 <div class="card-body">
                     <form name="form" #f="ngForm">
-                        <div class="input-group">
-                            <input type="text" [(ngModel)]="s" [ngbTypeahead]="search" [inputFormatter]="formatter" [resultTemplate]="rt" [editable]="false" #ser="ngModel" (selectItem)="selectSearch($event)" autocomplete="off" required minlength="3" name="search" id="search" class="form-control"
-                                placeholder="Search... (Please select from the drop down)">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <i class="fas fa-search"></i>
+                        <div class="form-group" [ngClass]="{'focused':focsr===true}">
+                            <div class="input-group input-group-alternative">
+                                <input type="text" [(ngModel)]="s" [ngbTypeahead]="search" [inputFormatter]="formatter" [resultTemplate]="rt" [editable]="false" #ser="ngModel" (selectItem)="selectSearch($event)" autocomplete="off" required minlength="3" name="search" id="search" class="form-control form-control-alternative"
+                                    (focus)="focsr=true" (blur)="focsr=false" placeholder="Search... (Please select from the drop down)">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-search"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +87,7 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label>Batch</label>
-                                    <angular2-multiselect [ngClass]="{'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" [data]="batchList" [(ngModel)]="batch" name="batch" [settings]="batchSettings">
+                                    <angular2-multiselect [ngClass]="{'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" (onSelect)="selectSearch($event)" [data]="batchList" [(ngModel)]="batch" name="batch" [settings]="batchSettings">
                                     </angular2-multiselect>
                                 </div>
                             </div>
@@ -101,7 +103,7 @@
             <div class="card card-user">
                 <div class="card-header">
                     <h4 class="card-title">Showing results of:</h4>
-                    <h6 class="card-subtitle mb-1 text-muted">Batch 2015 - 19</h6>
+                    <h6 class="card-subtitle mb-1 text-muted">Batch {{ batch[0].name}} - {{semester[0].name}}</h6>
                 </div>
                 <div class="card-body"><br/>
                     <div *ngIf="studList[0] === -1">

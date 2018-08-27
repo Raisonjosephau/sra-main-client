@@ -307,6 +307,8 @@ export class SubjectResultComponent implements OnInit {
 
   semSettings = {};
   batchSettings = {};
+  batch = [{'id': 1, 'name': '2015-19'}];
+  semester = [{'id': 1, 'name': 'Semester 7'}];
   page = 1;
   pages = new Page()
   pageData = new PagedData()
@@ -368,6 +370,7 @@ export class SubjectResultComponent implements OnInit {
       classes: 'input-group-alternative',
       labelKey: 'name'
     }
+    // this.batch =  [{'id': 1, 'name': '2015-19'}];
     //
 
     this.chartColor = '#212121';
@@ -603,6 +606,7 @@ export class SubjectResultComponent implements OnInit {
 
   formatter = (x: {name: string, id: string}) => x.name + ' : ' + x.id;
   private selectSearch(e: any): void {
-    console.log(e);
+    console.log(e, this.batch[0].name);
+
   }
 }
