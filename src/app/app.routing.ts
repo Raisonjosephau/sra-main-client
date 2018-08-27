@@ -6,8 +6,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
 import {ReLoginGaurd } from './auth/auth.rev'
+import { AuthGuard} from './auth/auth'
 
-const routes: Routes =[
+const routes: Routes = [
   {
     path: '',
     redirectTo: 'dashboard',
@@ -18,10 +19,10 @@ const routes: Routes =[
     children: [
         {
       path: '',
-      loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+      loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule',
   }]},
   {
-    path:'login',
+    path: 'login',
     component : LoginComponent,
     canActivate : [ReLoginGaurd]
   },
@@ -42,10 +43,10 @@ const routes: Routes =[
 })
 
 
-export class AppRoutingModule { 
+export class AppRoutingModule {
   constructor() { }
-  getRedirection(){
+  getRedirection() {
     return 'login'
   }
-  
+
 }

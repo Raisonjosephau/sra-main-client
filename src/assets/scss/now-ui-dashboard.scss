@@ -22,6 +22,7 @@
 @import "now-ui-dashboard/plugins/plugin-animate-bootstrap-notify";
 @import "now-ui-dashboard/plugins/plugin-perfect-scrollbar";
 @import "now-ui-dashboard/plugins/plugin-datepicker";
+@import "now-ui-dashboard/plugins/select-box.scss";
 // Core CSS
 @import "now-ui-dashboard/buttons";
 @import "now-ui-dashboard/inputs";
@@ -39,10 +40,19 @@
 @import "now-ui-dashboard/sidebar-and-main-panel";
 @import "now-ui-dashboard/footers";
 @import "now-ui-dashboard/fixed-plugin";
+@import "now-ui-dashboard/pagination";
 // cards
 @import "now-ui-dashboard/cards";
 @import "now-ui-dashboard/cards/card-plain";
 @import "now-ui-dashboard/cards/card-chart";
 @import "now-ui-dashboard/cards/card-user";
 @import "now-ui-dashboard/cards/card-map";
+@import "now-ui-dashboard/cards/card-special";
+@import "now-ui-dashboard/cards/card-widget";
 @import "now-ui-dashboard/responsive";
+//Widget
+@import "now-ui-dashboard/circle-widget";
+@import "now-ui-dashboard/progress";
+@import "now-ui-dashboard/input-group";
+//Styles
+@import "now-ui-dashboard/custom";

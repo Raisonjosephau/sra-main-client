@@ -12,54 +12,49 @@
                         <div class="col-md-12">
                             <form class="form" (ngSubmit)="upload.form.valid && uploads(span)" #upload="ngForm">
                                 <div class="row">
-                                    <div class="col-md-4 pr-1">
+                                    <div class="col-md-3 pr-1">
                                         <div class="form-group">
                                             <label>Published Date</label>
-                                            <input class="form-control datetimepicker" placeholder="06/07/2017" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                                            <input class="form-control form-control-alternative datetimepicker" placeholder="06/07/2017" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" autocomplete="off">
                                         </div>
                                     </div>
-                                    <div class="col-md-4 pr-2">
+                                    <div class="col-md-3 pr-2">
                                         <div class="form-group">
                                             <label>Semester</label>
-                                            <select class="selectpicker" data-style="form-control" title="Choose Semester" data-size="7" tabindex="-98">
-                                                <option disabled=""> Semesters</option>
-                                                <option value="1">Semester 1 </option>
-                                                <option value="2">Semester 2</option>
-                                                <option value="3">Semester 3</option>
-                                                <option value="4">Semester 4</option>
-                                                <option value="5">Semester 5 </option>
-                                                <option value="6">Semester 6</option>
-                                                <option value="7">Semester 7 </option>
-                                                <option value="8">Semester 8</option>
-                                            </select>
+                                            <angular2-multiselect [ngClass]="{'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" [data]="semList" [(ngModel)]="semester" name="semester" [settings]="semSettings">
+                                            </angular2-multiselect>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 pr-2">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Batch</label>
-                                            <select class="selectpicker" data-style="form-control" title="Choose Batch" data-size="7" tabindex="-98">
-                                                <option disabled=""> Batch</option>
-                                                <option value="1">2015-19</option>
-                                                <option value="2">2016-20</option>
-                                                <option value="3">2017-21</option>
-                                                <option value="4">2018-22</option>
-                                            </select>
+
+                                            <angular2-multiselect [ngClass]="{'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" [data]="batchList" [(ngModel)]="batch" name="batch" [settings]="batchSettings">
+                                            </angular2-multiselect>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Scheme</label>
+
+                                            <angular2-multiselect [ngClass]="{'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" [data]="[{'name':'Regular'},{'name':'Supplimentry'}]" [(ngModel)]="scheme" name="scheme" [settings]="schemeSettings">
+                                            </angular2-multiselect>
                                         </div>
                                     </div>
                                 </div>
-
+                                <br>
                                 <div class="row">
                                     <div class="col-md-6 pr-1">
                                         <div class="form-group">
                                             <label>No. of pages</label>
-                                            <input type="number" class="form-control" [(ngModel)]="span" placeholder="No. of pages" name="span" required>
+                                            <input type="number" class="form-control form-control-alternative" [(ngModel)]="span" placeholder="No. of pages" name="span" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Upload</label>
                                             <br>
-                                            <input type="text" class="form-control" placeholder="No. of pages" name="span" value="{{file_status}}">
+                                            <input type="text" class="form-control form-control-alternative" placeholder="No. of pages" name="span" value="{{file_status}}">
                                             <input type="file" (change)="fileChange($event)" accept=".pdf" [(ngModel)]="file_upload" class="form-control" placeholder="Home Address" name="file" required>
                                         </div>
                                     </div>
@@ -76,6 +71,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>

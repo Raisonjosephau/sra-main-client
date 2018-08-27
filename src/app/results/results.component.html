@@ -1,0 +1,267 @@
+<div class="panel-header panel-header-sm">
+
+</div>
+<div class="main-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <form name="form" #f="ngForm">
+                        <div class="form-group" [ngClass]="{'focused':focus===true}">
+                            <div class="input-group input-group-alternative">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="now-ui-icons ui-1_zoom-bold"></i></span>
+                                </div>
+                                <input class="form-control form-control-alternative" (focus)="focus=true" (blur)="focus=false" placeholder="Search" type="text">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-widget">
+                        <div class="card-body">
+                            <div class="statistics">
+                                <div class="info">
+                                    <h3 class="info-title text-shadow-2">{{rows.length}}</h3>
+                                    <h6 class="widget-title">Students</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-widget">
+                        <div class="card-body">
+                            <div class="statistics">
+                                <div class="info">
+                                    <h3 class="info-title text-shadow-2">{{passedList.length}}</h3>
+                                    <h6 class="widget-title">Passed</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-widget">
+                        <div class="card-body">
+                            <div class="statistics">
+                                <div class="info">
+                                    <h3 class="info-title text-shadow-2">{{((passedList.length/rows.length)*100).toFixed(2)}} %</h3>
+                                    <h6 class="widget-title">Pass Percentage</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-widget">
+                        <div class="card-body">
+                            <div class="statistics">
+                                <div class="info">
+                                    <h3 class="info-title text-primary text-shadow-2">+6 %</h3>
+                                    <h6 class="widget-title">Improvement</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-special">
+                <br/><br>
+                <hr>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="card-stats justify-content-center">
+                                <span class="text-info grade-selection" (click)="switchToPassOrFailorAll(rows)">All : {{rows.length}}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="card-stats justify-content-center">
+
+                                <span class="text-primary grade-selection" (click)="switchToPassOrFailorAll(passedList)">Cleared : {{passedList.length}}</span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card-stats justify-content-center">
+                                <span class="text-danger grade-selection" (click)="switchToPassOrFailorAll(failedList)">Failures : {{failedList.length}} </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr><br/><br/>
+                <div class="card-body">
+                    <div class="row col-lg-12 ml-auto mr-auto">
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        id
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th class="">
+                                        CS022
+                                    </th>
+                                    <th class="">
+                                        CS023
+                                    </th>
+                                    <th class="">
+                                        CS024
+                                    </th>
+                                    <th class="">
+                                        CS025
+                                    </th>
+                                    <th class="">
+                                        CS026
+                                    </th>
+                                    <th class="">
+                                        CS027
+                                    </th>
+                                    <th class="">
+                                        CS028
+                                    </th>
+
+                                    <th class="">
+                                        CS029
+                                    </th>
+                                    <th class="">
+                                        CS030
+                                    </th>
+                                    <th class="">
+                                        SGPA
+                                    </th>
+                                    <!-- <th class="">
+                                        CS031
+                                    </th> -->
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let student of studList">
+                                        <td>{{student.id}}</td>
+                                        <td>
+                                            {{student.name}}
+                                        </td>
+                                        <!-- <td *ng  *ngIf="student.cs022 === 'F'" class="text-danger">
+                                            {{student.cs022}}
+                                        </td> -->
+                                        <td *ngFor="let grade of student.grade" class="{{grade !== 'F' ? '' : 'text-danger'}}">
+                                            {{grade}}
+                                        </td>
+
+                                        <!-- <td class="">
+                                            {{student.cs031}}
+                                        </td> -->
+                                        <td>
+                                            {{ student.grade.includes('F') ? 'NA':student.cgpa}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-lg-12">
+                            <ngb-pagination size="lg" [collectionSize]="page.totalElements" [pageSize]="page.size" [(page)]="currentPage" (pageChange)="pagination($event)" aria-label="Default pagination" class="pagination-primary d-flex justify-content-end"></ngb-pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="card">
+                <div class="card-body text-shadow-0">
+                    <br>
+                    <div class="progress-container  progress-danger">
+                        <span class="progress-badge text-black">Operatin System - CS022</span>
+                        <ngb-progressbar [value]="25"><span class="progress-value">25%</span></ngb-progressbar><br>
+                    </div>
+                    <div class="progress-container">
+                        <span class="progress-badge">Data Structure - CS023</span>
+                        <ngb-progressbar [value]="60"><span class="progress-value">60%</span></ngb-progressbar><br>
+                    </div>
+
+                    <div class="progress-container">
+                        <span class="progress-badge">Computer Organization and Arichitecture - CS024</span>
+                        <ngb-progressbar [value]="40"><span class="progress-value">40%</span></ngb-progressbar><br>
+                    </div>
+                    <div class="progress-container">
+                        <span class="progress-badge">Principles of Database Management - CS025</span>
+                        <ngb-progressbar [value]="52"><span class="progress-value">52%</span></ngb-progressbar><br>
+                    </div>
+                    <div class="progress-container">
+                        <span class="progress-badge">Object Oriented Programming - CS027</span>
+                        <ngb-progressbar [value]="33"><span class="progress-value">33%</span></ngb-progressbar><br>
+                    </div>
+                    <div class="progress-container">
+                        <span class="progress-badge">Life Skills - CS028</span>
+                        <ngb-progressbar [value]="82"><span class="progress-value">82%</span></ngb-progressbar><br>
+                    </div>
+                    <div class="progress-container">
+                        <span class="progress-badge">Desing Project - CS029</span>
+                        <ngb-progressbar [value]="79"><span class="progress-value">79%</span></ngb-progressbar><br>
+                    </div>
+                    <div class="progress-container">
+                        <span class="progress-badge">Digital Lab - CS030</span>
+                        <ngb-progressbar [value]="56"><span class="progress-value">56%</span></ngb-progressbar><br>
+                    </div>
+                    <div class="progress-container">
+                        <span class="progress-badge">Digital Lab - CS030</span>
+                        <ngb-progressbar [value]="56"><span class="progress-value">56%</span></ngb-progressbar><br>
+                    </div>
+                    <div class="progress-container">
+                        <span class="progress-badge">Digital Lab - CS030</span>
+                        <ngb-progressbar [value]="56"><span class="progress-value">56%</span></ngb-progressbar><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="category-social text-success text-shadow-1">
+                        <i class="now-ui-icons media-2_sound-wave"></i>
+                    </h3>
+                    <h5 class="card-title text-shadow-0 clickable" (click)="switchToPassOrFailorAll(singleSubject)"><span>Single Subject Failures</span><span class="pull-right">{{singleSubject.length}}</span></h5>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="category-social text-warning text-shadow-0">
+                        <i class="fas fa-crown"></i> &nbsp; Toppers
+                    </h6>
+                    <br>
+                    <ul class="list-group list-group-flush text-shadow-0">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Rosmiya</h5>
+                            <p class="card-description"><span>LSGICS033</span><span class="pull-right">7.78</span></p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5 class="card-title">Raison Joseph</h5>
+                            <p class="card-description"><span>LSGICS033</span><span class="pull-right">7.78</span></p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5 class="card-title">Lakshmi Samjaya</h5>
+                            <p class="card-description"><span>LSGICS033</span><span class="pull-right">7.78</span></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.row-->
+
+</div>

@@ -7,8 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
-import { SearchPipe } from './navbar/pipe';
 import { SidebarComponent } from './sidebar/sidebar.component';
+
+import { SearchPipe } from '../_services/pipe';
 
 @NgModule({
   imports: [

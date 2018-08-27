@@ -1,0 +1,28 @@
+.input-group .input-group-append .input-group-text {
+    color: #3c3b3d !important
+}
+
+.stud-info {
+    margin: 15px 20px;
+    font-weight: 500 !important;
+    text-shadow: .8px 1px .8px #eeeeee;
+}
+
+.grade-selection {
+    font-weight: 500;
+    font-size: 1.01em;
+}
+
+.grade-selection .clear {
+    font-weight: 400;
+    font-size: .8em;
+    cursor: pointer;
+}
+
+.alignleft {
+    float: left;
+}
+
+.alignright {
+    float: right;
+}

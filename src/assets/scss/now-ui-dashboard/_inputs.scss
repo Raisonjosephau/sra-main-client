@@ -5,7 +5,7 @@
     border-radius: $btn-round-radius;
     color: $black-color;
     line-height: normal;
-    font-size: $font-size-small;
+    font-size: $font-size-large;
     font-weight: 500;
     @include transition-input-focus-color();
     @include box-shadow(none);
@@ -22,12 +22,6 @@
             border-left: none;
             background-color: $transparent-bg;
         }
-    }
-    .has-success &,
-    .has-error &,
-    .has-success &:focus,
-    .has-error &:focus {
-        @include box-shadow(none);
     }
     .has-danger &,
     .has-success & {
@@ -131,7 +125,7 @@
     .form-control+.input-group-prepend .input-group-text,
     .form-control+.input-group-append .input-group-text {
         background-color: rgba(255, 255, 255, 0.1);
-        color: #FFFFFF;
+        color: #212121;
         border: medium none;
         &:focus,
         &:active,
@@ -154,7 +148,7 @@
     }
     .input-group-prepend .input-group-text,
     .input-group-append .input-group-text {
-        color: #FFFFFF;
+        color: $black-color;
         background-color: rgba(255, 255, 255, 0.1);
         border: none;
     }
@@ -177,9 +171,7 @@
 .input-group-append .input-group-text,
 .input-group-prepend .input-group-text {
     background-color: rgba(255, 255, 255, 0.2);
-    border: 1px solid $light-gray;
-    border-radius: $btn-round-radius;
-    color: #FFFFFF;
+    color: $dark-gray;
     & i {
         opacity: .5;
     }
@@ -198,8 +190,7 @@
     }
     &+.form-control,
     &~.form-control {
-        @include input-size($padding-base-vertical - 1, $padding-base-horizontal);
-        padding-left: 18px;
+        padding: 18px;
     }
     i {
         width: 17px;
@@ -235,13 +226,12 @@
 
 .input-group,
 .form-group {
-    margin-bottom: 10px;
     position: relative;
     .form-control-static {
         margin-top: 9px;
     }
     label {
-        font-size: 13px !important;
+        font-size: 14px !important;
         color: #515151 !important;
         font-weight: 500 !important;
     }
@@ -256,7 +246,6 @@
 
 .input-group .form-control:not(:first-child):not(:last-child),
 .input-group-btn:not(:first-child):not(:last-child) {
-    border-radius: $btn-round-radius;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-left: 0 none;

@@ -1,0 +1,173 @@
+<div class="panel-header panel-header-sm">
+
+</div>
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form name="form" #f="ngForm">
+                        <div class="form-group" [ngClass]="{'focused':focsr===true}">
+                            <div class="input-group input-group-alternative">
+                                <input type="text" [(ngModel)]="s" [ngbTypeahead]="search" [inputFormatter]="formatter" [resultTemplate]="rt" [editable]="false" #ser="ngModel" (selectItem)="selectSearch($event)" autocomplete="off" required minlength="3" name="search" id="search" class="form-control form-control-alternative"
+                                    (focus)="focsr=true" (blur)="focsr=false" placeholder="Search... (Please select from the drop down)">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-template #rt let-r="result" let-t="term">
+                            <ngb-highlight [result]="r.name + ' : ' + r.id" [term]="t"></ngb-highlight>
+                        </ng-template>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="card card-user">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4 class="card-title">Machine Learning</h4>
+                            <h6 class="card-subtitle mb-1 text-muted">S7 Elective</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12"><br>
+                            <hr>
+                            <p class="stud-info"> Code: </p>
+
+                            <p class="stud-info"> Credit: </p>
+
+                            <p class="stud-info"> Subject Difficulty</p>
+
+                            <p class="stud-info">Pass percentage </p>
+                            <hr>
+                        </div>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4 class="card-title">Performance of last 5 batches</h4>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <canvas style="position: relative; height:29vh;" baseChart id="bigDashboardChart" [datasets]="lineBigDashboardChartData" [labels]="lineBigDashboardChartLabels" [colors]="lineBigDashboardChartColors" [options]="lineBigDashboardChartOptions" [chartType]="lineBigDashboardChartType"
+                            (chartClick)="chartClicked($event)"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form name="form" #batchSelect="ngForm">
+                        <div class="row">
+                            <div class="col-md-5 pr-2">
+                                <div class="form-group">
+                                    <label>Semester</label>
+                                    <angular2-multiselect [ngClass]="{'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" [data]="semList" [(ngModel)]="semester" name="semester" [settings]="semSettings">
+                                    </angular2-multiselect>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>Batch</label>
+                                    <angular2-multiselect [ngClass]="{'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" (onSelect)="selectSearch($event)" [data]="batchList" [(ngModel)]="batch" name="batch" [settings]="batchSettings">
+                                    </angular2-multiselect>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card card-user">
+                <div class="card-header">
+                    <h4 class="card-title">Showing results of:</h4>
+                    <h6 class="card-subtitle mb-1 text-muted">Batch {{ batch[0].name}} - {{semester[0].name}}</h6>
+                </div>
+                <div class="card-body"><br/>
+                    <div *ngIf="studList[0] === -1">
+                        <h5 class="text-info">No students found with the grade {{grade}}</h5>
+                    </div>
+                    <div>
+                        <p class="grade-selection" *ngIf="studList[0] !== -1">Students with grade: {{grade}} <span *ngIf="grade !== 'All'" class="clear" (click)="showAll()">show all</span></p>
+                    </div>
+                    <br/>
+                    <div class="table-responsive">
+                        <table class="table" *ngIf="studList[0] !== -1">
+                            <thead class=" text-primary">
+                                <th>
+                                    id
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th class="">
+                                    Grade
+                                </th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let student of studList">
+                                    <td>{{student.id}}</td>
+                                    <td>
+                                        {{student.name}}
+                                    </td>
+                                    <td class="">
+                                        {{student.grade}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <ngb-pagination *ngIf="studList[0] !== -1" size="lg" [collectionSize]="pages.totalElements" [pageSize]="pages.size" [(page)]="page" (pageChange)="pagination($event)" aria-label="Default pagination" class="pagination-primary d-flex justify-content-end"></ngb-pagination>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Grade Map</h4>
+                </div>
+                <div class="card-body">
+                    <br/>
+                    <div class="row">
+                        <canvas style="position: relative; height:46vh;" baseChart id="radarChart" [datasets]="radarChartData" [labels]="radarChartLables" [colors]="radarChartColors" [options]="radarChartOptions" [chartType]="radarChartType" (chartClick)="chartClicked($event)"></canvas>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12"><br/>
+                            <hr>
+                            <p class="stud-info"> Cleared: <span style="float:right">{{data.length}}</span></p>
+
+                            <p class="stud-info"> Failed: <span style="float:right">{{data.length}}</span></p>
+
+                            <p class="stud-info"> Total: <span style="float:right">{{data.length}}</span></p>
+                            <hr>
+                        </div>
+                    </div>
+                    <br/>
+                    <div style="height:10px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -14,14 +14,27 @@
     top: 0;
     height: 100%;
     bottom: 0;
-    width: 260px;
+    width: 230px;
     left: 0;
     z-index: 1030;
+    background-size: cover;
+    background-position: center center;
+    .sidebar-background {
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        display: block;
+        top: 0;
+        left: 0;
+        background-size: cover;
+        background-position: center center;
+    }
     .sidebar-wrapper {
         position: relative;
         height: calc(100vh - 75px);
         overflow: auto;
-        width: 260px;
+        width: 230px;
         z-index: 4;
         padding-bottom: 100px;
         .dropdown .dropdown-backdrop {
@@ -98,8 +111,7 @@
                 }
             }
             &.active>a {
-                background-color: $white-color;
-                color: $primary-color !important;
+                color: lighten($primary-color, 5%) !important;
             }
         }
         p {
@@ -119,27 +131,6 @@
             text-align: center;
             color: $opacity-5;
             position: relative;
-        }
-    }
-    .sidebar-background {
-        position: absolute;
-        z-index: 1;
-        height: 100%;
-        width: 100%;
-        display: block;
-        top: 0;
-        left: 0;
-        background-size: cover;
-        background-position: center center;
-        &:after {
-            position: absolute;
-            z-index: 3;
-            width: 100%;
-            height: 100%;
-            content: "";
-            display: block;
-            background: #FFFFFF;
-            opacity: 1;
         }
     }
     .logo {
@@ -206,23 +197,29 @@
             height: 60px;
         }
     }
-    &:before,
-    &:after {
+    &:after,
+    &:before {
         display: block;
         content: "";
-        opacity: 1;
         position: absolute;
         width: 100%;
         height: 100%;
         top: 0;
         left: 0;
+        z-index: 2;
+    }
+    &:before {
+        opacity: .33;
+        background: #000000;
     }
     &:after {
-        @include icon-gradient($default-color);
+        @include icon-gradient($black-color-top, $black-color-bottom);
         z-index: 3;
+        opacity: 1;
     }
-    &[data-color="blue"] {
-        @include sidebar-color($info-color);
+    &[data-image]:after,
+    &.has-image:after {
+        opacity: .77;
     }
     &[data-color="green"] {
         @include sidebar-color($success-color);
@@ -235,6 +232,9 @@
     }
     &[data-color="yellow"] {
         @include sidebar-color($warning-color);
+    }
+    &[data-color="white"]:after {
+        @include icon-gradient(#eeeeee, #ffffff);
     }
 }
 

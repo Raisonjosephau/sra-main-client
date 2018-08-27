@@ -1,0 +1,60 @@
+.card-widget {
+    .statistics {
+        position: relative;
+        text-align: center;
+        padding: 2px 0;
+        .title {
+            margin-bottom: 0;
+            font-weight: 400;
+            color: #3c3b3d;
+        }
+        .widget-title {
+            margin-bottom: 5px;
+            color: #9a9a9a;
+            font-weight: 500
+        }
+    }
+    .icon {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 15px
+    }
+    .widget-information {
+        display: inline-block;
+        margin-bottom: 15px;
+        .widget-text {
+            font-size: 29px
+        }
+        .widget-details {
+            display: block;
+            color: #888
+        }
+    }
+    .dots {
+        text-align: right;
+        .dot {
+            background-color: #2c2c2c;
+            height: 3px;
+            width: 3px;
+            border-radius: 50%;
+            display: inline-block
+        }
+    }
+}
+
+.card-widget .statistics.statistics-horizontal,
+.card-widget .statistics.statistics-horizontal .info-title {
+    padding: 0
+}
+
+.info-horizontal {
+    text-align: left!important
+}
+
+.info .info-title {
+    margin: 0px 0 5px;
+    padding: 0 15px;
+    color: #2c2c2c;
+    font-weight: 700;
+    font-family: Montserrat;
+}
