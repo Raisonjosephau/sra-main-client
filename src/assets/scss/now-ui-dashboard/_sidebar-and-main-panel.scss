@@ -14,7 +14,7 @@
     top: 0;
     height: 100%;
     bottom: 0;
-    width: 230px;
+    width: 240px;
     left: 0;
     z-index: 1030;
     background-size: cover;
@@ -89,16 +89,17 @@
             }
             >a {
                 margin: 10px 15px 0;
-                border-radius: $btn-round-radius;
                 color: $white-color;
                 display: block;
                 text-decoration: none;
                 position: relative;
                 text-transform: uppercase;
                 cursor: pointer;
-                font-size: $font-size-mini;
+                font-size: $font-size-large;
+                font-weight: 600;
                 padding: 10px 8px;
                 line-height: $line-height-nav-link;
+                letter-spacing: 1px;
             }
             &:first-child>a {
                 margin: 0 15px;
@@ -106,12 +107,11 @@
             &:hover:not(.active)>a,
             &:focus:not(.active)>a {
                 background-color: $opacity-1;
-                i {
-                    color: $white-color;
-                }
             }
-            &.active>a {
-                color: lighten($primary-color, 5%) !important;
+            &.active>a,
+            &.active i {
+                color: $primary-color !important;
+                font-weight: 600;
             }
         }
         p {
@@ -129,7 +129,7 @@
             line-height: 30px;
             width: 34px;
             text-align: center;
-            color: $opacity-5;
+            color: $white-color;
             position: relative;
         }
     }
@@ -213,9 +213,9 @@
         background: #000000;
     }
     &:after {
-        @include icon-gradient($black-color-top, $black-color-bottom);
+        @include linear-gradient(rgba($black-color, .1), rgba(253, 255, 253, .5));
         z-index: 3;
-        opacity: 1;
+        opacity: .1;
     }
     &[data-image]:after,
     &.has-image:after {
@@ -232,9 +232,6 @@
     }
     &[data-color="yellow"] {
         @include sidebar-color($warning-color);
-    }
-    &[data-color="white"]:after {
-        @include icon-gradient(#eeeeee, #ffffff);
     }
 }
 

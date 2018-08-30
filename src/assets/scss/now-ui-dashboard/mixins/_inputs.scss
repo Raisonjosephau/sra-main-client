@@ -5,18 +5,22 @@
 @mixin form-control-placeholder($color, $opacity) {
     .form-control::-moz-placeholder {
         color: $color;
+        text-transform: none !important;
         @include opacity(1);
     }
     .form-control:-moz-placeholder {
         color: $color;
+        text-transform: none !important;
         @include opacity(1);
     }
     .form-control::-webkit-input-placeholder {
         color: $color;
+        text-transform: none !important;
         @include opacity(1);
     }
     .form-control:-ms-input-placeholder {
         color: $color;
+        text-transform: none !important;
         @include opacity(1);
     }
 }

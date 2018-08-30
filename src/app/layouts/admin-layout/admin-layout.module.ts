@@ -13,11 +13,15 @@ import {ResultComponent} from '../../results/results.component'
 
 // Analysis
 import {SubjectResultComponent} from '../../subject-result/subject-result.component'
+// Forms
+import {FormsComponent} from '../../forms/forms.component'
+
 
 import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 import {Filter} from '../../common-pipe'
+import {ShowErrorsComponent } from '../../_helpers/show-error.component'
 
 
 @NgModule({
@@ -37,7 +41,9 @@ import {Filter} from '../../common-pipe'
     StudentResultComponent,
     ResultComponent,
     SubjectResultComponent,
-    Filter
+    FormsComponent,
+    Filter,
+    ShowErrorsComponent
 
   ]
 })

@@ -1,0 +1,253 @@
+<div class="panel-header">
+    <div class="header text-center">
+        <h2 class="title text-black font-weight-semibold" style="margin-bottom:5px">Forms</h2>
+        <p class="category text-black">For all creations</p>
+    </div>
+</div>
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">New Batch</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="form" #batchForm="ngForm" (ngSubmit)="batchSubmit(batchForm.form)">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group" [ngClass]="{ 'has-danger' : (yearNg.invalid && ( yearNg.value && yearNg.dirty)), 'has-success' : yearNg.valid }">
+                                            <label>Year</label>
+                                            <input type="number" min="2015" pattern="20\d{2}" placeholder="Batch Start Year" class="form-control form-control-alternative" name="year" [(ngModel)]="year" #yearNg="ngModel" pattern="\d{4}" autocomplete="off" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group" [ngClass]="{ 'has-success':semesterhNg.valid}">
+                                            <label>Current Semester</label>
+                                            <angular2-multiselect [ngClass]="{ 'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" [data]="semList" #semesterhNg="ngModel" [(ngModel)]="semester" name="semester" [settings]="semSettings" required>
+                                            </angular2-multiselect>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group" [ngClass]="{ 'has-success':depBatchNg.valid}">
+                                            <label>Department</label>
+                                            <angular2-multiselect [ngClass]="{ 'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" [data]="depList" #depBatchNg="ngModel" [(ngModel)]="depBatch" name="depBatch" [settings]="depSettings" required>
+                                            </angular2-multiselect>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group" [ngClass]="{ 'has-danger' : (studNoNg.invalid && ( studNoNg.value && studNoNg.dirty)), 'has-success' : studNoNg.valid }">
+                                            <label>No of Students</label>
+                                            <input type="number" placeholder="Enter no of students" pattern="[1-9]{1,3}" class="form-control form-control-alternative" name="studNo" [(ngModel)]="studNo" #studNoNg="ngModel" autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer text-center">
+                                    <br>
+                                    <button type="submit" class="btn btn-primary btn-round"><i class="fa fa-upload"  *ngIf="!loading"></i>
+                                        <i class="now-ui-icons loader_refresh spin" *ngIf="loading"></i> &nbsp; Create Batch</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">New Staff</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="form" #staffForm="ngForm" (ngSubmit)="staffSubmit(staffForm.form)">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group" [ngClass]="{ 'has-success' : nameNg.valid }">
+                                            <label>Name</label>
+                                            <input type="text" placeholder="Your name" class="form-control form-control-alternative" name="name" #nameNg="ngModel" [(ngModel)]="name" autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" [ngClass]="{ 'has-danger' : (emailNg.invalid && ( emailNg.value && emailNg.dirty)), 'has-success' : emailNg.valid }">
+                                            <label>Email id</label>
+                                            <input type="email" placeholder="something@domain.com" class="form-control form-control-alternative" name="email" #emailNg="ngModel" [(ngModel)]="email" autocomplete="off" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" [ngClass]="{ 'has-danger' : (dobNg.invalid && ( dobNg.value && dobNg.dirty)), 'has-success' : dobNg.valid }">
+                                            <label>Date of Birth</label>
+                                            <input placeholder="YYYY-MM-DD" class="form-control form-control-alternative datetimepicker" name="dob" #dobNg="ngModel" [(ngModel)]="dob" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group" [ngClass]="{ 'has-success' : clgIdNg.valid }">
+                                            <label>College ID</label>
+                                            <input type="text" placeholder="Your college id" class="form-control form-control-alternative text-uppercase" name="clgId" #clgIdNg="ngModel" [(ngModel)]="clgId" autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" [ngClass]="{  'has-success' : depStaffNg.valid }">
+                                            <label>Department</label>
+                                            <angular2-multiselect [ngClass]="{ 'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" [data]="depList" #depStaffNg="ngModel" [(ngModel)]="depStaff" name="depStaff" [settings]="depSettings" required>
+                                            </angular2-multiselect>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" [ngClass]="{'has-success' : desigStaffNg.valid }">
+                                            <label>Designation</label>
+                                            <angular2-multiselect [ngClass]="{ 'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" [data]="desigList" #desigStaffNg="ngModel" [(ngModel)]="desigStaff" name="desigStaff" [settings]="desigSettings" required>
+                                            </angular2-multiselect>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="footer text-center">
+                                    <br>
+                                    <button type="submit" [disabled]="staffForm.form.invalid" class="btn btn-primary btn-round"><i class="fa fa-upload"  *ngIf="!loading"></i>
+                                    <i class="now-ui-icons loader_refresh spin" *ngIf="loading"></i> &nbsp; Create Staff</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">New Student</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="form" #studForm="ngForm" (ngSubmit)="studSubmit(studForm.form)">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group" [ngClass]="{ 'has-success' : studNameNg.valid }">
+                                            <label>Name</label>
+                                            <input type="text" placeholder="Student name" class="form-control form-control-alternative" name="studName" #studNameNg="ngModel" [(ngModel)]="studName" autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" [ngClass]="{ 'has-success' : studRegNoNg.valid }">
+                                            <label>Register No</label>
+                                            <input type="text" placeholder="Student register no" class="form-control form-control-alternative text-uppercase" name="studRegNo" #studRegNoNg="ngModel" [(ngModel)]="studRegNo" autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" [ngClass]="{  'has-danger' : (studDobNg.invalid && ( studDobNg.value && studDobNg.dirty)), 'has-success' : studDobNg.valid }">
+                                            <label>Date of Birth</label>
+                                            <input type="text" placeholder="YYYY-MM-DD" class="form-control form-control-alternative datetimepicker" name="studDob" #studDobNg="ngModel" [(ngModel)]="studDob" ngbDatepicker #sDOB="ngbDatepicker" (click)="sDOB.toggle()" autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group" [ngClass]="{ 'has-danger' : (studEmailNg.invalid && ( studEmailNg.value && studEmailNg.dirty)), 'has-success' : studEmailNg.valid }">
+                                            <label>Email id</label>
+                                            <input type="email" placeholder="something@domain.com" class="form-control form-control-alternative" name="studEmail" #studEmailNg="ngModel" [(ngModel)]="studEmail" autocomplete="off" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group" [ngClass]="{ 'has-danger' : (studPhoneNg.invalid && ( studPhoneNg.value && studPhoneNg.dirty)), 'has-success' : studPhoneNg.valid }">
+                                            <label>Phone No</label>
+                                            <input type="tel" pattern="[6|7|8|9]\d{2}[\ ]\d{3}[\ ]\d{4}" placeholder="1234 456 789" class="form-control form-control-alternative" name="studPhone" #studPhoneNg="ngModel" [(ngModel)]="studPhone" autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group" [ngClass]="{ 'has-success' : depStudNg.valid }">
+                                            <label>Department</label>
+                                            <angular2-multiselect [ngClass]="{ 'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" [data]="depList" #depStudNg="ngModel" [(ngModel)]="depStud" name="depStud" [settings]="depSettings" required>
+                                            </angular2-multiselect>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group" [ngClass]="{ 'has-success' : semStudNg.valid }">
+                                            <label>Current Semester</label>
+                                            <angular2-multiselect [ngClass]="{ 'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" [data]="semList" #semStudNg="ngModel" [(ngModel)]="semStud" name="semStud" [settings]="semSettings" required>
+                                            </angular2-multiselect>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br>
+                                <div class="footer text-center">
+                                    <br>
+                                    <button type="submit" class="btn btn-primary btn-round"><i class="fa fa-upload"  *ngIf="!loading"></i>
+                                    <i class="now-ui-icons loader_refresh spin" *ngIf="loading"></i> &nbsp; Create Student</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="category-social text-danger text-shadow-0">
+                        <i class="fa fa-fire"></i> Fast Creation - Students
+                    </h6>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="form" #studFastForm="ngForm" (ngSubmit)="fastForm(studFastForm.form)">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Department</label>
+                                            <angular2-multiselect [ngClass]="{ 'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" [data]="depList" [(ngModel)]="depStudUp" name="depStudUp" [settings]="depSettings" required>
+                                            </angular2-multiselect>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Current Semester</label>
+                                            <angular2-multiselect [ngClass]="{ 'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" [data]="semList" [(ngModel)]="semStudUp" name="semStudUp" [settings]="semSettings" required>
+                                            </angular2-multiselect>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Upload Excel File</label>
+                                            <br>
+                                            <input type="text" class="form-control form-control-alternative" placeholder="No. of pages" name="span" value="{{file_status}}">
+                                            <input type="file" (change)="fileChange($event)" accept=".xlsx" [(ngModel)]="file_upload" class="form-control" placeholder="Home Address" name="file_upload" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer text-center">
+                                    <br>
+                                    <button type="submit" [disabled]="studFastForm.form.invalid" class="btn btn-primary btn-round"><i class="fa fa-upload"  *ngIf="!loading"></i>
+                                    <i class="now-ui-icons loader_refresh spin" *ngIf="loading"></i> &nbsp; Upload file</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

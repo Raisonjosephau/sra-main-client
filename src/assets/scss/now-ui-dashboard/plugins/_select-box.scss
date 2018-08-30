@@ -6,7 +6,8 @@
     font-weight: 500;
     box-shadow: 0 1px 3px rgba(50, 50, 93, .15), 0 1px 0 rgba(0, 0, 0, .02);
     padding: .265rem .1rem;
-    color: #888888 !important;
+    margin-top: 5px;
+    color: $default-color !important;
 }
 
 .focused .cuppa-dropdown {
@@ -24,7 +25,7 @@
     border-radius: 3px;
     font-size: 1.1em !important;
     line-height: 1.5;
-    color: #8898aa !important;
+    color: $default-color !important;
     font-weight: 500;
 }
 
@@ -67,7 +68,7 @@
 .selected-list .fa-angle-up {
     font-size: 12pt !important;
     position: absolute;
-    right: 10px;
+    right: 20px !important;
     top: 25%
 }
 
@@ -76,6 +77,7 @@
     width: 12px !important;
     height: 12px !important;
     top: 40% !important;
+    right: 20px !important;
 }
 
 .selected-list .c-btn {
@@ -1087,3 +1089,11 @@
     margin-left: 30px!important;
     border-bottom: 15px solid #fff
 }
+
+// .select-box.has-success:after {
+//     content: none;
+// }
+// .select-box.has-success .selected-list .c-angle-down svg,
+// .select-box.has-success .selected-list .c-angle-up svg {
+//     fill: $primary-color !important;
+// }

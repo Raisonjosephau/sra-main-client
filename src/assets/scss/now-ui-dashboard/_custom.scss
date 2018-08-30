@@ -60,12 +60,6 @@ label {
     width: 88px;
 }
 
-.sidebar-wrapper .nav li a,
-.sidebar-wrapper .nav li i,
-.sidebar-wrapper .nav li a span {
-    color: #111 !important;
-}
-
 .dropdown-menu::-webkit-scrollbar-track {
     background-color: #fff;
 }
@@ -79,16 +73,9 @@ label {
     background-color: #bbbbbb;
 }
 
-.sidebar .nav li {
-    font-size: 18px;
-    font-weight: 500;
-    text-shadow: 2px 1px 2px #eeeeee;
-}
-
-.sidebar .nav li.active a:not([data-toggle=collapse]),
-.sidebar .nav li.active a:not([data-toggle=collapse]) i {
-    color: green !important;
-    font-weight: 600;
+.sidebar .nav li,
+{
+    transition: all 1s ease-in-out;
 }
 
 .sidebar .logo a {

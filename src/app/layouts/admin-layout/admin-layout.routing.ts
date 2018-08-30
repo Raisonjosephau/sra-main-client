@@ -10,6 +10,9 @@ import {ResultComponent} from '../../results/results.component'
 // Analysis
 import {SubjectResultComponent} from '../../subject-result/subject-result.component'
 
+// Forms
+import {FormsComponent} from '../../forms/forms.component'
+
 // _helper
 import { AuthGuard} from '../../auth'
 
@@ -23,5 +26,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'results',     component: ResultComponent, canActivate: [AuthGuard] },
 
     // Analysis
-    { path: 'subject-analysis',  component: SubjectResultComponent, canActivate: [AuthGuard] }
+    { path: 'subject-analysis',  component: SubjectResultComponent, canActivate: [AuthGuard] },
+
+    // Forms
+    { path: 'forms',  component: FormsComponent, canActivate: [AuthGuard] }
 ];

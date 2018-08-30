@@ -7,6 +7,7 @@
     line-height: normal;
     font-size: $font-size-large;
     font-weight: 500;
+    margin-top: 5px;
     @include transition-input-focus-color();
     @include box-shadow(none);
     &:focus {
@@ -77,12 +78,13 @@
 .has-success,
 .has-danger {
     &:after {
-        font-family: 'Nucleo Outline';
-        content: "\ea22";
+        font-family: 'Font Awesome\ 5 Free';
+        content: "\f00c";
         display: inline-block;
         position: absolute;
         right: 20px;
-        bottom: 10px;
+        bottom: 23px;
+        font-weight: 600;
         color: $success-color;
         font-size: 11px;
     }
@@ -109,7 +111,7 @@
 
 .has-danger {
     &:after {
-        content: "\ea53";
+        content: "\f00d";
         color: $danger-color;
     }
     &.form-check .form-check-label {
@@ -231,7 +233,7 @@
         margin-top: 9px;
     }
     label {
-        font-size: 14px !important;
+        font-size: 16px !important;
         color: #515151 !important;
         font-weight: 500 !important;
     }
