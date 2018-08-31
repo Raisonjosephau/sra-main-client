@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
 
   public gradientChartOptionsConfiguration: any;
   public gradientChartOptionsConfigurationWithNumbersAndGrid: any;
-
+  nice: any;
   // events
   public chartClicked(e: any): void {
     console.log(e);
@@ -265,5 +265,14 @@ export class DashboardComponent implements OnInit {
         }
       )
     }
+    this.userService.getSubjects().subscribe(
+      data => {
+
+        console.log(data)
+      },
+      error => {
+          console.log(error.status);
+      }
+    )
   }
 }

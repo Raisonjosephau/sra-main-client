@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {Page} from '../_objects/page'
-import {PagedData} from '../_objects/page-data'
+import {PagedData} from '../models/page-data'
 
 @Injectable({
     providedIn: 'root',

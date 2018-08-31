@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ServerService} from '../_services/server.service'
 
 import {PaginationService} from '../_services/pagination.service'
-import {Page} from '../_objects/page'
-import {PagedData} from '../_objects/page-data'
+import {Page} from '../models/page'
+import {PagedData} from '../models/page-data'
 
 @Component({
   selector: 'app-result',

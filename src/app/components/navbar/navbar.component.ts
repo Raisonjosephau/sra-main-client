@@ -159,7 +159,9 @@ export class NavbarComponent implements OnInit {
 
         if (window.innerWidth < 991) {
           setTimeout(function() {
-            mainPanel.style.position = '';
+            if (mainPanel.style) {
+              mainPanel.style.position = '';
+            }
           }, 500);
         }
         this.sidebarVisible = false;

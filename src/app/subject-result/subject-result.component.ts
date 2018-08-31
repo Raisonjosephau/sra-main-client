@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {ServerService} from '../_services/server.service'
 import {PaginationService} from '../_services/pagination.service'
-import {Page} from '../_objects/page'
-import {PagedData} from '../_objects/page-data'
+import {Page} from '../models/page'
+import {PagedData} from '../models/page-data'
 
 import {Observable} from 'rxjs/Observable';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
