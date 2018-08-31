@@ -22,6 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 import {Filter} from '../../common-pipe'
 import {ShowErrorsComponent } from '../../_helpers/show-error.component'
+import { NouisliderModule } from 'ng2-nouislider';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {ShowErrorsComponent } from '../../_helpers/show-error.component'
     ReactiveFormsModule,
     ChartsModule,
     NgbModule,
-    AngularMultiSelectModule
+    AngularMultiSelectModule,
+    NouisliderModule
   ],
   declarations: [
     DashboardComponent,

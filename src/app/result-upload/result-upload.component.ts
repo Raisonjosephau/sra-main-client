@@ -72,6 +72,7 @@ export class UploadResultComponent implements OnInit {
       const formData: FormData = new FormData();
       formData.append('span', span);
       formData.append('file', this.file, this.file.name);
+      console.log(formData);
       this.loading = true;
 
       // this.userService.uploadFile(formData).subscribe(

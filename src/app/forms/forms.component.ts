@@ -32,6 +32,7 @@ export class FormsComponent implements OnInit {
   semSettings = {};
   depSettings = {};
   desigSettings = {}
+  difficultySelector = 3;
   file_status: any;
   studPhone: any;
   file: File;
@@ -73,17 +74,34 @@ export class FormsComponent implements OnInit {
     this.file_status = file.name
   }
   batchSubmit(form) {
+
+    const formData: FormData = new FormData();
+    formData.append('year', form.get('year').value);
+    formData.append('studno', form.get('studNo ').value);
+    formData.append('currentSem', form.get('semester').value[0].id);
+    formData.append('department', form.get('depBatch ').value[0].id);
+
     Object.keys(form.controls).forEach(key => {
-      console.log(key, form.get(key).valid)
+      console.log(key, form.get(key).value)
     });
   }
   staffSubmit(form) {
-    console.log('Name', form.controls.name.value);
-    console.log('Email', form.controls.email.value);
-    console.log('Dob', form.controls.dob.value);
-    console.log('ID', form.controls.clgId.value);
-    console.log('Department', form.controls.depStaff.value[0]);
-    console.log('Designation', form.controls.desigStaff.value[0]);
+    const object = form.value;
+    const formData: FormData = new FormData();
+    Object.keys(object).forEach(key => {
+      console.log(typeof(object[key]));
+      if (Array.isArray(object[key])) {
+        formData.append(key.toLowerCase(), object[key][0].id);
+      } else if (typeof(object[key]) === 'object') {
+        const d = new Date(object[key].year, object[key].month, object[key].day);
+        formData.append(key, d);
+      } else {
+          formData.append(key, object[key]);
+      }
+    });
+    formData.forEach(element => {
+      console.log(element)
+    });
 
   }
   studSubmit(form) {

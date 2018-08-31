@@ -19,7 +19,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group" [ngClass]="{ 'has-danger' : (yearNg.invalid && ( yearNg.value && yearNg.dirty)), 'has-success' : yearNg.valid }">
                                             <label>Year</label>
-                                            <input type="number" min="2015" pattern="20\d{2}" placeholder="Batch Start Year" class="form-control form-control-alternative" name="year" [(ngModel)]="year" #yearNg="ngModel" pattern="\d{4}" autocomplete="off" required>
+                                            <input type="number" min="2015" pattern="20\d{2}" placeholder="Batch Start Year" class="form-control form-control-alternative" name="year" [(ngModel)]="year" #yearNg="ngModel" autocomplete="off" required>
                                         </div>
                                     </div>
 
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="footer text-center">
                                     <br>
-                                    <button type="submit" class="btn btn-primary btn-round"><i class="fa fa-upload"  *ngIf="!loading"></i>
+                                    <button type="submit" [disabled]="batchForm.form.invalid" class="btn btn-primary btn-round"><i class="fa fa-upload"  *ngIf="!loading"></i>
                                         <i class="now-ui-icons loader_refresh spin" *ngIf="loading"></i> &nbsp; Create Batch</button>
                                 </div>
                             </form>
@@ -129,6 +129,72 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
+                    <h5 class="title">New Subject</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="form">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group" [ngClass]="{ 'has-success':subNameNg.valid}">
+                                            <label>Subject Name</label>
+                                            <input type="text" minlength="6" class="form-control form-control-alternative" #subNameNg="ngModel" [(ngModel)]="subName" placeholder="Full cource name" name="subName" autocomplete="off" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group" [ngClass]="{ 'has-danger' : (subCodeNg.invalid && ( subCodeNg.value && subCodeNg.dirty)), 'has-success' : subCodeNg.valid }">
+                                            <label>Corce Code</label>
+                                            <input type="text" pattern="[a-z|A-Z]{2}\d{3}" class="form-control form-control-alternative text-uppercase" #subCodeNg="ngModel" [(ngModel)]="subCode" placeholder="Code" name="subCode" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group" [ngClass]="{ 'has-success':subSemNg.valid}">
+                                            <label>For Semester</label>
+                                            <angular2-multiselect [ngClass]="{ 'focused':focus===true}" (onOpen)="focus=true" (onClose)="focus=false" [data]="semList" #subSemNg="ngModel" [(ngModel)]="subSem" name="subSem" [settings]="semSettings" required>
+                                            </angular2-multiselect>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" [ngClass]="{ 'has-danger' : (subCreditNg.invalid && ( subCreditNg.value && subCreditNg.dirty)), 'has-success' : subCreditNg.valid }">
+                                            <label>Credit</label>
+                                            <input type="number" pattern="[1-4|6]" class="form-control form-control-alternative" #subCreditNg="ngModel" [(ngModel)]="subCredit" placeholder="Subject Credit" name="subCredit" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Difficulty</label>
+                                            <div class="form-control  form-control-alternative">
+                                                <div class="row" style="margin-left:4px;">
+                                                    <p class="text-center">{{difficultySelector}}</p>
+                                                    <div class="col-lg-11 ml-auto mr-auto">
+                                                        <nouislider class="slider slider-primary" [min]="0" [max]="10" [step]=".5" [(ngModel)]="difficultySelector" name="difficultySelector"></nouislider>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer text-center">
+                                    <br>
+                                    <button type="submit" class="btn btn-primary btn-round"><i class="fa fa-upload"  *ngIf="!loading"></i>
+                                        <i class="now-ui-icons loader_refresh spin" *ngIf="loading"></i> &nbsp; Create Batch</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
                     <h5 class="title">New Student</h5>
                 </div>
                 <div class="card-body">
@@ -167,7 +233,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group" [ngClass]="{ 'has-danger' : (studPhoneNg.invalid && ( studPhoneNg.value && studPhoneNg.dirty)), 'has-success' : studPhoneNg.valid }">
                                             <label>Phone No</label>
-                                            <input type="tel" pattern="[6|7|8|9]\d{2}[\ ]\d{3}[\ ]\d{4}" placeholder="1234 456 789" class="form-control form-control-alternative" name="studPhone" #studPhoneNg="ngModel" [(ngModel)]="studPhone" autocomplete="off" required>
+                                            <input type="tel" pattern="[6|7|8|9]\d{9}" placeholder="1234 456 789" class="form-control form-control-alternative" name="studPhone" #studPhoneNg="ngModel" [(ngModel)]="studPhone" autocomplete="off" required>
                                         </div>
                                     </div>
                                 </div>
