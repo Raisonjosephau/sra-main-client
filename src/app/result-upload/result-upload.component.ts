@@ -32,7 +32,7 @@ export class UploadResultComponent implements OnInit {
   semSettings = {};
   batchSettings = {};
   schemeSettings = {};
-  constructor(private userService: ServerService) { }
+  constructor(private serverService: ServerService) { }
 
   ngOnInit() {
     this.file_status = 'No file choosen'
@@ -75,7 +75,7 @@ export class UploadResultComponent implements OnInit {
       console.log(formData);
       this.loading = true;
 
-      // this.userService.uploadFile(formData).subscribe(
+      // this.serverService.uploadFile(formData).subscribe(
       //   data => {
       //     console.log(data)
       //   },

@@ -340,7 +340,7 @@ export class SubjectResultComponent implements OnInit {
   public gradientChartOptionsConfigurationWithNumbersAndGrid: any;
 
 
-  constructor(private userService: ServerService, private paginationService: PaginationService) {
+  constructor(private serverService: ServerService, private paginationService: PaginationService) {
 
    }
 

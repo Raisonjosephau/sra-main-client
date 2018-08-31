@@ -694,7 +694,7 @@ export class ResultComponent implements OnInit {
   passedList: Array<any>;
   singleSubject: Array<any>;
 
-  constructor(private userService: ServerService,  private paginationService: PaginationService) { }
+  constructor(private serverService: ServerService,  private paginationService: PaginationService) { }
 
 
   ngOnInit() {
