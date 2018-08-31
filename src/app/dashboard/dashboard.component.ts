@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
-import {UserService} from '../_services/user.service'
+import {ServerService} from '../_services/server.service'
 
 @Component({
   selector: 'app-dashboard',
@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
       return 'rgb(' + r + ', ' + g + ', ' + b + ')';
     }
   }
-  constructor(private userService: UserService) { }
+  constructor(private userService: ServerService) { }
 
   ngOnInit() {
     this.getDetails();

@@ -20,7 +20,7 @@ import {JwtInterceptor} from './_helpers/jwt.interceptor'
 import { AuthGuard } from './auth';
 import {ReLoginGaurd } from './auth/auth.rev'
 import {LoginService} from './_services/login.service'
-import {UserService} from './_services/user.service'
+import {ServerService} from './_services/server.service'
 import {PaginationService} from './_services/pagination.service'
 
 
@@ -46,7 +46,7 @@ import {PaginationService} from './_services/pagination.service'
     ReLoginGaurd,
     PaginationService,
     LoginService,
-    UserService,
+    ServerService,
   {
         provide: HTTP_INTERCEPTORS,
         useClass: JwtInterceptor,

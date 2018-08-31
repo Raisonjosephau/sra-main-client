@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import {UserService} from '../_services/user.service'
+import {ServerService} from '../_services/server.service'
 import {PaginationService} from '../_services/pagination.service'
 import {Page} from '../_objects/page'
 import {PagedData} from '../_objects/page-data'
@@ -340,7 +340,7 @@ export class SubjectResultComponent implements OnInit {
   public gradientChartOptionsConfigurationWithNumbersAndGrid: any;
 
 
-  constructor(private userService: UserService, private paginationService: PaginationService) {
+  constructor(private userService: ServerService, private paginationService: PaginationService) {
 
    }
 

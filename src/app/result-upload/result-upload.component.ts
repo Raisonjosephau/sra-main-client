@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import {UserService} from '../_services/user.service'
+import {ServerService} from '../_services/server.service'
 @Component({
   selector: 'app-upload-result',
   templateUrl: './result-upload.component.html',
@@ -32,7 +32,7 @@ export class UploadResultComponent implements OnInit {
   semSettings = {};
   batchSettings = {};
   schemeSettings = {};
-  constructor(private userService: UserService) { }
+  constructor(private userService: ServerService) { }
 
   ngOnInit() {
     this.file_status = 'No file choosen'

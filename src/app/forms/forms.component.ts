@@ -77,47 +77,51 @@ export class FormsComponent implements OnInit {
 
     const formData: FormData = new FormData();
     formData.append('year', form.get('year').value);
-    formData.append('studno', form.get('studNo ').value);
+    formData.append('studno', form.get('studNo').value);
     formData.append('currentSem', form.get('semester').value[0].id);
-    formData.append('department', form.get('depBatch ').value[0].id);
+    formData.append('department', form.get('depBatch').value[0].id);
 
-    Object.keys(form.controls).forEach(key => {
-      console.log(key, form.get(key).value)
-    });
   }
   staffSubmit(form) {
     const object = form.value;
     const formData: FormData = new FormData();
     Object.keys(object).forEach(key => {
-      console.log(typeof(object[key]));
       if (Array.isArray(object[key])) {
         formData.append(key.toLowerCase(), object[key][0].id);
       } else if (typeof(object[key]) === 'object') {
         const d = new Date(object[key].year, object[key].month, object[key].day);
-        formData.append(key, d);
+        formData.append(key, d.toUTCString());
       } else {
           formData.append(key, object[key]);
       }
     });
-    formData.forEach(element => {
-      console.log(element)
-    });
-
   }
   studSubmit(form) {
-    // console.log('Name', form.controls.studName.value);
-    // console.log('Regno', form.controls.studRegNo.value);
-    // console.log('dob', form.controls.studDob.value);
-    // console.log('email', form.controls.studEmail.valid);
-    // console.log('phone', form.controls.studPhone.value);
-    // console.log('Department', form.controls.depStud.value[0]);
-    // console.log('Semester', form.controls.semStud.value[0]);
-    console.log(form)
+
+    const formData: FormData = new FormData();
+    const dateObject = form.get('studDob').value;
+    formData.append('name', form.get('studName').value);
+    formData.append('regno', form.get('studRegNo').value);
+    formData.append('dob', (new Date(dateObject.year, dateObject.month, dateObject.day)).toUTCString());
+    formData.append('email', form.get('studEmail').value);
+    formData.append('phone', form.get('studPhone').value);
+    formData.append('department', form.get('depStud').value[0].id);
+    formData.append('semester', form.get('semStud').value[0].id);
+
   }
   fastForm(form) {
 
-    console.log('Department', form.controls.depStudUp.value[0]);
-    console.log('Semester', form.controls.semStudUp.value[0]);
-    console.log('File', form.controls.file_upload.value);
+    const formData: FormData = new FormData();
+    formData.append('department', form.get('depStudUp').value[0].id);
+    formData.append('semester', form.get('semStudUp').value[0].id);
+    formData.append('file', form.get('file_upload').value);
+  }
+  subjectSubmit(form) {
+    const formData: FormData = new FormData();
+    formData.append('name', form.get('subName').value);
+    formData.append('code', form.get('subCode').value);
+    formData.append('credit', form.get('subCredit').value);
+    formData.append('semester', form.get('subSem').value[0].id);
+    formData.append('difficulty', form.get('difficultySelector').value);
   }
 }

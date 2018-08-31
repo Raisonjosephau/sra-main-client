@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../_services/user.service'
+import {ServerService} from '../_services/server.service'
 
 import {PaginationService} from '../_services/pagination.service'
 import {Page} from '../_objects/page'
@@ -694,7 +694,7 @@ export class ResultComponent implements OnInit {
   passedList: Array<any>;
   singleSubject: Array<any>;
 
-  constructor(private userService: UserService,  private paginationService: PaginationService) { }
+  constructor(private userService: ServerService,  private paginationService: PaginationService) { }
 
 
   ngOnInit() {

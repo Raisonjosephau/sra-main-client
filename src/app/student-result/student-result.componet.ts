@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import {UserService} from '../_services/user.service'
+import {ServerService} from '../_services/server.service'
 import {Observable} from 'rxjs/Observable';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 
@@ -107,7 +107,7 @@ export class StudentResultComponent implements OnInit, AfterViewInit {
 
   dropdownSettings = {};
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: ServerService) { }
 
 
   ngOnInit() {

@@ -134,7 +134,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="form">
+                            <form class="form" #subjectForm="ngForm" (ngSubmit)="subjectSubmit(subjectForm.form)">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group" [ngClass]="{ 'has-success':subNameNg.valid}">
@@ -171,7 +171,7 @@
                                             <div class="form-control  form-control-alternative">
                                                 <div class="row" style="margin-left:4px;">
                                                     <p class="text-center">{{difficultySelector}}</p>
-                                                    <div class="col-lg-11 ml-auto mr-auto">
+                                                    <div class="col-lg-11 col-md-11 col-sm-11 ml-auto mr-auto">
                                                         <nouislider class="slider slider-primary" [min]="0" [max]="10" [step]=".5" [(ngModel)]="difficultySelector" name="difficultySelector"></nouislider>
                                                     </div>
                                                 </div>
@@ -181,7 +181,7 @@
                                 </div>
                                 <div class="footer text-center">
                                     <br>
-                                    <button type="submit" class="btn btn-primary btn-round"><i class="fa fa-upload"  *ngIf="!loading"></i>
+                                    <button type="submit" [disabled]="subjectForm.form.invalid" class="btn btn-primary btn-round"><i class="fa fa-upload"  *ngIf="!loading"></i>
                                         <i class="now-ui-icons loader_refresh spin" *ngIf="loading"></i> &nbsp; Create Batch</button>
                                 </div>
                             </form>
@@ -258,7 +258,7 @@
                                 <br>
                                 <div class="footer text-center">
                                     <br>
-                                    <button type="submit" class="btn btn-primary btn-round"><i class="fa fa-upload"  *ngIf="!loading"></i>
+                                    <button type="submit" [disabled]="studForm.form.invalid" class="btn btn-primary btn-round"><i class="fa fa-upload"  *ngIf="!loading"></i>
                                     <i class="now-ui-icons loader_refresh spin" *ngIf="loading"></i> &nbsp; Create Student</button>
                                 </div>
                             </form>
