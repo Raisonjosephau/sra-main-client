@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import {ServerService} from '../_services/server.service'
 
 @Component({
   selector: 'app-fomrs',
   templateUrl: './forms.component.html',
   styleUrls: ['./forms.component.css']
 })
+
 export class FormsComponent implements OnInit {
   semList = [
     {'id': 1, 'name': 'Semester 1'},
@@ -37,7 +39,7 @@ export class FormsComponent implements OnInit {
   studPhone: any;
   file: File;
   loading = false;
-  constructor() { }
+  constructor(private serverService: ServerService) { }
 
   ngOnInit() {
     this.file_status = 'No file choosen'
@@ -63,12 +65,10 @@ export class FormsComponent implements OnInit {
       classes: 'input-group-alternative',
       labelKey: 'name'
     }
-
-    // this.formatPhoneNumber('1234567890');
   }
 
   fileChange(event) {
-    // let fileList: File = event.target.files;
+
     const file: File = event.target.files[0]
     this.file = file
     this.file_status = file.name

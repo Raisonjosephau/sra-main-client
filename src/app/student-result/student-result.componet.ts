@@ -107,7 +107,7 @@ export class StudentResultComponent implements OnInit, AfterViewInit {
 
   dropdownSettings = {};
 
-  constructor(private userService: ServerService) { }
+  constructor(private serverService: ServerService) { }
 
 
   ngOnInit() {
