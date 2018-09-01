@@ -78,8 +78,24 @@ export class FormsComponent implements OnInit {
     const formData: FormData = new FormData();
     formData.append('year', form.get('year').value);
     formData.append('studno', form.get('studNo').value);
-    formData.append('currentSem', form.get('semester').value[0].id);
+    formData.append('semseter', form.get('semester').value[0].id);
     formData.append('department', form.get('depBatch').value[0].id);
+    this.serverService.postBatch(formData).subscribe(
+      data => {
+        if (localStorage.getItem('batches')) {
+          const storedBatches = JSON.parse(localStorage.getItem('batches'));
+          console.log(storedBatches)
+          storedBatches.push(data);
+          localStorage.setItem('batches', JSON.stringify(storedBatches));
+        } else {
+          localStorage.setItem('batches', JSON.stringify([data]));
+        }
+      },
+      error => {
+
+      }
+
+    )
 
   }
   staffSubmit(form) {
@@ -126,9 +142,13 @@ export class FormsComponent implements OnInit {
     this.serverService.postSubject(formData).subscribe(
       data => {
         console.log(data);
-        const storedSubjects = JSON.parse(localStorage.getItem('subjects'));
-        storedSubjects.push(data);
-        localStorage.setItem('subjects', JSON.stringify(storedSubjects));
+        if (localStorage.getItem('subjects')) {
+          const storedSubjects = JSON.parse(localStorage.getItem('subjects'));
+          storedSubjects.push(data);
+          localStorage.setItem('subjects', JSON.stringify(storedSubjects));
+        } else {
+          localStorage.setItem('subjects', JSON.stringify([data]));
+        }
 
       },
       error => {

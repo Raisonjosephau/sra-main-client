@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 //
 
 import {Subject} from '../models/subject'
+import {Batch} from '../models/batch'
 
 @Injectable()
 export class ServerService {
@@ -22,5 +23,13 @@ export class ServerService {
     }
     postSubject(data: any) {
         return this.http.post('http://127.0.0.1:8000/accounts/subjects/', data);
+    }
+
+    getBatches(): Observable<Batch[]> {
+        return this.http.get<Batch[]>('http://127.0.0.1:8000/accounts/batch/');
+
+    }
+    postBatch(data: any) {
+        return this.http.post('http://127.0.0.1:8000/accounts/batch/', data);
     }
 }

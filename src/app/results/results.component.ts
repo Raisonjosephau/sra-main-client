@@ -719,9 +719,6 @@ export class ResultComponent implements OnInit {
       return(count === 1 ? true : false)
 
     });
-    console.log(this.singleSubject)
-
-
   }
 
    // Paginatio

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {ServerService} from '../../_services/server.service'
 
 declare interface RouteInfo {
     path: string;
@@ -36,11 +37,21 @@ export class SidebarComponent implements OnInit {
   collapseResultState: any;
   collapseAnalysisState: any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private serverService: ServerService) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
     this.resultMenuItems = RESULTROUTES.filter(menuItem => menuItem);
+    if (!localStorage.getItem('batches')) {
+        this.serverService.getBatches().subscribe(
+          data => {
+            localStorage.setItem('batches', JSON.stringify(data))
+          },
+          error => {
+              console.log(error.status);
+          }
+        )
+      }
   }
   isMobileMenu() {
       if ( window.innerWidth > 991) {

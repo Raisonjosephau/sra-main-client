@@ -180,18 +180,12 @@ export class SubjectResultComponent implements OnInit {
     {'id': 7, 'name': 'Semester 7'},
     {'id': 8, 'name': 'Semester 8'}
   ];
-  batchList = [
-    {'id': 1, 'name': '2015-19'},
-    {'id': 2, 'name': '2016-20'},
-    {'id': 3, 'name': '2017-21'},
-    {'id': 4, 'name': '2018-22'},
-    {'id': 5, 'name': '2019-23'},
-  ];
-
+  batchList: Array<any>;
+  private batchShow: any;
 
   semSettings = {};
   batchSettings = {};
-  batch = [{'id': 1, 'name': '2015-19'}];
+  batch: Array<any>;
   semester = [{'id': 1, 'name': 'Semester 7'}];
   page = 1;
   pages = new Page()
@@ -252,7 +246,7 @@ export class SubjectResultComponent implements OnInit {
       text: 'Choose Batch',
       enableSearchFilter: true,
       classes: 'input-group-alternative',
-      labelKey: 'name'
+      labelKey: 'year'
     }
     // this.batch =  [{'id': 1, 'name': '2015-19'}];
     //
@@ -450,6 +444,23 @@ export class SubjectResultComponent implements OnInit {
         }
       )
     }
+    if (localStorage.getItem('batches')) {
+      this.batchList = JSON.parse(localStorage.getItem('batches'));
+      this.batch = [this.batchList[0]]
+      this.batchShow = this.batchList[0]
+    } else {
+      this.serverService.getBatches().subscribe(
+        data => {
+          this.batchList = data;
+          this.batch = [this.batchList[0]]
+          this.batchShow = this.batchList[0]
+          localStorage.setItem('batches', JSON.stringify(data))
+        },
+        error => {
+            console.log(error.status);
+        }
+      )
+    }
   }
 
 
@@ -503,7 +514,8 @@ export class SubjectResultComponent implements OnInit {
 
   formatter = (x: {name: string, cource_code: string}) => x.name + ' : ' + x.cource_code;
   private selectSearch(e: any): void {
-    console.log(e.item.id, e.item.name);
+    console.log(e);
+    this.batchShow = e;
 
   }
 }
