@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {
-  map
-} from 'rxjs/operators';
-
 import { Observable } from 'rxjs/Observable';
 
 //
@@ -23,5 +19,8 @@ export class ServerService {
     getSubjects(): Observable<Subject[]> {
         return this.http.get<Subject[]>('http://127.0.0.1:8000/accounts/subjects/');
 
+    }
+    postSubject(data: any) {
+        return this.http.post('http://127.0.0.1:8000/accounts/subjects/', data);
     }
 }

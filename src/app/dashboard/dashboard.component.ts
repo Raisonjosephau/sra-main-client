@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
 import {ServerService} from '../_services/server.service'
+import { Observable } from 'rxjs/Rx'
+import {Subject} from '../models/subject'
 
 @Component({
   selector: 'app-dashboard',
@@ -19,6 +21,7 @@ export class DashboardComponent implements OnInit {
   public lineBigDashboardChartLabels: Array<any>;
   public lineBigDashboardChartColors: Array<any>
 
+  subjects: Subject[];
   public gradientChartOptionsConfiguration: any;
   public gradientChartOptionsConfigurationWithNumbersAndGrid: any;
   nice: any;
@@ -265,14 +268,13 @@ export class DashboardComponent implements OnInit {
         }
       )
     }
-    this.userService.getSubjects().subscribe(
-      data => {
-
-        console.log(data)
-      },
-      error => {
-          console.log(error.status);
-      }
-    )
+    // this.userService.getSubjects().subscribe(
+    //   (data: Subject[]) => {
+    //     localStorage.setItem('subjects', JSON.stringify(data))
+    //   },
+    //   error => {
+    //       console.log(error.status);
+    //   }
+    // )
   }
 }

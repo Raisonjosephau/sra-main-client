@@ -6,6 +6,7 @@ import {PagedData} from '../models/page-data'
 
 import {Observable} from 'rxjs/Observable';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+import {Subject} from '../models/subject'
 
 @Component({
   selector: 'app-student-result',
@@ -167,124 +168,7 @@ export class SubjectResultComponent implements OnInit {
       'grade': 'A+'
     }
   ];
-   subjects = [
-    {
-      'name': 'Machine Learning',
-      'id': 'CS000'
-    },
-    {
-      'name': 'Operating System',
-      'id': 'CS001'
-    },
-    {
-      'name': 'Data Structure',
-      'id': 'CS002'
-    },
-    {
-      'name': 'Computer Architecture',
-      'id': 'CS003'
-    },
-    {
-      'name': 'Discrete Computational Structure',
-      'id': 'CS004'
-    },
-    {
-      'name': 'Java',
-      'id': 'CS005'
-    },
-    {
-      'name': 'Computer Networks',
-      'id': 'CS006'
-    },
-    {
-      'name': 'Graph Theory',
-      'id': 'CS007'
-    },
-    {
-      'name': 'DBMS',
-      'id': 'CS008'
-    },
-    {
-      'name': 'Distributed Computing',
-      'id': 'CS009'
-    },
-    {
-      'name': 'Soft Computing',
-      'id': 'CS0010'
-    },
-    {
-      'name': 'Microprocessor',
-      'id': 'CS0011'
-    },
-    {
-      'name': 'Computer Grapohics',
-      'id': 'CS0012'
-    },
-    {
-      'name': 'Compiler Design',
-      'id': 'CS0013'
-    },
-    {
-      'name': 'Theory of Computation',
-      'id': 'CS0014'
-    },
-    {
-      'name': 'Design ana Analysis of Algorithms',
-      'id': 'CS0015'
-    },
-    {
-      'name': 'Application Development lab',
-      'id': 'CS0016'
-    },
-    {
-      'name': 'Design Project',
-      'id': 'CS0017'
-    },
-    {
-      'name': 'System Software',
-      'id': 'CS0018'
-    },
-    {
-      'name': 'Data Communication',
-      'id': 'CS0019'
-    },
-    {
-      'name': 'Software Engineering and Project Management',
-      'id': 'CS0020'
-    },
-    {
-      'name': 'Web Technologies',
-      'id': 'CS0021'
-    },
-    {
-      'name': 'System Software Lab',
-      'id': 'CS0022'
-    },
-    {
-      'name': 'Life Skills',
-      'id': 'CS0023'
-    },
-    {
-      'name': 'Computer Sysetm Architecture',
-      'id': 'CS0024'
-    },
-    {
-      'name': 'Cryptography and Computer Security',
-      'id': 'CS0025'
-    },
-    {
-      'name': 'Switching Theory ana Logical Design',
-      'id': 'CS0026'
-    },
-    {
-      'name': 'Data Structure Lab',
-      'id': 'CS0027'
-    },
-    {
-      'name': 'Digital System Lab',
-      'id': 'CS0028'
-    }
-  ];
+   subjects = [];
 
   semList = [
     {'id': 1, 'name': 'Semester 1'},
@@ -553,6 +437,19 @@ export class SubjectResultComponent implements OnInit {
     };
 
     this.lineBigDashboardChartType = 'line';
+    if (localStorage.getItem('subjects')) {
+      this.subjects = JSON.parse(localStorage.getItem('subjects'));
+    } else {
+      this.serverService.getSubjects().subscribe(
+        (data: Subject[]) => {
+          this.subjects = data;
+          localStorage.setItem('subjects', JSON.stringify(data))
+        },
+        error => {
+            console.log(error.status);
+        }
+      )
+    }
   }
 
 
@@ -601,12 +498,12 @@ export class SubjectResultComponent implements OnInit {
     debounceTime(200),
     distinctUntilChanged(),
     map(term => term.length < 2 ? []
-      : this.subjects.filter(v => ((v.name.toLowerCase() + ' ' + v.id.toLocaleLowerCase()).indexOf(term.toLowerCase())) > -1).slice(0, 15 ))
+      : this.subjects.filter(v => ((v.name.toLowerCase() + ' ' + v.cource_code.toLocaleLowerCase()).indexOf(term.toLowerCase())) > -1).slice(0, 15 ))
   );
 
-  formatter = (x: {name: string, id: string}) => x.name + ' : ' + x.id;
+  formatter = (x: {name: string, cource_code: string}) => x.name + ' : ' + x.cource_code;
   private selectSearch(e: any): void {
-    console.log(e, this.batch[0].name);
+    console.log(e.item.id, e.item.name);
 
   }
 }

@@ -119,9 +119,21 @@ export class FormsComponent implements OnInit {
   subjectSubmit(form) {
     const formData: FormData = new FormData();
     formData.append('name', form.get('subName').value);
-    formData.append('code', form.get('subCode').value);
+    formData.append('cource_code', form.get('subCode').value);
     formData.append('credit', form.get('subCredit').value);
     formData.append('semester', form.get('subSem').value[0].id);
     formData.append('difficulty', form.get('difficultySelector').value);
+    this.serverService.postSubject(formData).subscribe(
+      data => {
+        console.log(data);
+        const storedSubjects = JSON.parse(localStorage.getItem('subjects'));
+        storedSubjects.push(data);
+        localStorage.setItem('subjects', JSON.stringify(storedSubjects));
+
+      },
+      error => {
+        console.log(error)
+      }
+    )
   }
 }
