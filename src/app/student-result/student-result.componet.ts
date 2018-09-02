@@ -131,9 +131,17 @@ export class StudentResultComponent implements OnInit, AfterViewInit {
       debounceTime(500),
       distinctUntilChanged(),
       tap(() => this.searching = true),
-      switchMap(term =>
-        this.serverService.serachStudent(term).pipe(
+      switchMap(term => term.length < 3 ? []
+        : this.serverService.serachStudent(term).pipe(
           tap(() => this.searchFailed = false),
+          map(res => {
+            if (res.length) {
+              return res;
+            } else {
+              this.searchFailed = true;
+              return [];
+            }
+          }),
           catchError(() => {
             this.searchFailed = true;
             return of([]);
