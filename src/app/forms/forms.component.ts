@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ServerService} from '../_services/server.service'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-fomrs',
@@ -39,7 +40,7 @@ export class FormsComponent implements OnInit {
   studPhone: any;
   file: File;
   loading = false;
-  constructor(private serverService: ServerService) { }
+  constructor(private serverService: ServerService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.file_status = 'No file choosen'
@@ -135,13 +136,21 @@ export class FormsComponent implements OnInit {
   subjectSubmit(form) {
     const formData: FormData = new FormData();
     formData.append('name', form.get('subName').value);
-    formData.append('cource_code', form.get('subCode').value);
+    formData.append('cource_code', form.get('subCode').value.toUpperCase());
     formData.append('credit', form.get('subCredit').value);
     formData.append('semester', form.get('subSem').value[0].id);
     formData.append('difficulty', form.get('difficultySelector').value);
     this.serverService.postSubject(formData).subscribe(
       data => {
-        console.log(data);
+
+        this.toastr.error('<span class="now-ui-icons ui-1_bell-53"></span><b>Subject successfully created</b>' , '', {
+          timeOut: 6500,
+          closeButton: true,
+          enableHtml: true,
+          toastClass: 'alert alert-primary alert-with-icon',
+          positionClass: 'toast-' + 'top' + '-' +  'right'
+        });
+
         if (localStorage.getItem('subjects')) {
           const storedSubjects = JSON.parse(localStorage.getItem('subjects'));
           storedSubjects.push(data);

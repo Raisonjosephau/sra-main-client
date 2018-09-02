@@ -1,7 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {ServerService} from '../_services/server.service'
 import {Observable} from 'rxjs/Observable';
-import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+import {of} from 'rxjs/Observable/of';
+import {catchError, debounceTime, distinctUntilChanged, map, tap, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-student-result',
@@ -106,7 +107,9 @@ export class StudentResultComponent implements OnInit, AfterViewInit {
   ];
 
   dropdownSettings = {};
-
+  model: any;
+  searching = false;
+  searchFailed = false;
   constructor(private serverService: ServerService) { }
 
 
@@ -121,67 +124,24 @@ export class StudentResultComponent implements OnInit, AfterViewInit {
       classes: 'input-group-alternative',
       labelKey: 'name'
     };
-    this.results =  [
-      {
-        'id': 0,
-        'code': 'CS031',
-        'name': 'Sreelaksmi Sudeer',
-        'grade': 'B'
-      },
-      {
-        'id': 1,
-        'code': 'CS031',
-        'name': 'Savid Joe Sunny',
-        'grade': 'A+'
-      },
-      {
-        'id': 2,
-        'code': 'CS038',
-        'name': 'Joel Jose Parekattil',
-        'grade': 'F'
-      },
-      {
-        'id': 3,
-        'code': 'CS038',
-        'name': 'Jimenez Cote',
-        'grade': 'B+'
-      },
-      {
-        'id': 4,
-        'code': 'CS034',
-        'name': 'Gonzales Griffith',
-        'grade': 'B'
-      },
-      {
-        'id': 5,
-        'code': 'CS033',
-        'name': 'Kirby Woods',
-        'grade': 'O'
-      },
-      {
-        'id': 6,
-        'code': 'HS031',
-        'name': 'Barry Hinton',
-        'grade': 'O'
-      },
-      {
-        'id': 7,
-        'code': 'CS033',
-        'name': 'Leila Mcfarland',
-        'grade': 'O'
-      }
-    ]
   }
 
   search = (text$: Observable<string>) =>
-  text$.pipe(
-    debounceTime(200),
-    distinctUntilChanged(),
-    map(term => term.length < 2 ? []
-      : this.students.filter(v => ((v.name.toLowerCase() + ' ' + v.reg.toLowerCase()).indexOf(term.toLowerCase())) > -1).slice(0, 15 ))
-  );
-
-  formatter = (x: {name: string}) => x.name;
+    text$.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      tap(() => this.searching = true),
+      switchMap(term =>
+        this.serverService.serachStudent(term).pipe(
+          tap(() => this.searchFailed = false),
+          catchError(() => {
+            this.searchFailed = true;
+            return of([]);
+          }))
+      ),
+      tap(() => this.searching = false)
+    )
+  formatter = (x: {name: string,  regno: string}) => x.name + ' - ' + x.regno;
   private selectSearch(e: any): void {
     console.log(e);
   }

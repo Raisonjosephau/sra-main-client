@@ -8,6 +8,7 @@ $bg-warning: #FFE28C !default;
     border: 0;
     border-radius: $border-radius-small;
     color: $white-color;
+    min-width: 320px;
     padding-top: .9rem;
     padding-bottom: .9rem;
     position: relative;
@@ -28,7 +29,10 @@ $bg-warning: #FFE28C !default;
     }
     i.fa,
     i.now-ui-icons {
-        font-size: 20px;
+        font-size: 15px;
+    }
+    .toast-close-button:before {
+        font-size: 15px !important;
     }
     .close {
         color: $white-color;
@@ -50,8 +54,8 @@ $bg-warning: #FFE28C !default;
         right: 10px;
         top: 50%;
         margin-top: -13px;
-        width: 25px;
-        height: 25px;
+        width: 20px;
+        height: 20px;
         padding: 3px;
     }
     .close~span {

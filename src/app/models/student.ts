@@ -1,6 +1,6 @@
-export class Subject {
+export class Student {
 
-    name = ''
+    name = '';
     regno = '';
     dob = '';
     email = '';

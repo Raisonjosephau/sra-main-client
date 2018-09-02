@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 //
 
 import {Subject} from '../models/subject'
 import {Batch} from '../models/batch'
+import {Student} from '../models/student'
+
+const PARAMS = new HttpParams();
+
 
 @Injectable()
 export class ServerService {
@@ -31,5 +35,9 @@ export class ServerService {
     }
     postBatch(data: any) {
         return this.http.post('http://127.0.0.1:8000/accounts/batch/', data);
+    }
+
+    serachStudent(search: any): Observable<Student[]> {
+        return this.http.get<Student[]>('http://127.0.0.1:8000/accounts/students/', {params: PARAMS.set('search', search)});
     }
 }
