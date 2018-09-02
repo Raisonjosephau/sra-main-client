@@ -130,7 +130,6 @@ export class StudentResultComponent implements OnInit, AfterViewInit {
     text$.pipe(
       debounceTime(500),
       distinctUntilChanged(),
-      tap(() => this.searching = true),
       switchMap(term => term.length < 3 ? []
         : this.serverService.serachStudent(term).pipe(
           tap(() => this.searchFailed = false),
@@ -147,7 +146,6 @@ export class StudentResultComponent implements OnInit, AfterViewInit {
             return of([]);
           }))
       ),
-      tap(() => this.searching = false)
     )
   formatter = (x: {name: string,  regno: string}) => x.name + ' - ' + x.regno;
   private selectSearch(e: any): void {
