@@ -3,9 +3,24 @@ import {ServerService} from '../_services/server.service'
 import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/Observable/of';
 import {catchError, debounceTime, distinctUntilChanged, map, tap, switchMap} from 'rxjs/operators';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-student-result',
+  animations: [
+    trigger(
+      'enterAnimation', [
+        transition(':enter', [
+          style({transform: 'translateX(100%)', opacity: 0}),
+          animate('500ms', style({transform: 'translateX(0)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          style({transform: 'translateX(0)', opacity: 1}),
+          animate('500ms', style({transform: 'translateX(100%)', opacity: 0}))
+        ])
+      ]
+    )
+  ],
   templateUrl: './student-result.component.html',
   styleUrls: ['./student-result.component.css']
 })

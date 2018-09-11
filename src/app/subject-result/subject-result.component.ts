@@ -7,9 +7,29 @@ import {PagedData} from '../models/page-data'
 import {Observable} from 'rxjs/Observable';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import {Subject} from '../models/subject'
+import { trigger, style, animate, transition, state, keyframes, group } from '@angular/animations';
 
 @Component({
   selector: 'app-student-result',
+  animations: [
+    trigger('SlideInOut', [
+      state('in', style({transform: 'translateX(0)'})),
+      transition('void => *', [
+        animate(900, keyframes([
+          style({opacity: 0, transform: 'translateX(-110%)', offset: 0}),
+          style({opacity: 1, transform: 'translateX(15px)',  offset: 0.3}),
+          style({opacity: 1, transform: 'translateX(0)',     offset: 1.0})
+        ]))
+      ]),
+      transition('* => void', [
+        animate(900, keyframes([
+          style({opacity: 1, transform: 'translateX(0)',     offset: 0}),
+          style({opacity: 1, transform: 'translateX(-15px)', offset: 0.7}),
+          style({opacity: 0, transform: 'translateX(100%)',  offset: 1.0})
+        ]))
+      ])
+    ]),
+  ],
   templateUrl: './subject-result.component.html',
   styleUrls: ['./subject-result.component.css']
 })
@@ -252,17 +272,17 @@ export class SubjectResultComponent implements OnInit {
     //
 
     this.chartColor = '#212121';
-    this.canvas = document.getElementById('radarChart');
-    this.ctx = this.canvas.getContext('2d');
+    // this.canvas = document.getElementById('radarChart');
+    // this.ctx = this.canvas.getContext('2d');
 
-    this.gradientStroke = this.ctx.createLinearGradient(500, 0, 100, 0);
-    this.gradientStroke.addColorStop(0, '#6c6');
-    this.gradientStroke.addColorStop(1, this.chartColor);
+    // this.gradientStroke = this.ctx.createLinearGradient(500, 0, 100, 0);
+    // this.gradientStroke.addColorStop(0, '#6c6');
+    // this.gradientStroke.addColorStop(1, this.chartColor);
 
-    this.gradientFill = this.ctx.createLinearGradient(0, 170, 0, 50);
-    // this.gradientFill.addColorStop(0, 'rgba(128, 182, 244, 0)');
-    this.gradientFill.addColorStop(0, 'rgba(102, 204, 102, .3)');
-    this.gradientFill.addColorStop(1, 'rgba(255, 255, 255, 0.1)');
+    // this.gradientFill = this.ctx.createLinearGradient(0, 170, 0, 50);
+    // // this.gradientFill.addColorStop(0, 'rgba(128, 182, 244, 0)');
+    // this.gradientFill.addColorStop(0, 'rgba(102, 204, 102, .3)');
+    // this.gradientFill.addColorStop(1, 'rgba(255, 255, 255, 0.1)');
     this.radarChartData = [
         {
           label: 'Count',
@@ -464,7 +484,7 @@ export class SubjectResultComponent implements OnInit {
   }
 
 
-  // Paginatio
+  // Pagination
   public pagination(e: any): void {
     this.pages.pageNumber = e - 1;
     this.studList =  [...this.paginationService.getHeroes(this.pageData).data ];
@@ -516,6 +536,5 @@ export class SubjectResultComponent implements OnInit {
   private selectSearch(e: any): void {
     console.log(e);
     this.batchShow = e;
-
   }
 }

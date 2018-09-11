@@ -15,7 +15,7 @@
                                     </div>
                                 </div>
                                 <input type="text" [(ngModel)]="s" [ngbTypeahead]="search" [inputFormatter]="formatter" [class.is-invalid]="searchFailed" [resultTemplate]="rt" [editable]="false" #ser="ngModel" (selectItem)="selectSearch($event)" autocomplete="off" required minlength="3"
-                                    name="search" id="search" class="form-control form-control-alternative" (focus)="focsr=true" (blur)="focsr=searching=false" placeholder="Search... (Please select from the drop down)">
+                                    name="search" id="search" class="form-control form-control-alternative" (focus)="focsr=true" (blur)="focsr=searchFailed=false" placeholder="Search... (Please select from the drop down)">
                             </div>
                         </div>
                         <ng-template #rt let-r="result" let-t="term">

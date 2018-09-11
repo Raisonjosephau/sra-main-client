@@ -25,4 +25,5 @@
 
 .alignright {
     float: right;
+    visibility: visible;
 }
