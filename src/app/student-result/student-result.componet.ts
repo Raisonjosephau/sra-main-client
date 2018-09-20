@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import {ServerService} from '../_services/server.service'
-import {Observable} from 'rxjs/Observable';
-import {of} from 'rxjs/Observable/of';
+import {ServerService} from '../_services/server.service';
+import {Observable} from 'rxjs';
+import {of} from 'rxjs';
 import {catchError, debounceTime, distinctUntilChanged, map, tap, switchMap} from 'rxjs/operators';
 import { trigger, style, animate, transition } from '@angular/animations';
 

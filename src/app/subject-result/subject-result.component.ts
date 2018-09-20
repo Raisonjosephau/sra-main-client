@@ -1,12 +1,12 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import {ServerService} from '../_services/server.service'
-import {PaginationService} from '../_services/pagination.service'
-import {Page} from '../models/page'
-import {PagedData} from '../models/page-data'
+import {ServerService} from '../_services/server.service';
+import {PaginationService} from '../_services/pagination.service';
+import {Page} from '../models/page';
+import {PagedData} from '../models/page-data';
 
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
-import {Subject} from '../models/subject'
+import {Subject} from '../models/subject';
 import { trigger, style, animate, transition, state, keyframes, group } from '@angular/animations';
 
 @Component({

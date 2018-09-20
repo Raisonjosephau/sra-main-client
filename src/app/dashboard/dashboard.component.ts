@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
-import {ServerService} from '../_services/server.service'
-import { Observable } from 'rxjs/Rx'
-import {Subject} from '../models/subject'
+import {ServerService} from '../_services/server.service';
+import { Observable } from 'rxjs/';
+import {Subject} from '../models/subject';
 
 @Component({
   selector: 'app-dashboard',

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/';
 
 //
 
-import {Subject} from '../models/subject'
-import {Batch} from '../models/batch'
-import {Student} from '../models/student'
+import {Subject} from '../models/subject';
+import {Batch} from '../models/batch';
+import {Student} from '../models/student';
 
 const PARAMS = new HttpParams();
 
