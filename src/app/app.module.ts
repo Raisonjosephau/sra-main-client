@@ -8,9 +8,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-
 import { AppComponent } from './app.component';
+
+//Plugins for toast and Progress bar 
 import { ToastrModule } from 'ngx-toastr';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressHttpModule } from '@ngx-progressbar/http';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
@@ -34,7 +37,13 @@ import {PaginationService} from './_services/pagination.service'
     RouterModule,
     AppRoutingModule,
     NgbModule.forRoot(),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgProgressModule.forRoot({
+      spinnerPosition: 'right',
+      color: '#18ce0f',
+      thick: false
+    }),
+    NgProgressHttpModule.forRoot()
   ],
   declarations: [
     AppComponent,
@@ -47,11 +56,11 @@ import {PaginationService} from './_services/pagination.service'
     PaginationService,
     LoginService,
     ServerService,
-  {
-        provide: HTTP_INTERCEPTORS,
-        useClass: JwtInterceptor,
-        multi: true
-  },
+    {
+          provide: HTTP_INTERCEPTORS,
+          useClass: JwtInterceptor,
+          multi: true
+    },
 ],
   bootstrap: [AppComponent]
 })

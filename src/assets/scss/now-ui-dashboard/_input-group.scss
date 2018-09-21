@@ -15,6 +15,10 @@
     font-weight: 500;
 }
 
+.form-group-no-border.no-border .form-control {
+    transition: none;
+}
+
 .form-group {
     margin: 5px 0px;
 }

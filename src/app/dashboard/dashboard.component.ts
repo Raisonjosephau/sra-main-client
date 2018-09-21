@@ -268,6 +268,10 @@ export class DashboardComponent implements OnInit {
         }
       )
     }
+    this.userService.getProgress().subscribe(
+      data => { console.log(data) },
+      error => { console.log(error.status) }
+    )
     // this.userService.getSubjects().subscribe(
     //   (data: Subject[]) => {
     //     localStorage.setItem('subjects', JSON.stringify(data))

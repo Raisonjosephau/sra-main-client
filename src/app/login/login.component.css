@@ -105,6 +105,12 @@
     color: #FFFFFF;
 }
 
+.login-page .card-login.card-plain .input-group.form-group-no-border .input-group-text {
+    color: #FFFFFF;
+    font-size: 14px;
+    transition: none;
+}
+
 .login-page .link {
     font-size: 10px;
     color: #FFFFFF;
