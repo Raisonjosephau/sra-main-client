@@ -5,8 +5,9 @@
     border: 0;
     font-weight: 500;
     box-shadow: 0 1px 3px rgba(50, 50, 93, .15), 0 1px 0 rgba(0, 0, 0, .02);
-    padding: .265rem .1rem;
+    padding: 4px .1rem;
     color: $default-color !important;
+    height: calc(2.75rem + 6px);
 }
 
 .focused .cuppa-dropdown {
@@ -1025,7 +1026,7 @@
 .selected-list .c-btn {
     -webkit-box-shadow: none!important;
     box-shadow: none!important;
-    padding: 7px 18px 8px 18px!important;
+    padding: 7px 18px 7px 18px!important;
 }
 
 .selected-list .c-list .c-token {

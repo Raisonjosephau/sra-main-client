@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import {ServerService} from '../_services/server.service';
+import {CommonService} from '../_services/common.service';
 import {Observable} from 'rxjs';
 import {of} from 'rxjs';
 import {catchError, debounceTime, distinctUntilChanged, map, tap, switchMap} from 'rxjs/operators';
@@ -125,7 +125,7 @@ export class StudentResultComponent implements OnInit, AfterViewInit {
   model: any;
   searching = false;
   searchFailed = false;
-  constructor(private serverService: ServerService) { }
+  constructor(private commonService: CommonService) { }
 
 
   ngOnInit() {
@@ -196,7 +196,7 @@ export class StudentResultComponent implements OnInit, AfterViewInit {
       debounceTime(500),
       distinctUntilChanged(),
       switchMap(term => term.length < 3 ? []
-        : this.serverService.serachStudent(term).pipe(
+        : this.commonService.serachStudent(term).pipe(
           tap(() => this.searchFailed = false),
           map(res => {
             if (res.length) {

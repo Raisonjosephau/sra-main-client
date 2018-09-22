@@ -22,10 +22,17 @@ import {JwtInterceptor} from './_helpers/jwt.interceptor'
 // Services and helpers
 import { AuthGuard } from './auth';
 import {ReLoginGaurd } from './auth/auth.rev'
+//Services
 import {LoginService} from './_services/login.service'
-import {ServerService} from './_services/server.service'
 import {PaginationService} from './_services/pagination.service'
 
+import {ServerService} from './_services/server.service'
+import {CommonService} from './_services/common.service'
+import {DashboardService} from './_services/dashboard.service'
+import {FormService} from './_services/form.service'
+import {ResultService} from './_services/result.service'
+import {StudentService} from './_services/student.service'
+import {SubjectService} from './_services/subject.service'
 
 
 @NgModule({
@@ -56,11 +63,18 @@ import {PaginationService} from './_services/pagination.service'
     PaginationService,
     LoginService,
     ServerService,
+    CommonService,
+    DashboardService,
+    FormService,
+    ResultService,
+    SubjectService,
+    StudentService,
     {
           provide: HTTP_INTERCEPTORS,
           useClass: JwtInterceptor,
           multi: true
     },
+    CommonService
 ],
   bootstrap: [AppComponent]
 })

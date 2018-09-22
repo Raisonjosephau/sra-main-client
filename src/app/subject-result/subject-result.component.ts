@@ -1,13 +1,14 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import {ServerService} from '../_services/server.service';
-import {PaginationService} from '../_services/pagination.service';
-import {Page} from '../models/page';
-import {PagedData} from '../models/page-data';
-
 import {Observable} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
-import {Subject} from '../models/subject';
 import { trigger, style, animate, transition, state, keyframes, group } from '@angular/animations';
+
+
+import {CommonService} from '../_services/common.service';
+import {PaginationService} from '../_services/pagination.service';
+import {Subject} from '../models/subject';
+import {Page} from '../models/page';
+import {PagedData} from '../models/page-data';
 
 @Component({
   selector: 'app-student-result',
@@ -238,7 +239,7 @@ export class SubjectResultComponent implements OnInit {
   public gradientChartOptionsConfigurationWithNumbersAndGrid: any;
 
 
-  constructor(private serverService: ServerService, private paginationService: PaginationService) {
+  constructor(private commonService: CommonService, private paginationService: PaginationService) {
 
    }
 
@@ -454,7 +455,7 @@ export class SubjectResultComponent implements OnInit {
     if (localStorage.getItem('subjects')) {
       this.subjects = JSON.parse(localStorage.getItem('subjects'));
     } else {
-      this.serverService.getSubjects().subscribe(
+      this.commonService.getSubjects().subscribe(
         (data: Subject[]) => {
           this.subjects = data;
           localStorage.setItem('subjects', JSON.stringify(data))
@@ -469,7 +470,7 @@ export class SubjectResultComponent implements OnInit {
       this.batch = [this.batchList[0]]
       this.batchShow = this.batchList[0]
     } else {
-      this.serverService.getBatches().subscribe(
+      this.commonService.getBatches().subscribe(
         data => {
           this.batchList = data;
           this.batch = [this.batchList[0]]

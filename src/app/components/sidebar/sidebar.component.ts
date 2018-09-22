@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {ServerService} from '../../_services/server.service'
+import {CommonService} from '../../_services/common.service'
 
 declare interface RouteInfo {
     path: string;
@@ -37,13 +37,13 @@ export class SidebarComponent implements OnInit {
   collapseResultState: any;
   collapseAnalysisState: any;
 
-  constructor(private router: Router, private serverService: ServerService) { }
+  constructor(private router: Router, private commonService: CommonService) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
     this.resultMenuItems = RESULTROUTES.filter(menuItem => menuItem);
     if (!localStorage.getItem('batches')) {
-        this.serverService.getBatches().subscribe(
+        this.commonService.getBatches().subscribe(
           data => {
             localStorage.setItem('batches', JSON.stringify(data))
           },
