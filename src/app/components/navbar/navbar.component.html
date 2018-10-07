@@ -17,12 +17,13 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="collapseExample" [ngbCollapse]="isCollapsed">
             <form name="form" #f="ngForm" class="col-lg-6">
-                <div class="input-group no-border">
-                    <input type="text" [(ngModel)]="search" #ser="ngModel" autocomplete="off" required minlength="3" (focus)="hasFoc = true" name="search" id="search" class="form-control" placeholder="Search... ( Slelct from dropdown )">
+                <div class="input-group no-border" [ngClass]="{'input-group-focus':focus===true}">
+
+                    <input type="text" [(ngModel)]="searchStud" #ser="ngModel" [ngbTypeahead]="search" [inputFormatter]="formatter" [class.is-invalid]="searchFailed" [resultTemplate]="rt" [editable]="false" (selectItem)="selectSearch($event)" autocomplete="off" required
+                        minlength="3" (focus)="focus=true" (blur)="focus=searchFailed=false" name="search" id="search" class="form-control pl-3" placeholder="Search... ( Slelct from dropdown )">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <i class="now-ui-icons ui-1_zoom-bold" *ngIf="ser.invalid"></i>
-                            <i class="far fa-times-circle clear" *ngIf="ser.valid" (click)="hasFoc = false; search =''"></i>
+                            <i class="fas {{ searchFailed ? 'fa-exclamation-triangle text-danger' : 'fa-search'}}"></i>
                         </div>
                     </div>
                 </div>
