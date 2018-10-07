@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ServerService} from '../_services/server.service'
 
 import {PaginationService} from '../_services/pagination.service'
 import {Page} from '../models/page'
 import {PagedData} from '../models/page-data'
+
+import {ResultService} from '../_services/result.service'
+import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-result',
@@ -694,7 +696,7 @@ export class ResultComponent implements OnInit {
   passedList: Array<any>;
   singleSubject: Array<any>;
 
-  constructor(private serverService: ServerService,  private paginationService: PaginationService) { }
+  constructor(private resultService: ResultService,  private paginationService: PaginationService) { }
 
 
   ngOnInit() {
@@ -719,12 +721,20 @@ export class ResultComponent implements OnInit {
       return(count === 1 ? true : false)
 
     });
+    this.resultService.getPublishedResult(1,32).subscribe(
+        data =>{
+            console.log(data);
+        },  
+        error =>{
+          console.log(error);
+        }
+    );
   }
 
    // Paginatio
   public pagination(e: any): void {
     this.page.pageNumber = e - 1;
-    this.studList =  [...this.paginationService.getHeroes(this.pageData).data ];
+    this.studList =  [...this.paginationService.getPages(this.pageData).data ];
   }
 
   private switchToPassOrFailorAll(list: Array<any>) {

@@ -10,7 +10,7 @@ export class PaginationService {
 
     constructor() { }
 
-    getHeroes(pageData: PagedData) {
+    getPages(pageData: PagedData) {
       // TODO: send the message _after_ fetching the heroes
         const pData = new PagedData();
         const page = pageData.page;

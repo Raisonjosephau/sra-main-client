@@ -18,3 +18,4 @@ export const DEMO_STUDENT_SEARCH = 'students/';
 export const DEMO_BATCH = 'batch/';
 export const DEMO_SUBJECT = 'subjects/';
 export const DEMO_FILE_UPLOAD = 'files/';
+export const DEMO_RESULT = 'result/';

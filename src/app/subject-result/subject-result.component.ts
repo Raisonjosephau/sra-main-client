@@ -463,7 +463,7 @@ export class SubjectResultComponent implements OnInit {
         error => {
             console.log(error.status);
         }
-      )
+      );
     }
     if (localStorage.getItem('batches')) {
       this.batchList = JSON.parse(localStorage.getItem('batches'));
@@ -488,7 +488,7 @@ export class SubjectResultComponent implements OnInit {
   // Pagination
   public pagination(e: any): void {
     this.pages.pageNumber = e - 1;
-    this.studList =  [...this.paginationService.getHeroes(this.pageData).data ];
+    this.studList =  [...this.paginationService.getPages(this.pageData).data ];
   }
   // events
   public chartClicked(e: any): void {
@@ -497,7 +497,9 @@ export class SubjectResultComponent implements OnInit {
       const index = e.active[0]._index;
       this.grade = this.radarChartLables[index];
       this.pageData.data = this.data.filter(item => item.grade === this.grade);
+      this.page = 1;
       this.pagination(this.page);
+      
     }
   }
   private showAll() {
