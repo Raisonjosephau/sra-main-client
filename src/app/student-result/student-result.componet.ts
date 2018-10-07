@@ -1,10 +1,26 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import {ServerService} from '../_services/server.service'
-import {Observable} from 'rxjs/Observable';
-import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+import {CommonService} from '../_services/common.service';
+import {Observable} from 'rxjs';
+import {of} from 'rxjs';
+import {catchError, debounceTime, distinctUntilChanged, map, tap, switchMap} from 'rxjs/operators';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-student-result',
+  animations: [
+    trigger(
+      'enterAnimation', [
+        transition(':enter', [
+          style({transform: 'translateX(100%)', opacity: 0}),
+          animate('500ms', style({transform: 'translateX(0)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          style({transform: 'translateX(0)', opacity: 1}),
+          animate('500ms', style({transform: 'translateX(100%)', opacity: 0}))
+        ])
+      ]
+    )
+  ],
   templateUrl: './student-result.component.html',
   styleUrls: ['./student-result.component.css']
 })
@@ -106,8 +122,10 @@ export class StudentResultComponent implements OnInit, AfterViewInit {
   ];
 
   dropdownSettings = {};
-
-  constructor(private serverService: ServerService) { }
+  model: any;
+  searching = false;
+  searchFailed = false;
+  constructor(private commonService: CommonService) { }
 
 
   ngOnInit() {
@@ -170,18 +188,31 @@ export class StudentResultComponent implements OnInit, AfterViewInit {
         'name': 'Leila Mcfarland',
         'grade': 'O'
       }
-    ]
+    ];
   }
 
   search = (text$: Observable<string>) =>
-  text$.pipe(
-    debounceTime(200),
-    distinctUntilChanged(),
-    map(term => term.length < 2 ? []
-      : this.students.filter(v => ((v.name.toLowerCase() + ' ' + v.reg.toLowerCase()).indexOf(term.toLowerCase())) > -1).slice(0, 15 ))
-  );
-
-  formatter = (x: {name: string}) => x.name;
+    text$.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      switchMap(term => term.length < 3 ? []
+        : this.commonService.serachStudent(term).pipe(
+          tap(() => this.searchFailed = false),
+          map(res => {
+            if (res.length) {
+              return res;
+            } else {
+              this.searchFailed = true;
+              return [];
+            }
+          }),
+          catchError(() => {
+            this.searchFailed = true;
+            return of([]);
+          }))
+      ),
+    )
+  formatter = (x: {name: string,  regno: string}) => x.name + ' - ' + x.regno;
   private selectSearch(e: any): void {
     console.log(e);
   }

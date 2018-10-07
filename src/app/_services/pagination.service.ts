@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {Page} from '../_objects/page'
-import {PagedData} from '../_objects/page-data'
+import {PagedData} from '../models/page-data'
 
 @Injectable({
     providedIn: 'root',
@@ -11,7 +10,7 @@ export class PaginationService {
 
     constructor() { }
 
-    getHeroes(pageData: PagedData) {
+    getPages(pageData: PagedData) {
       // TODO: send the message _after_ fetching the heroes
         const pData = new PagedData();
         const page = pageData.page;

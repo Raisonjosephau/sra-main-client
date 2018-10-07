@@ -8,9 +8,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-
 import { AppComponent } from './app.component';
+
+//Plugins for toast and Progress bar 
 import { ToastrModule } from 'ngx-toastr';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressHttpModule } from '@ngx-progressbar/http';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
@@ -19,10 +22,17 @@ import {JwtInterceptor} from './_helpers/jwt.interceptor'
 // Services and helpers
 import { AuthGuard } from './auth';
 import {ReLoginGaurd } from './auth/auth.rev'
+//Services
 import {LoginService} from './_services/login.service'
-import {ServerService} from './_services/server.service'
 import {PaginationService} from './_services/pagination.service'
 
+import {ServerService} from './_services/server.service'
+import {CommonService} from './_services/common.service'
+import {DashboardService} from './_services/dashboard.service'
+import {FormService} from './_services/form.service'
+import {ResultService} from './_services/result.service'
+import {StudentService} from './_services/student.service'
+import {SubjectService} from './_services/subject.service'
 
 
 @NgModule({
@@ -34,7 +44,13 @@ import {PaginationService} from './_services/pagination.service'
     RouterModule,
     AppRoutingModule,
     NgbModule.forRoot(),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgProgressModule.forRoot({
+      spinnerPosition: 'right',
+      color: '#18ce0f',
+      thick: false
+    }),
+    NgProgressHttpModule.forRoot()
   ],
   declarations: [
     AppComponent,
@@ -47,11 +63,18 @@ import {PaginationService} from './_services/pagination.service'
     PaginationService,
     LoginService,
     ServerService,
-  {
-        provide: HTTP_INTERCEPTORS,
-        useClass: JwtInterceptor,
-        multi: true
-  },
+    CommonService,
+    DashboardService,
+    FormService,
+    ResultService,
+    SubjectService,
+    StudentService,
+    {
+          provide: HTTP_INTERCEPTORS,
+          useClass: JwtInterceptor,
+          multi: true
+    },
+    CommonService
 ],
   bootstrap: [AppComponent]
 })

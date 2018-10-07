@@ -7,7 +7,6 @@
     line-height: normal;
     font-size: $font-size-large;
     font-weight: 500;
-    margin-top: 5px;
     @include transition-input-focus-color();
     @include box-shadow(none);
     &:focus {

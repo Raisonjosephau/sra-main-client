@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ServerService} from '../_services/server.service'
+import { ToastrService } from 'ngx-toastr';
+
+
+import {FormService} from '../_services/form.service'
 
 @Component({
   selector: 'app-fomrs',
@@ -39,7 +42,7 @@ export class FormsComponent implements OnInit {
   studPhone: any;
   file: File;
   loading = false;
-  constructor(private serverService: ServerService) { }
+  constructor(private formService: FormService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.file_status = 'No file choosen'
@@ -78,8 +81,24 @@ export class FormsComponent implements OnInit {
     const formData: FormData = new FormData();
     formData.append('year', form.get('year').value);
     formData.append('studno', form.get('studNo').value);
-    formData.append('currentSem', form.get('semester').value[0].id);
+    formData.append('semseter', form.get('semester').value[0].id);
     formData.append('department', form.get('depBatch').value[0].id);
+    this.formService.postBatch(formData).subscribe(
+      data => {
+        if (localStorage.getItem('batches')) {
+          const storedBatches = JSON.parse(localStorage.getItem('batches'));
+          console.log(storedBatches)
+          storedBatches.push(data);
+          localStorage.setItem('batches', JSON.stringify(storedBatches));
+        } else {
+          localStorage.setItem('batches', JSON.stringify([data]));
+        }
+      },
+      error => {
+
+      }
+
+    )
 
   }
   staffSubmit(form) {
@@ -119,9 +138,33 @@ export class FormsComponent implements OnInit {
   subjectSubmit(form) {
     const formData: FormData = new FormData();
     formData.append('name', form.get('subName').value);
-    formData.append('code', form.get('subCode').value);
+    formData.append('cource_code', form.get('subCode').value.toUpperCase());
     formData.append('credit', form.get('subCredit').value);
     formData.append('semester', form.get('subSem').value[0].id);
     formData.append('difficulty', form.get('difficultySelector').value);
+    this.formService.postSubject(formData).subscribe(
+      data => {
+
+        this.toastr.error('<span class="now-ui-icons ui-1_bell-53"></span><b>Subject successfully created</b>' , '', {
+          timeOut: 6500,
+          closeButton: true,
+          enableHtml: true,
+          toastClass: 'alert alert-primary alert-with-icon',
+          positionClass: 'toast-' + 'top' + '-' +  'right'
+        });
+
+        if (localStorage.getItem('subjects')) {
+          const storedSubjects = JSON.parse(localStorage.getItem('subjects'));
+          storedSubjects.push(data);
+          localStorage.setItem('subjects', JSON.stringify(storedSubjects));
+        } else {
+          localStorage.setItem('subjects', JSON.stringify([data]));
+        }
+
+      },
+      error => {
+        console.log(error)
+      }
+    )
   }
 }

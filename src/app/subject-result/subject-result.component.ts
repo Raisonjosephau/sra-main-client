@@ -1,14 +1,36 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import {ServerService} from '../_services/server.service'
-import {PaginationService} from '../_services/pagination.service'
-import {Page} from '../_objects/page'
-import {PagedData} from '../_objects/page-data'
-
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+import { trigger, style, animate, transition, state, keyframes, group } from '@angular/animations';
+
+
+import {CommonService} from '../_services/common.service';
+import {PaginationService} from '../_services/pagination.service';
+import {Subject} from '../models/subject';
+import {Page} from '../models/page';
+import {PagedData} from '../models/page-data';
 
 @Component({
   selector: 'app-student-result',
+  animations: [
+    trigger('SlideInOut', [
+      state('in', style({transform: 'translateX(0)'})),
+      transition('void => *', [
+        animate(900, keyframes([
+          style({opacity: 0, transform: 'translateX(-110%)', offset: 0}),
+          style({opacity: 1, transform: 'translateX(15px)',  offset: 0.3}),
+          style({opacity: 1, transform: 'translateX(0)',     offset: 1.0})
+        ]))
+      ]),
+      transition('* => void', [
+        animate(900, keyframes([
+          style({opacity: 1, transform: 'translateX(0)',     offset: 0}),
+          style({opacity: 1, transform: 'translateX(-15px)', offset: 0.7}),
+          style({opacity: 0, transform: 'translateX(100%)',  offset: 1.0})
+        ]))
+      ])
+    ]),
+  ],
   templateUrl: './subject-result.component.html',
   styleUrls: ['./subject-result.component.css']
 })
@@ -167,124 +189,7 @@ export class SubjectResultComponent implements OnInit {
       'grade': 'A+'
     }
   ];
-   subjects = [
-    {
-      'name': 'Machine Learning',
-      'id': 'CS000'
-    },
-    {
-      'name': 'Operating System',
-      'id': 'CS001'
-    },
-    {
-      'name': 'Data Structure',
-      'id': 'CS002'
-    },
-    {
-      'name': 'Computer Architecture',
-      'id': 'CS003'
-    },
-    {
-      'name': 'Discrete Computational Structure',
-      'id': 'CS004'
-    },
-    {
-      'name': 'Java',
-      'id': 'CS005'
-    },
-    {
-      'name': 'Computer Networks',
-      'id': 'CS006'
-    },
-    {
-      'name': 'Graph Theory',
-      'id': 'CS007'
-    },
-    {
-      'name': 'DBMS',
-      'id': 'CS008'
-    },
-    {
-      'name': 'Distributed Computing',
-      'id': 'CS009'
-    },
-    {
-      'name': 'Soft Computing',
-      'id': 'CS0010'
-    },
-    {
-      'name': 'Microprocessor',
-      'id': 'CS0011'
-    },
-    {
-      'name': 'Computer Grapohics',
-      'id': 'CS0012'
-    },
-    {
-      'name': 'Compiler Design',
-      'id': 'CS0013'
-    },
-    {
-      'name': 'Theory of Computation',
-      'id': 'CS0014'
-    },
-    {
-      'name': 'Design ana Analysis of Algorithms',
-      'id': 'CS0015'
-    },
-    {
-      'name': 'Application Development lab',
-      'id': 'CS0016'
-    },
-    {
-      'name': 'Design Project',
-      'id': 'CS0017'
-    },
-    {
-      'name': 'System Software',
-      'id': 'CS0018'
-    },
-    {
-      'name': 'Data Communication',
-      'id': 'CS0019'
-    },
-    {
-      'name': 'Software Engineering and Project Management',
-      'id': 'CS0020'
-    },
-    {
-      'name': 'Web Technologies',
-      'id': 'CS0021'
-    },
-    {
-      'name': 'System Software Lab',
-      'id': 'CS0022'
-    },
-    {
-      'name': 'Life Skills',
-      'id': 'CS0023'
-    },
-    {
-      'name': 'Computer Sysetm Architecture',
-      'id': 'CS0024'
-    },
-    {
-      'name': 'Cryptography and Computer Security',
-      'id': 'CS0025'
-    },
-    {
-      'name': 'Switching Theory ana Logical Design',
-      'id': 'CS0026'
-    },
-    {
-      'name': 'Data Structure Lab',
-      'id': 'CS0027'
-    },
-    {
-      'name': 'Digital System Lab',
-      'id': 'CS0028'
-    }
-  ];
+   subjects = [];
 
   semList = [
     {'id': 1, 'name': 'Semester 1'},
@@ -296,18 +201,12 @@ export class SubjectResultComponent implements OnInit {
     {'id': 7, 'name': 'Semester 7'},
     {'id': 8, 'name': 'Semester 8'}
   ];
-  batchList = [
-    {'id': 1, 'name': '2015-19'},
-    {'id': 2, 'name': '2016-20'},
-    {'id': 3, 'name': '2017-21'},
-    {'id': 4, 'name': '2018-22'},
-    {'id': 5, 'name': '2019-23'},
-  ];
-
+  batchList: Array<any>;
+  private batchShow: any;
 
   semSettings = {};
   batchSettings = {};
-  batch = [{'id': 1, 'name': '2015-19'}];
+  batch: Array<any>;
   semester = [{'id': 1, 'name': 'Semester 7'}];
   page = 1;
   pages = new Page()
@@ -340,7 +239,7 @@ export class SubjectResultComponent implements OnInit {
   public gradientChartOptionsConfigurationWithNumbersAndGrid: any;
 
 
-  constructor(private serverService: ServerService, private paginationService: PaginationService) {
+  constructor(private commonService: CommonService, private paginationService: PaginationService) {
 
    }
 
@@ -368,23 +267,23 @@ export class SubjectResultComponent implements OnInit {
       text: 'Choose Batch',
       enableSearchFilter: true,
       classes: 'input-group-alternative',
-      labelKey: 'name'
+      labelKey: 'year'
     }
     // this.batch =  [{'id': 1, 'name': '2015-19'}];
     //
 
     this.chartColor = '#212121';
-    this.canvas = document.getElementById('radarChart');
-    this.ctx = this.canvas.getContext('2d');
+    // this.canvas = document.getElementById('radarChart');
+    // this.ctx = this.canvas.getContext('2d');
 
-    this.gradientStroke = this.ctx.createLinearGradient(500, 0, 100, 0);
-    this.gradientStroke.addColorStop(0, '#6c6');
-    this.gradientStroke.addColorStop(1, this.chartColor);
+    // this.gradientStroke = this.ctx.createLinearGradient(500, 0, 100, 0);
+    // this.gradientStroke.addColorStop(0, '#6c6');
+    // this.gradientStroke.addColorStop(1, this.chartColor);
 
-    this.gradientFill = this.ctx.createLinearGradient(0, 170, 0, 50);
-    // this.gradientFill.addColorStop(0, 'rgba(128, 182, 244, 0)');
-    this.gradientFill.addColorStop(0, 'rgba(102, 204, 102, .3)');
-    this.gradientFill.addColorStop(1, 'rgba(255, 255, 255, 0.1)');
+    // this.gradientFill = this.ctx.createLinearGradient(0, 170, 0, 50);
+    // // this.gradientFill.addColorStop(0, 'rgba(128, 182, 244, 0)');
+    // this.gradientFill.addColorStop(0, 'rgba(102, 204, 102, .3)');
+    // this.gradientFill.addColorStop(1, 'rgba(255, 255, 255, 0.1)');
     this.radarChartData = [
         {
           label: 'Count',
@@ -553,13 +452,43 @@ export class SubjectResultComponent implements OnInit {
     };
 
     this.lineBigDashboardChartType = 'line';
+    if (localStorage.getItem('subjects')) {
+      this.subjects = JSON.parse(localStorage.getItem('subjects'));
+    } else {
+      this.commonService.getSubjects().subscribe(
+        (data: Subject[]) => {
+          this.subjects = data;
+          localStorage.setItem('subjects', JSON.stringify(data))
+        },
+        error => {
+            console.log(error.status);
+        }
+      );
+    }
+    if (localStorage.getItem('batches')) {
+      this.batchList = JSON.parse(localStorage.getItem('batches'));
+      this.batch = [this.batchList[0]]
+      this.batchShow = this.batchList[0]
+    } else {
+      this.commonService.getBatches().subscribe(
+        data => {
+          this.batchList = data;
+          this.batch = [this.batchList[0]]
+          this.batchShow = this.batchList[0]
+          localStorage.setItem('batches', JSON.stringify(data))
+        },
+        error => {
+            console.log(error.status);
+        }
+      )
+    }
   }
 
 
-  // Paginatio
+  // Pagination
   public pagination(e: any): void {
     this.pages.pageNumber = e - 1;
-    this.studList =  [...this.paginationService.getHeroes(this.pageData).data ];
+    this.studList =  [...this.paginationService.getPages(this.pageData).data ];
   }
   // events
   public chartClicked(e: any): void {
@@ -568,7 +497,9 @@ export class SubjectResultComponent implements OnInit {
       const index = e.active[0]._index;
       this.grade = this.radarChartLables[index];
       this.pageData.data = this.data.filter(item => item.grade === this.grade);
+      this.page = 1;
       this.pagination(this.page);
+      
     }
   }
   private showAll() {
@@ -601,12 +532,12 @@ export class SubjectResultComponent implements OnInit {
     debounceTime(200),
     distinctUntilChanged(),
     map(term => term.length < 2 ? []
-      : this.subjects.filter(v => ((v.name.toLowerCase() + ' ' + v.id.toLocaleLowerCase()).indexOf(term.toLowerCase())) > -1).slice(0, 15 ))
+      : this.subjects.filter(v => ((v.name.toLowerCase() + ' ' + v.cource_code.toLocaleLowerCase()).indexOf(term.toLowerCase())) > -1).slice(0, 15 ))
   );
 
-  formatter = (x: {name: string, id: string}) => x.name + ' : ' + x.id;
+  formatter = (x: {name: string, cource_code: string}) => x.name + ' : ' + x.cource_code;
   private selectSearch(e: any): void {
-    console.log(e, this.batch[0].name);
-
+    console.log(e);
+    this.batchShow = e;
   }
 }
