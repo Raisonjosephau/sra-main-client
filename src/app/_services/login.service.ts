@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class LoginService {
@@ -13,12 +13,12 @@ export class LoginService {
       formData.append('username', username);
       formData.append('password', password);
       return this.http
-                  .post<any>('http://127.0.0.1:8000/accounts/login/', formData)
-        .map(data => {
-        // login successful if there's a jwt token in the response
-        if (data.token) {
-            localStorage.setItem('logedUser', JSON.stringify(data));
-        }
+                  .post<any>('http://127.0.0.1:8000/accounts/login/', formData).pipe(
+                    map(data => {
+                    // login successful if there's a jwt token in the response
+                    if (data.token) {
+                        localStorage.setItem('logedUser', JSON.stringify(data));
+                    }
         return data;
       });
   }
