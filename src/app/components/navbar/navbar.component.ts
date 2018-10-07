@@ -4,6 +4,11 @@ import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common'
 import { Router } from '@angular/router';
 
 
+import {CommonService} from '../../_services/common.service';
+import {Observable} from 'rxjs';
+import {of} from 'rxjs';
+import {catchError, debounceTime, distinctUntilChanged, map, tap, switchMap} from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-navbar',
@@ -20,91 +25,11 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
     public isCollapsed = true;
-    hasFoc = false;
-
-    items = [
-        {
-          'id': 0,
-          'reg': 'SGICS3',
-          'name': 'Sreelaksmi Sudeer'
-        },
-        {
-          'id': 1,
-          'reg': 'SGICS27',
-          'name': 'Savid Joe Sunny'
-        },
-        {
-          'id': 2,
-          'reg': 'SGICS28',
-          'name': 'Joel Jose Parekattil'
-        },
-        {
-          'id': 3,
-          'reg': 'SGICS13',
-          'name': 'Jimenez Cote'
-        },
-        {
-          'id': 4,
-          'reg': 'SGICS3',
-          'name': 'Gonzales Griffith'
-        },
-        {
-          'id': 5,
-          'reg': 'SGICS31',
-          'name': 'Kirby Woods'
-        },
-        {
-          'id': 6,
-          'reg': 'SGICS2',
-          'name': 'Barry Hinton'
-        },
-        {
-          'id': 7,
-          'reg': 'SGICS31',
-          'name': 'Leila Mcfarland'
-        },
-        {
-          'id': 8,
-          'reg': 'SGICS15',
-          'name': 'Liliana Stein'
-        },
-        {
-          'id': 9,
-          'reg': 'SGICS29',
-          'name': 'Perez Stone'
-        },
-        {
-          'id': 10,
-          'reg': 'SGICS3',
-          'name': 'Marie Noel'
-        },
-        {
-          'id': 11,
-          'reg': 'SGICS21',
-          'name': 'Daniel Sanders'
-        },
-        {
-          'id': 12,
-          'reg': 'SGICS6',
-          'name': 'Booker Roach'
-        },
-        {
-          'id': 13,
-          'reg': 'SGICS18',
-          'name': 'Marietta Sykes'
-        },
-        {
-          'id': 14,
-          'reg': 'SGICS12',
-          'name': 'Gabriela Lindsey'
-        },
-        {
-          'id': 15,
-          'reg': 'SGICS24',
-          'name': 'Lloyd Robinson'
-        }
-      ];
-    constructor(location: Location,  private element: ElementRef, private router: Router) {
+   
+    
+    searching = false;
+    searchFailed = false;
+    constructor(location: Location,  private element: ElementRef, private router: Router, private commonService: CommonService) {
       this.location = location;
           this.sidebarVisible = false;
     }
@@ -237,4 +162,30 @@ export class NavbarComponent implements OnInit {
         localStorage.removeItem('logedUser');
         this.router.navigate(['/login']);
     }
+
+    search = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      switchMap(term => term.length < 3 ? []
+        : this.commonService.serachStudent(term).pipe(
+          tap(() => this.searchFailed = false),
+          map(res => {
+            if (res.length) {
+              return res;
+            } else {
+              this.searchFailed = true;
+              return [];
+            }
+          }),
+          catchError(() => {
+            this.searchFailed = true;
+            return of([]);
+          }))
+      ),
+    )
+  formatter = (x: {name: string,  regno: string}) => x.name + ' - ' + x.regno;
+  private selectSearch(e: any): void {
+    console.log(e);
+  }
 }
